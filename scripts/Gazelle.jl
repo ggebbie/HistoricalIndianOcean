@@ -1,14 +1,19 @@
 # get basinwide mean values for the Indian Ocean
-using Revise, HistoricalIndianOcean
+using Revise, HistoricalIndianOcean, DrWatson, GoogleDrive, NCDatasets
 
 # Download data from GoogleDrive
-inputfile = datadir("TMI_"*TMIversion*".nc")
+#inputfile = datadir("TMI_"*TMIversion*".nc")
 
 # HistoricalIndianOcean.nc
-#url = "https://docs.google.com/uc?export=download&id=1WKAWxDYDFls6C5YzO1sMLDlUhC8_tKV2"
+# https://drive.google.com/file/d/1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK/view?usp=sharing
+file_id = "1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK"
+#url = "https://drive.google.com/file/d/"*file_id*"/view?usp=sharing"
+url = "https://docs.google.com/uc?export=download&id="*file_id
+filename_tmp = google_download(url,datadir())
+#filename=datadir("HistoricalIndianOcean.nc")
+#mv(filename_tmp,filename,force=true)
+nc = NCDataset(filename)
 
-url = "https://drive.google.com/file/d/1WKAWxDYDFls6C5YzO1sMLDlUhC8_tKV2/view?usp=sharing"
-google_download(url,datadir())
 
 locs = Vector{Loc}(undef,2)
 

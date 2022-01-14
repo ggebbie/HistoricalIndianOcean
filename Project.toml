@@ -1,10 +1,13 @@
-name = "BasinwideAverages"
+name = "HistoricalIndianOcean"
 authors = ["G Jake Gebbie"]
 
 [deps]
 Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
 DrWatson = "634d3b9d-ee7a-5ddf-bec9-22491ea816e1"
+GoogleDrive = "91feb7a0-3508-11ea-1e8e-afea2c1c9a19"
+NCDatasets = "85f8d34a-cbdd-5861-8df4-14fed0d494ab"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
 DrWatson = "2.7.5"
-julia = "1.7.0"
+julia = "1.7"
