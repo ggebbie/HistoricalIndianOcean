@@ -34,15 +34,10 @@ function error_covariance(locs,σobs,wocefactor,watermassvar,Lxy_decadal,Lz_deca
     # For longer time intervals, wocefactor is larger if frequency spectrum is red.
     ση = wocefactor * woce_error(TMIversion,locs,γ)
 
-    println(count(isnan,ση))
     # multiply expected error by water-mass variability fraction
     Rss = 2*weighted_covariance(locs,watermassvar*ση,Lxy_watermass,Lz_watermass)
     Rtt =  2*weighted_covariance(locs,ση,Lxy_decadal,Lz_decadal)
-
     Rmm = observational_covariance(σobs)
-
-    println(count(isnan,Rss))
-    println(count(isnan,Rtt))
     
     Rqq  = Rss + Rtt + Rmm
     
@@ -179,6 +174,10 @@ function vertical_map(zobs,zgrid)
     return E
 end
 
+"""
+    function basinwide_avg(T,Rqq,H,S)
+    Short version of arguments
+"""
 function basinwide_avg(T,Rqq,H,S)
     
     # solve for T̄.
@@ -195,6 +194,43 @@ function basinwide_avg(T,Rqq,H,S)
     
     return T̄,σT̄
 
+end
+
+"""
+    function basinwide_avg(T,Rqq,H,S)
+    Long version of arguments
+    T, H, locs, zgrid are fixed
+    params is a dictionary of variable parameters
+"""
+function basinwide_avg(T,params)
+
+    @unpack σobs, wocefactor, watermassvar, Lxy_decadal, Lz_decadal, Lxy_watermass, Lz_watermass, σS, Lz_basinwideavg, locs, zgrid = params
+
+    [zobs[r] = locs[r].depth for r in eachindex(igood)]
+
+    # make H matrix, vertical map onto grid
+    H = vertical_map(zobs,zgrid)
+
+    Rqq = error_covariance(locs,σobs,wocefactor,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
+    S = vertical_smoothness(zgrid,σS,Lz_basinwideavg)
+
+        # solve for T̄.
+    iRqqH = Rqq\H;
+    inside = iRqqH'*H + S\I
+    rhs = iRqqH'*T
+    T̄ = inside\rhs
+
+    Ctt = inv(inside)
+    σT̄ = zeros(length(T̄))
+    for ii in eachindex(T̄)
+        σT̄[ii] = sqrt(Ctt[ii,ii]);
+    end
+    
+    output = copy(params)
+    output["T̄"]= T̄
+    output["σT̄"] = σT̄
+    return output
+    
 end
 
 end # module HistoricalIndianOcean

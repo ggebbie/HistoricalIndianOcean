@@ -1,32 +1,39 @@
 # get basinwide mean values for the Indian Ocean
+
+# activate environment with DrWatson
+include("intro.jl")
+
 using Revise
 using HistoricalIndianOcean, DrWatson, GoogleDrive, NCDatasets, TMI, PyPlot
 
 # input parameters
-Lxy_decadal = 450_000 #m
-Lz_decadal = 450 #m
+Lxy_decadal = 450_000 # m
+Lz_decadal = 450 # m
 
 # try the same thing for watermass gradients.
-Lxy_watermass = 2_000_000 # xylengthscale = 3e3 m
-Lz_watermass = 1000 # zlengthscale  = 1.5e3 m  
+Lxy_watermass = 2_000_000 # xylengthscale = meters
+Lz_watermass = 1000 # zlengthscale  = meters
 
 watermassvar = (1/5.)^2 
-σobs = 0.54  # deg C # obs error from HMS Challenger
+σobs = 0.14  # deg C # obs error from HMS Challenger
 
-Lz_basinwideavg = 1000 # meters
+Lz_basinwideavg = [500, 1000] # meters
 
-wocefactor = 2.0 # amplify variability expected by a decadal average
+wocefactor = [1.0,2.0] # amplify variability expected by a decadal average
 
-σS = 1.0 # first-guess size of anomalies, deg C
-    
+σS = [0.5,1.0] # first-guess size of anomalies, deg C
+
+# Several parameter containers
+allparams = @strdict σobs wocefactor watermassvar Lxy_decadal Lz_decadal Lxy_watermass Lz_watermass σS Lz_basinwideavg
+
+# A vector of parameter containers for all permutations
+dicts = dict_list(allparams)
+
+## Next set the fixed variables ################
+
 # For the purposes of the line plot in the current version of the manuscript I binned the data into the following depth ranges, which give a reasonably balanced set of obs in each range
-zgridedge = [0, 100, 300, 500, 1000, 2000, 3000]
+zgridedge = [-1, 1, 100, 300, 500, 1000, 2000, 3000]
 zgrid = [0, 50, 200, 400, 750, 1500, 2500]
-
-## Download TMI grid and error data from GoogleDrive
-#inputfile = datadir("TMI_"*TMIversion*".nc")
-#TMIversion = "modern_90x45x33_GH10_GH12"
-#A, Alu, γ, TMIfile, L, B = TMI.config_from_nc(TMIversion)
 
 # HistoricalIndianOcean.nc: data from Gazelle, etc.
 # https://drive.google.com/file/d/1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK/view?usp=sharing
@@ -45,15 +52,6 @@ locs = Vector{Loc}(undef,nobs)
 #[locs[r] = Loc(nc["lon"][r],nc["lat"][r],nc["depth"][r]) for r in eachindex(nc["delta_T"])]
 [locs[r] = Loc(nc["lon"][igood[r]],nc["lat"][igood[r]],nc["depth"][igood[r]]) for r in eachindex(igood)]
 
-Rqq = error_covariance(locs,σobs,wocefactor,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
-
-zobs = collect(nc["depth"][igood])
-S = vertical_smoothness(zgrid,σS,Lz_basinwideavg)
-
-# make H matrix, vertical map onto grid
-
-H = vertical_map(zobs,zgrid)
-
 #################################
 # not good because type includes missing
 #ΔT = nc["delta_T"][igood]
@@ -64,11 +62,15 @@ for ii in eachindex(igood)
     println(ii)
     ΔT[ii] = nc["delta_T"][igood[ii]]
 end
+zobs = collect(nc["depth"][igood])
 
-#figure()
-#plot(ΔT,-nc["depth"],marker="o")
+# Several parameter containers
+allparams = @strdict σobs wocefactor watermassvar Lxy_decadal Lz_decadal Lxy_watermass Lz_watermass σS Lz_basinwideavg locs zgrid
 
-ΔT̄,σT̄ = basinwide_avg(ΔT,Rqq,H,S)
+dicts = dict_list(allparams)
+
+#ΔT̄,σT̄ = basinwide_avg(ΔT,Rqq,H,S)
+output = basinwide_avg(ΔT,dicts[1])
 
 figure()
 plot(ΔT̄,-zgrid)
