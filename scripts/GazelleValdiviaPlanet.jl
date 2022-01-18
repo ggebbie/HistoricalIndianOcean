@@ -15,6 +15,10 @@ watermassvar = (1/5.)^2
 
 Lz_basinwideavg = 1000 # meters
 
+wocefactor = 2.0 # amplify variability expected by a decadal average
+
+σS = 1.0 # first-guess size of anomalies, deg C
+    
 # For the purposes of the line plot in the current version of the manuscript I binned the data into the following depth ranges, which give a reasonably balanced set of obs in each range
 zgridedge = [0, 100, 300, 500, 1000, 2000, 3000]
 zgrid = [0, 50, 200, 400, 750, 1500, 2500]
@@ -41,10 +45,10 @@ locs = Vector{Loc}(undef,nobs)
 #[locs[r] = Loc(nc["lon"][r],nc["lat"][r],nc["depth"][r]) for r in eachindex(nc["delta_T"])]
 [locs[r] = Loc(nc["lon"][igood[r]],nc["lat"][igood[r]],nc["depth"][igood[r]]) for r in eachindex(igood)]
 
-Rqq = error_covariance(locs,σobs,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
+Rqq = error_covariance(locs,σobs,wocefactor,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
 
 zobs = collect(nc["depth"][igood])
-S = vertical_smoothness(zgrid,Lz_basinwideavg)
+S = vertical_smoothness(zgrid,σS,Lz_basinwideavg)
 
 # make H matrix, vertical map onto grid
 
@@ -76,7 +80,6 @@ grid()
 ΔTstd = std(skipmissing(ΔT))
 
 err_naive = ΔTstd/sqrt(count(!ismissing,ΔT))
-
 
 #=
 # testing Named Tuples

@@ -23,12 +23,16 @@ function error_covariance(locs,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermas
     σobs: observational covariance
     watermassvar: fraction of water-mass variability to total (heaving, waves) variability 
 """
-function error_covariance(locs,σobs,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
+function error_covariance(locs,σobs,wocefactor,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
 
     # hard-wire the TMI version
     TMIversion = "modern_90x45x33_GH10_GH12"
     A, Alu, γ, TMIfile, L, B = TMI.config_from_nc(TMIversion)
-    ση = woce_error(TMIversion,locs,γ)
+
+    # wocefactor = how much bigger is sqrt of variability for this time interval
+    # relative to the woce time interval.
+    # For longer time intervals, wocefactor is larger if frequency spectrum is red.
+    ση = wocefactor * woce_error(TMIversion,locs,γ)
 
     println(count(isnan,ση))
     # multiply expected error by water-mass variability fraction
@@ -120,7 +124,7 @@ function interpindex(loc::Loc,γ::TMI.grid)
         
 end
 
-function vertical_smoothness(zgrid,Lz)
+function vertical_smoothness(zgrid,σ,Lz)
     
     # some smoothness in vertical profile.
     ngrid = length(zgrid)
@@ -129,7 +133,7 @@ function vertical_smoothness(zgrid,Lz)
     for nz in eachindex(zgrid)
         dz = zgrid[nz] .- zgrid
         exponent = (dz./Lz).^2
-        S[nz,:] = exp.(-exponent);
+        S[nz,:] = σ^2 * exp.(-exponent);
     end
 
     # a small perturbation to the diagonal for
@@ -186,7 +190,7 @@ function basinwide_avg(T,Rqq,H,S)
     Ctt = inv(inside)
     σT̄ = zeros(length(T̄))
     for ii in eachindex(T̄)
-        σT̄[ii] = 2*sqrt(Ctt[ii,ii]);
+        σT̄[ii] = sqrt(Ctt[ii,ii]);
     end
     
     return T̄,σT̄
