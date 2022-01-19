@@ -54,10 +54,11 @@ for (i, d) in enumerate(dicts)
 
     # make profile figure
     figure(i)
-    plot(ΔT̄,zgrid)
+    clf()
+    plot(output["T̄"],zgrid)
     #plot(ΔT̄.+σT̄,-zgrid)
     #plot(ΔT̄.-σT̄,-zgrid)
-    plot(ΔT̄,zgrid,xerr=σΔT̄)
+    errorbar(output["T̄"],zgrid,xerr=output["σT̄"])
     xlabel(xax)
     ylabel(yax)
     grid()
