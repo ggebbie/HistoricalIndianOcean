@@ -4,7 +4,7 @@
 include("intro.jl")
 
 using Revise
-using HistoricalIndianOcean, DrWatson, TMI, PyPlot
+using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV
 
 # input parameters
 Lxy_t = 450_000 # m
@@ -23,12 +23,6 @@ wocefactor = [1.0,2.0] # amplify variability expected by a decadal average
 
 σS = [0.5,1.0] # first-guess size of anomalies, deg C
 
-# Several parameter containers
-#allparams = @strdict σobs wocefactor watermassvar Lxy_decadal Lz_decadal Lxy_watermass Lz_watermass σS Lz_basinwideavg
-
-# A vector of parameter containers for all permutations
-#dicts = dict_list(allparams)
-
 ## Next set the fixed variables ################
 
 # For the purposes of the line plot in the current version of the manuscript I binned the data into the following depth ranges, which give a reasonably balanced set of obs in each range
@@ -44,15 +38,24 @@ allparams["zgrid"] = [zgrid]
 dicts = dict_list(allparams)
 
 for (i, d) in enumerate(dicts)
+
     output = basinwide_avg(ΔT,locs,d)
-    #@tagsave(datadir(savename(d,"jld2")), output)
+    @tagsave(datadir("jld2",savename(d,"jld2")), output)
 
-    # doesn't work, try dataFrame instead
-    wsave(datadir(savename(d,"csv")), output)
-
+    zoutput = Dict("z [m]" => output["zgrid"], "ΔT̄ [°C]" => output["T̄"], "σΔT̄ [°C]" => output["σT̄"])
+    df = DataFrame(zoutput)
+    !isdir(datadir("csv")) && mkdir(datadir("csv"))
+    CSV.write(datadir("csv","Tbar_"*savename(d,"csv")),df)
+    
+    # # save ΔT̄, σT̄ in a CSV file
+    # file = CSV.File(IOBuffer(data); header=["delta-T [deg C]", "stderr [deg C]"])
+    # # doesn't work, try dataFrame instead
+    # #wsave(datadir(savename(d,"csv")), output)
+    # data   = [[collect(keys(x))];[collect(values(x))]]
     
 end
 
+readdir(datadir("csv"))
 figure()
 plot(ΔT̄,-zgrid)
 plot(ΔT̄.+σT̄,-zgrid)

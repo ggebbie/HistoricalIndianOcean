@@ -43,15 +43,9 @@ function error_covariance(locs,σobs,wocefactor,sratio,Lxy_t,Lz_t, Lxy_s, Lz_s)
     
     Rqq  = Rss + Rtt + Rmm
     
-  # %% use 0.2 K for uncertainty. Instead of 0.14 K.
-  # Rqq = (0.14.^2 + 0.03.^2).*eye(Nobs,Nobs) + 2.*RSxx + 2.*RTxx;
-  # iRqq = inv(Rqq);
     return Rqq
 end
 
-# function haversined(loc1::Loc,loc2::Loc)
-#     return distance = haversine((loc1.lon,loc1.lat),(loc2.lon,loc2.lat))
-# end
 haversine(loc1::Loc,loc2::Loc) = Distances.haversine((loc1.lon,loc1.lat),(loc2.lon,loc2.lat))
 
 function weighted_covariance(locs,ση,Lxy,Lz)
