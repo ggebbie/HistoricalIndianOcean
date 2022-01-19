@@ -7,19 +7,19 @@ using Revise
 using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV
 
 # input parameters
-Lxy_t = 450_000 # m
-Lz_t = 450 # m
+LxyT = 450_000 # m
+LzT = 450 # m
 
 # try the same thing for watermass gradients.
-Lxy_s = 2_000_000 # xylengthscale = meters
-Lz_s = 1000 # zlengthscale  = meters
+LxyS = 2_000_000 # xylengthscale = meters
+LzS = 1000 # zlengthscale  = meters
 
 sratio = (1/5.)^2 
 σobs = 0.14  # deg C # obs error from HMS Challenger
 
-Lz_avg = [500, 1000] # meters
+LzAVG = [500, 1000] # meters
 
-wocefactor = [1.0,2.0] # amplify variability expected by a decadal average
+tratio = [1.0,2.0] # amplify variability expected by a decadal average
 
 σS = [0.5,1.0] # first-guess size of anomalies, deg C
 
@@ -32,7 +32,7 @@ zgrid = [0, 50, 200, 400, 750, 1500, 2500]
 ΔT,locs = read_historical_data()
 
 # Several parameter containers
-allparams = @strdict σobs wocefactor sratio Lxy_t Lz_t Lxy_s Lz_s σS Lz_avg
+allparams = @strdict σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG
 allparams["zgrid"] = [zgrid]
 
 dicts = dict_list(allparams)
@@ -63,12 +63,18 @@ for (i, d) in enumerate(dicts)
     ylabel(yax)
     grid()
     gca().invert_yaxis()
-    figname = plotsdir(savename(d,"pdf"))
+
+    titlelabel = replace(savename(d),"_" => ", ")
+    title(titlelabel,fontsize=7)
+    
+    figname = plotsdir("Tbar_"*savename(d,"pdf"))
     savefig(figname)
 
 end
 
-readdir(datadir("csv"))
+# tests
+#readdir(datadir("csv"))
+#readdir(plotsdir())
 
 # Left to do: compare to bin-averaged ΔT
 #ΔTmean = mean(skipmissing(ΔT))

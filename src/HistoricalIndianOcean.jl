@@ -19,26 +19,26 @@ struct Loc
 end
 
 """
-function error_covariance(locs,sratio,Lxy_t,Lz_t, Lxy_s, Lz_s)
+function error_covariance(locs,sratio,LxyT,LzT, LxyS, LzS)
 
     locs: locations of data
     σobs: observational covariance
     sratio: fraction of water-mass variability to total (heaving, waves) variability 
 """
-function error_covariance(locs,σobs,wocefactor,sratio,Lxy_t,Lz_t, Lxy_s, Lz_s)
+function error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS)
 
     # hard-wire the TMI version
     TMIversion = "modern_90x45x33_GH10_GH12"
     A, Alu, γ, TMIfile, L, B = TMI.config_from_nc(TMIversion)
 
-    # wocefactor = how much bigger is sqrt of variability for this time interval
+    # tratio = how much bigger is sqrt of variability for this time interval
     # relative to the woce time interval.
-    # For longer time intervals, wocefactor is larger if frequency spectrum is red.
-    ση = wocefactor * woce_error(TMIversion,locs,γ)
+    # For longer time intervals, tratio is larger if frequency spectrum is red.
+    ση = tratio * woce_error(TMIversion,locs,γ)
 
     # multiply expected error by water-mass variability fraction
-    Rss = 2*weighted_covariance(locs,sratio*ση,Lxy_s,Lz_s)
-    Rtt =  2*weighted_covariance(locs,ση,Lxy_t,Lz_t)
+    Rss = 2*weighted_covariance(locs,sratio*ση,LxyS,LzS)
+    Rtt =  2*weighted_covariance(locs,ση,LxyT,LzT)
     Rmm = observational_covariance(σobs)
     
     Rqq  = Rss + Rtt + Rmm
@@ -200,7 +200,7 @@ end
 """
 function basinwide_avg(T,locs,params)
 
-    @unpack σobs, wocefactor, sratio, Lxy_t, Lz_t, Lxy_s, Lz_s, σS, Lz_avg, zgrid = params
+    @unpack σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, zgrid = params
 
     zobs = zeros(length(locs))
     [zobs[r] = locs[r].depth for r in eachindex(locs)]
@@ -208,8 +208,8 @@ function basinwide_avg(T,locs,params)
     # make H matrix, vertical map onto grid
     H = vertical_map(zobs,zgrid)
 
-    Rqq = error_covariance(locs,σobs,wocefactor,sratio,Lxy_t,Lz_t, Lxy_s, Lz_s)
-    S = vertical_smoothness(zgrid,σS,Lz_avg)
+    Rqq = error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS)
+    S = vertical_smoothness(zgrid,σS,LzAVG)
 
         # solve for T̄.
     iRqqH = Rqq\H;
