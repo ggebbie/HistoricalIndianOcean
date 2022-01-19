@@ -1,10 +1,12 @@
 module HistoricalIndianOcean
 
-using DrWatson, Distances, TMI, Interpolations, LinearAlgebra
+using DrWatson, Distances, TMI, Interpolations, LinearAlgebra,
+    GoogleDrive, NCDatasets
 
 export R2_covariance, Loc, observational_covariance,
     weighted_covariance, error_covariance, woce_error,
-    vertical_smoothness, vertical_map, basinwide_avg
+    vertical_smoothness, vertical_map, basinwide_avg,
+    read_historical_data
 
 import TMI.interpindex
 
@@ -17,13 +19,13 @@ struct Loc
 end
 
 """
-function error_covariance(locs,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
+function error_covariance(locs,sratio,Lxy_t,Lz_t, Lxy_s, Lz_s)
 
     locs: locations of data
     σobs: observational covariance
-    watermassvar: fraction of water-mass variability to total (heaving, waves) variability 
+    sratio: fraction of water-mass variability to total (heaving, waves) variability 
 """
-function error_covariance(locs,σobs,wocefactor,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
+function error_covariance(locs,σobs,wocefactor,sratio,Lxy_decadal,Lz_decadal, Lxy_s, Lz_s)
 
     # hard-wire the TMI version
     TMIversion = "modern_90x45x33_GH10_GH12"
@@ -35,8 +37,8 @@ function error_covariance(locs,σobs,wocefactor,watermassvar,Lxy_decadal,Lz_deca
     ση = wocefactor * woce_error(TMIversion,locs,γ)
 
     # multiply expected error by water-mass variability fraction
-    Rss = 2*weighted_covariance(locs,watermassvar*ση,Lxy_watermass,Lz_watermass)
-    Rtt =  2*weighted_covariance(locs,ση,Lxy_decadal,Lz_decadal)
+    Rss = 2*weighted_covariance(locs,sratio*ση,Lxy_s,Lz_s)
+    Rtt =  2*weighted_covariance(locs,ση,Lxy_t,Lz_t)
     Rmm = observational_covariance(σobs)
     
     Rqq  = Rss + Rtt + Rmm
@@ -202,17 +204,18 @@ end
     T, H, locs, zgrid are fixed
     params is a dictionary of variable parameters
 """
-function basinwide_avg(T,params)
+function basinwide_avg(T,locs,params)
 
-    @unpack σobs, wocefactor, watermassvar, Lxy_decadal, Lz_decadal, Lxy_watermass, Lz_watermass, σS, Lz_basinwideavg, locs, zgrid = params
+    @unpack σobs, wocefactor, sratio, Lxy_t, Lz_t, Lxy_s, Lz_s, σS, Lz_avg, zgrid = params
 
-    [zobs[r] = locs[r].depth for r in eachindex(igood)]
+    zobs = zeros(length(locs))
+    [zobs[r] = locs[r].depth for r in eachindex(locs)]
 
     # make H matrix, vertical map onto grid
     H = vertical_map(zobs,zgrid)
 
-    Rqq = error_covariance(locs,σobs,wocefactor,watermassvar,Lxy_decadal,Lz_decadal, Lxy_watermass, Lz_watermass)
-    S = vertical_smoothness(zgrid,σS,Lz_basinwideavg)
+    Rqq = error_covariance(locs,σobs,wocefactor,sratio,Lxy_t,Lz_t, Lxy_s, Lz_s)
+    S = vertical_smoothness(zgrid,σS,Lz_avg)
 
         # solve for T̄.
     iRqqH = Rqq\H;
@@ -231,6 +234,44 @@ function basinwide_avg(T,params)
     output["σT̄"] = σT̄
     return output
     
+end
+
+"""
+   Read data regarding historical Indian Ocean cruises
+"""
+function read_historical_data()
+    
+    # HistoricalIndianOcean.nc: data from Gazelle, etc.
+    # https://drive.google.com/file/d/1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK/view?usp=sharing
+    file_id = "1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK"
+    url = "https://docs.google.com/uc?export=download&id="*file_id
+    filename = datadir("HistoricalIndianOcean.nc")
+
+    # download if not already done
+    !isfile(filename) &&  google_download(url,datadir())
+
+    nc = NCDataset(filename)
+
+    igood = findall(!ismissing,nc["delta_T"])
+    nobs = count(!ismissing,nc["delta_T"])
+
+    locs = Vector{Loc}(undef,nobs)
+
+    # lon, lat, depth
+    #[locs[r] = Loc(nc["lon"][r],nc["lat"][r],nc["depth"][r]) for r in eachindex(nc["delta_T"])]
+    [locs[r] = Loc(nc["lon"][igood[r]],nc["lat"][igood[r]],nc["depth"][igood[r]]) for r in eachindex(igood)]
+
+    #################################
+    # not good because type includes missing
+    #ΔT = nc["delta_T"][igood]
+
+    # here ΔT is type vector float (no missing)
+    ΔT = zeros(nobs)
+    for ii in eachindex(igood)
+        println(ii)
+        ΔT[ii] = nc["delta_T"][igood[ii]]
+    end
+return ΔT, locs
 end
 
 end # module HistoricalIndianOcean

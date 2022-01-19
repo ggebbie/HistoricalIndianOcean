@@ -4,30 +4,30 @@
 include("intro.jl")
 
 using Revise
-using HistoricalIndianOcean, DrWatson, GoogleDrive, NCDatasets, TMI, PyPlot
+using HistoricalIndianOcean, DrWatson, TMI, PyPlot
 
 # input parameters
-Lxy_decadal = 450_000 # m
-Lz_decadal = 450 # m
+Lxy_t = 450_000 # m
+Lz_t = 450 # m
 
 # try the same thing for watermass gradients.
-Lxy_watermass = 2_000_000 # xylengthscale = meters
-Lz_watermass = 1000 # zlengthscale  = meters
+Lxy_s = 2_000_000 # xylengthscale = meters
+Lz_s = 1000 # zlengthscale  = meters
 
-watermassvar = (1/5.)^2 
+sratio = (1/5.)^2 
 σobs = 0.14  # deg C # obs error from HMS Challenger
 
-Lz_basinwideavg = [500, 1000] # meters
+Lz_avg = [500, 1000] # meters
 
 wocefactor = [1.0,2.0] # amplify variability expected by a decadal average
 
 σS = [0.5,1.0] # first-guess size of anomalies, deg C
 
 # Several parameter containers
-allparams = @strdict σobs wocefactor watermassvar Lxy_decadal Lz_decadal Lxy_watermass Lz_watermass σS Lz_basinwideavg
+#allparams = @strdict σobs wocefactor watermassvar Lxy_decadal Lz_decadal Lxy_watermass Lz_watermass σS Lz_basinwideavg
 
 # A vector of parameter containers for all permutations
-dicts = dict_list(allparams)
+#dicts = dict_list(allparams)
 
 ## Next set the fixed variables ################
 
@@ -35,42 +35,19 @@ dicts = dict_list(allparams)
 zgridedge = [-1, 1, 100, 300, 500, 1000, 2000, 3000]
 zgrid = [0, 50, 200, 400, 750, 1500, 2500]
 
-# HistoricalIndianOcean.nc: data from Gazelle, etc.
-# https://drive.google.com/file/d/1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK/view?usp=sharing
-file_id = "1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK"
-url = "https://docs.google.com/uc?export=download&id="*file_id
-filename = google_download(url,datadir())
-
-nc = NCDataset(filename)
-
-igood = findall(!ismissing,nc["delta_T"])
-nobs = count(!ismissing,nc["delta_T"])
-
-locs = Vector{Loc}(undef,nobs)
-
-# lon, lat, depth
-#[locs[r] = Loc(nc["lon"][r],nc["lat"][r],nc["depth"][r]) for r in eachindex(nc["delta_T"])]
-[locs[r] = Loc(nc["lon"][igood[r]],nc["lat"][igood[r]],nc["depth"][igood[r]]) for r in eachindex(igood)]
-
-#################################
-# not good because type includes missing
-#ΔT = nc["delta_T"][igood]
-
-# here ΔT is type vector float (no missing)
-ΔT = zeros(nobs)
-for ii in eachindex(igood)
-    println(ii)
-    ΔT[ii] = nc["delta_T"][igood[ii]]
-end
-zobs = collect(nc["depth"][igood])
+ΔT,locs = read_historical_data()
 
 # Several parameter containers
-allparams = @strdict σobs wocefactor watermassvar Lxy_decadal Lz_decadal Lxy_watermass Lz_watermass σS Lz_basinwideavg locs zgrid
+allparams = @strdict σobs wocefactor sratio Lxy_t Lz_t Lxy_s Lz_s σS Lz_avg
+allparams["zgrid"] = [zgrid]
 
 dicts = dict_list(allparams)
 
-#ΔT̄,σT̄ = basinwide_avg(ΔT,Rqq,H,S)
-output = basinwide_avg(ΔT,dicts[1])
+for (i, d) in enumerate(dicts)
+    output = basinwide_avg(ΔT,locs,d)
+    #f = makesim(d)
+    @tagsave(datadir(savename(d,"jld2")), output)
+end
 
 figure()
 plot(ΔT̄,-zgrid)
