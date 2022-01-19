@@ -1,6 +1,7 @@
 module HistoricalIndianOcean
 
-using DrWatson, Distances, TMI, Interpolations, LinearAlgebra,
+using DrWatson, Distances, TMI,
+    Interpolations, LinearAlgebra,
     GoogleDrive, NCDatasets
 
 export R2_covariance, Loc, observational_covariance,
@@ -262,10 +263,11 @@ function read_historical_data()
     # here ΔT is type vector float (no missing)
     ΔT = zeros(nobs)
     for ii in eachindex(igood)
-        println(ii)
         ΔT[ii] = nc["delta_T"][igood[ii]]
     end
-return ΔT, locs
+
+    return ΔT, locs
+
 end
 
 end # module HistoricalIndianOcean

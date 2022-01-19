@@ -4,7 +4,7 @@
 include("intro.jl")
 
 using Revise
-using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV
+using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV, DataFrames
 
 # input parameters
 LxyT = 450_000 # m
@@ -49,6 +49,7 @@ for (i, d) in enumerate(dicts)
     yax = "z [m]"
     zoutput = Dict(yax => output["zgrid"], xax => output["T̄"], "σΔT̄ [°C]" => output["σT̄"])
     df = DataFrame(zoutput)
+    println(df)
     !isdir(datadir("csv")) && mkdir(datadir("csv"))
     CSV.write(datadir("csv","Tbar_"*savename(d,"csv")),df)
 

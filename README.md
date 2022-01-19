@@ -45,7 +45,6 @@ For an interactive session, it is possible to run the lines of `GazelleValdiviaP
 2. copy and update relevant parts of Gebbie & Huybers 2019 supplementary material into GitHub.
 3. check that bin averages reproduce your previous results.
 4. Figures are rudimentary. With the csv output, perhaps it is easiest for you to make them publication ready.
-5. I learned some new code tricks in doing this analysis and it should be simple to change things.
 
 # Reproducibility
 
