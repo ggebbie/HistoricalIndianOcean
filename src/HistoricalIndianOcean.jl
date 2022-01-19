@@ -25,7 +25,7 @@ function error_covariance(locs,sratio,Lxy_t,Lz_t, Lxy_s, Lz_s)
     σobs: observational covariance
     sratio: fraction of water-mass variability to total (heaving, waves) variability 
 """
-function error_covariance(locs,σobs,wocefactor,sratio,Lxy_decadal,Lz_decadal, Lxy_s, Lz_s)
+function error_covariance(locs,σobs,wocefactor,sratio,Lxy_t,Lz_t, Lxy_s, Lz_s)
 
     # hard-wire the TMI version
     TMIversion = "modern_90x45x33_GH10_GH12"

@@ -45,8 +45,12 @@ dicts = dict_list(allparams)
 
 for (i, d) in enumerate(dicts)
     output = basinwide_avg(ΔT,locs,d)
-    #f = makesim(d)
-    @tagsave(datadir(savename(d,"jld2")), output)
+    #@tagsave(datadir(savename(d,"jld2")), output)
+
+    # doesn't work, try dataFrame instead
+    wsave(datadir(savename(d,"csv")), output)
+
+    
 end
 
 figure()
