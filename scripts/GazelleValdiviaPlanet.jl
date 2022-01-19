@@ -40,32 +40,39 @@ dicts = dict_list(allparams)
 for (i, d) in enumerate(dicts)
 
     output = basinwide_avg(ΔT,locs,d)
+
+    # output full state of analysis to jld2
     @tagsave(datadir("jld2",savename(d,"jld2")), output)
 
-    zoutput = Dict("z [m]" => output["zgrid"], "ΔT̄ [°C]" => output["T̄"], "σΔT̄ [°C]" => output["σT̄"])
+    # output profile information to csv
+    xax = "ΔT̄ [°C]"
+    yax = "z [m]"
+    zoutput = Dict(yax => output["zgrid"], xax => output["T̄"], "σΔT̄ [°C]" => output["σT̄"])
     df = DataFrame(zoutput)
     !isdir(datadir("csv")) && mkdir(datadir("csv"))
     CSV.write(datadir("csv","Tbar_"*savename(d,"csv")),df)
-    
-    # # save ΔT̄, σT̄ in a CSV file
-    # file = CSV.File(IOBuffer(data); header=["delta-T [deg C]", "stderr [deg C]"])
-    # # doesn't work, try dataFrame instead
-    # #wsave(datadir(savename(d,"csv")), output)
-    # data   = [[collect(keys(x))];[collect(values(x))]]
-    
+
+    # make profile figure
+    figure(i)
+    plot(ΔT̄,zgrid)
+    #plot(ΔT̄.+σT̄,-zgrid)
+    #plot(ΔT̄.-σT̄,-zgrid)
+    plot(ΔT̄,zgrid,xerr=σΔT̄)
+    xlabel(xax)
+    ylabel(yax)
+    grid()
+    gca().invert_yaxis()
+    figname = plotsdir(savename(d,"pdf"))
+    savefig(figname)
+
 end
 
 readdir(datadir("csv"))
-figure()
-plot(ΔT̄,-zgrid)
-plot(ΔT̄.+σT̄,-zgrid)
-plot(ΔT̄.-σT̄,-zgrid)
-grid()
 
-ΔTmean = mean(skipmissing(ΔT))
-ΔTstd = std(skipmissing(ΔT))
-
-err_naive = ΔTstd/sqrt(count(!ismissing,ΔT))
+# Left to do: compare to bin-averaged ΔT
+#ΔTmean = mean(skipmissing(ΔT))
+#ΔTstd = std(skipmissing(ΔT))
+#err_naive = ΔTstd/sqrt(count(!ismissing,ΔT))
 
 #=
 # testing Named Tuples
