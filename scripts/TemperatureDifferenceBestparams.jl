@@ -44,7 +44,7 @@ for (i, d) in enumerate(dicts)
     output = basinwide_avg(d)
 
     # output full state of analysis to jld2
-    @tagsave(datadir("best",savename("Tbar",d,"jld2",accesses=["delta"])), output)
+    @tagsave(datadir("best",savename("DTbar",d,"jld2",accesses=["delta"])), output)
 
     # output profile information to csv
     xax = "ΔT̄ [°C]"
@@ -52,8 +52,8 @@ for (i, d) in enumerate(dicts)
     zoutput = Dict(yax => output["zgrid"], xax => output["T̄"], "σΔT̄ [°C]" => output["σT̄"])
     df = DataFrame(zoutput)
     println(df)
-    !isdir(datadir("best")) && mkdir(datadir("csv"))
-    CSV.write(datadir("best",savename("Tbar",d,"csv",accesses=["delta"])),df)
+    !isdir(datadir("best")) && mkdir(datadir("best"))
+    CSV.write(datadir("best",savename("DTbar",d,"csv",accesses=["delta"])),df)
 
     # make profile figure
     figure(i)
@@ -67,10 +67,11 @@ for (i, d) in enumerate(dicts)
     grid()
     gca().invert_yaxis()
 
-    titlelabel = replace(savename(d),"_" => ", ")
+    titlelabel = replace(savename(d),"_" => " ")
     title(titlelabel,fontsize=7)
     
-    figname = plotsdir(savename("Tbar",d,"pdf",accesses=["delta"]))
+    !isdir(plotsdir("best")) && mkdir(plotsdir("best"))
+    figname = plotsdir("best",savename("DTbar",d,"pdf",accesses=["delta"]))
     savefig(figname)
 
 end

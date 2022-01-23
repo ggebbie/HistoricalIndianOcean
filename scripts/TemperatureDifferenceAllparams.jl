@@ -8,7 +8,6 @@ using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV, DataFrames
 
 # What temperature field?
 delta = ["T","T_tait","T_5564"]
-#delta = ["T"]
 
 # input parameters
 LxyT = 450_000 # m
@@ -36,6 +35,7 @@ zgrid = [0, 50, 200, 400, 750, 1500, 2500]
 # Several parameter containers
 allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid
 allparams["zgrid"] = [zgrid]
+accessvars = ["delta","LzAVG","tratio","σS"]
 
 dicts = dict_list(allparams)
 
@@ -44,7 +44,7 @@ for (i, d) in enumerate(dicts)
     output = basinwide_avg(d)
 
     # output full state of analysis to jld2
-    @tagsave(datadir("jld2","Tbar_"*savename(d,"jld2")), output)
+    @tagsave(datadir("all",savename("DTbar",d,"jld2",accesses=accessvars)), output)
 
     # output profile information to csv
     xax = "ΔT̄ [°C]"
@@ -52,25 +52,24 @@ for (i, d) in enumerate(dicts)
     zoutput = Dict(yax => output["zgrid"], xax => output["T̄"], "σΔT̄ [°C]" => output["σT̄"])
     df = DataFrame(zoutput)
     println(df)
-    !isdir(datadir("csv")) && mkdir(datadir("csv"))
-    CSV.write(datadir("csv","Tbar_"*savename(d,"csv")),df)
+    #!isdir(datadir("csv")) && mkdir(datadir("csv"))
+    CSV.write(datadir("all",savename("DTbar",d,"csv",accesses=accessvars)),df)
 
     # make profile figure
     figure(i)
     clf()
     plot(output["T̄"],zgrid)
-    #plot(ΔT̄.+σT̄,-zgrid)
-    #plot(ΔT̄.-σT̄,-zgrid)
     errorbar(output["T̄"],zgrid,xerr=output["σT̄"])
     xlabel(xax)
     ylabel(yax)
     grid()
     gca().invert_yaxis()
 
-    titlelabel = replace(savename(d),"_" => ", ")
-    title(titlelabel,fontsize=7)
-    
-    figname = plotsdir("Tbar_"*savename(d,"pdf"))
+    titlelabel = replace(savename(d,accesses=accessvars),"_" => " ")
+    title(titlelabel,fontsize=10)
+
+    !isdir(plotsdir("all")) && mkdir(plotsdir("all"))
+    figname = plotsdir("all",savename("DTbar",d,"pdf",accesses=accessvars))
     savefig(figname)
 
 end
