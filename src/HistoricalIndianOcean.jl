@@ -199,9 +199,11 @@ end
     T, H, locs, zgrid are fixed
     params is a dictionary of variable parameters
 """
-function basinwide_avg(T,locs,params)
+function basinwide_avg(params)
 
-    @unpack σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, zgrid = params
+    @unpack delta, σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, zgrid = params
+    
+    T,locs = read_historical_data(delta)
 
     zobs = zeros(length(locs))
     [zobs[r] = locs[r].depth for r in eachindex(locs)]
@@ -234,11 +236,12 @@ end
 """
    Read data regarding historical Indian Ocean cruises
 """
-function read_historical_data()
+function read_historical_data(delta)
     
     # HistoricalIndianOcean.nc: data from Gazelle, etc.
     # https://drive.google.com/file/d/1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK/view?usp=sharing
-    file_id = "1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK"
+    # file_id = "1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK" old file ID
+    file_id = "1_D3XYORYj3J5Ud6Ul6dbu1XjKQnTzEAa"
     url = "https://docs.google.com/uc?export=download&id="*file_id
     filename = datadir("HistoricalIndianOcean.nc")
 
@@ -247,8 +250,9 @@ function read_historical_data()
 
     nc = NCDataset(filename)
 
-    igood = findall(!ismissing,nc["delta_T"])
-    nobs = count(!ismissing,nc["delta_T"])
+    Tname = "delta_"*delta
+    igood = findall(!ismissing,nc[Tname])
+    nobs = count(!ismissing,nc[Tname])
 
     locs = Vector{Loc}(undef,nobs)
 
@@ -263,7 +267,7 @@ function read_historical_data()
     # here ΔT is type vector float (no missing)
     ΔT = zeros(nobs)
     for ii in eachindex(igood)
-        ΔT[ii] = nc["delta_T"][igood[ii]]
+        ΔT[ii] = nc[Tname][igood[ii]]
     end
 
     return ΔT, locs

@@ -6,6 +6,10 @@ include("intro.jl")
 using Revise
 using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV, DataFrames
 
+# What temperature field?
+delta = ["T","T_tait","T_5564"]
+#delta = ["T"]
+
 # input parameters
 LxyT = 450_000 # m
 LzT = 450 # m
@@ -29,20 +33,18 @@ tratio = [1.0,2.0] # amplify variability expected by a decadal average
 zgridedge = [-1, 1, 100, 300, 500, 1000, 2000, 3000]
 zgrid = [0, 50, 200, 400, 750, 1500, 2500]
 
-ΔT,locs = read_historical_data()
-
 # Several parameter containers
-allparams = @strdict σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG
+allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid
 allparams["zgrid"] = [zgrid]
 
 dicts = dict_list(allparams)
 
 for (i, d) in enumerate(dicts)
 
-    output = basinwide_avg(ΔT,locs,d)
+    output = basinwide_avg(d)
 
     # output full state of analysis to jld2
-    @tagsave(datadir("jld2",savename(d,"jld2")), output)
+    @tagsave(datadir("jld2","Tbar_"*savename(d,"jld2")), output)
 
     # output profile information to csv
     xax = "ΔT̄ [°C]"
