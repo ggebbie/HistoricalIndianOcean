@@ -67,8 +67,8 @@ for (i, d) in enumerate(dicts)
     grid()
     gca().invert_yaxis()
 
-    titlelabel = replace(savename(d),"_" => " ")
-    title(titlelabel,fontsize=7)
+    titlelabel = replace(savename(d,accesses=["delta"]),"_" => " ")
+    title(titlelabel,fontsize=10)
     
     !isdir(plotsdir("best")) && mkdir(plotsdir("best"))
     figname = plotsdir("best",savename("DTbar",d,"pdf",accesses=["delta"]))
