@@ -76,9 +76,7 @@
 {Geoffrey Gebbie$^{1\ast}$ \\
 \\
 \normalsize{$^{1}$Department of Physical Oceanography, Woods Hole Oceanographic Institution,}\\
-\normalsize{360 Woods Hole Rd., Woods Hole, MA 02543, USA}\\
-\normalsize{$^{2}$Department of Earth and Planetary Sciences, Harvard University, Cambridge, MA 02139, USA}\\
-\\
+\normalsize{360 Woods Hole Rd., Woods Hole, MA 02543, USA}\\ 
 \normalsize{$^\ast$To whom correspondence should be addressed; E-mail:  ggebbie@whoi.edu.}
 }
 
@@ -101,10 +99,10 @@
 %%%%%%%%%%%%%%%%% END OF PREAMBLE %%%%%%%%%%%%%%%%
 
 
-\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\theequation}{\arabic{equation}}
 \setcounter{equation}{0}
 
-\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thesection}{\arabic{section}}
 \setcounter{section}{0}
 
 \begin{document} 
@@ -132,76 +130,11 @@
 % choice.  Either way, use the asterisk (*) modifier, as shown, to
 % suppress numbering.
 
-{\bf {\Large Materials and Methods}}
-
-%% QUOTE ALL THE CITATIONS IN THE MAIN TEXT HERE. NOCITE.
-% \nocite{Dahl-Jensen-1998:Past}
-% \nocite{Orsi-Cornuelle-2012:Little}
-% \nocite{Consortium--2013:Continental} 
-% \nocite{Mcgregor-2015:Robust} 
-% \nocite{Primeau--2005:Characterizing,Gebbie-Huybers-2012:mean}
-% \nocite{Wunsch-Heimbach-2014:Bidecadal}
-% \nocite{Gebbie-Huybers-2010:Total}
-% \nocite{Gebbie-Huybers-2011:How}
-% \nocite{Gebbie-Huybers-2012:mean}
-% \nocite{Gebbie-Huybers-2010:Total}
-% \nocite{DeVries-Primeau-2011:Dynamically}
-% \nocite{Mcgregor-2015:Robust}
-% \nocite{Key-Kozyr-2004:global}
-% \nocite{Gebbie-Huybers-2012:mean}
-% \nocite{Holzer-Primeau-2010:Improved}
-% \nocite{Delhez-Deleersnijde-2008:Age}
-% \nocite{Lund-Lynch-Stiegl-2006:Gulf,Rahmstorf-Box-2015:Exceptional}
-% \nocite{Marshall-Scott-2015:ocean’s}
-% \nocite{Kawase--1987:Establishment}
-% \nocite{Roemmich-Gould-2012:135}
-% \nocite{Tait--1882:Pressure, Roemmich-Gould-2012:135}
-% \nocite{Intergovernm--2003:BODC}
-% \nocite{Roemmich-Gould-2012:135}
-% \nocite{Gouretski-Koltermann-2004:WOCE}
-% \nocite{Roemmich-Wunsch-1984:Apparent}
-% \nocite{Roemmich-Gould-2012:135}
-% \nocite{Purkey-Johnson-2010:Warming}
-% \nocite{Desbruy`e-Purkey-2016:Deep}
-% \nocite{Palmer-Roberts-2017:Ocean}
-% \nocite{Fukumori--2002:partitioned,Koehl--2015:Evaluation}
-% \nocite{Palmer-Roberts-2017:Ocean}
-% \nocite{Wunsch-Heimbach-2014:Bidecadal}
-% \nocite{Palmer-Roberts-2017:Ocean}
-% \nocite{Orsi-Cornuelle-2012:Little}
-% \nocite{Dahl-Jensen-1998:Past}
-% \nocite{Dahl-Jensen-1998:Past}
-% \nocite{Atwood-Wu-2016:Quantifying}
-% \nocite{Stommel--1979:Determination}
-% \nocite{Rosenthal-Linsley-2013:Pacific,Rosenthal-Kalansky-2017:paleo}
-% \nocite{Levitus-Antonov-2012:World} 
-% \nocite{Durack-Gleckler-2014:Quantifying}
-% \nocite{Roemmich-Gould-2012:135}
-% \nocite{Gregory-Bi-2013:Climate}
-
-\section{Methods}
+\section{Method}
 
 % In this section, we present an overview of the methods. In the
 % supplementary text that follows, additional supporting information
 % regarding the methods is provided, as well as figures and a table.
-
-We correct for pressure-compression effects altering the mercury level
-in the max-min thermometers used in the {\it Challenger} expedition.
-Subsequent to the cruise, a bias of no more than 0.04$^\circ$C per the
-equivalent of a kilometer of depth was estimated in pressure-tank
-experiments\cite{Tait--1882:Pressure}. In order to guard against
-biases that would predispose our analysis toward deep-Pacific cooling,
-we adjust temperature to be 0.04$^\circ$C cooler per kilometer of
-depth, in keeping with previous
-analyses\cite{Roemmich-Gould-2012:135}. With this adjustment, the
-amount of Pacific cooling is diminished between the historical and WOA
-eras.
-
-There are other issues related to the depth of the observation.  In
-abyssal locations with temperature inversions, the max-min thermometer
-will lead to a cold bias that may obscure trends in temperature since
-the historical expeditions were completed. For this reason, points
-could be (but are not) eliminated from the analysis.
 
 Our goal is to extract the decadal signal of water-mass change from
 the historical temperature observations.  The historical-to-WOA
@@ -220,532 +153,70 @@ location.  Following \cite{Huang--2015:Heaving}, the variance due to
 (3) is assumed equal to $0.14^{\circ}$C
 \cite{Roemmich-Gould-2012:135}.
 
-\subsection{Control Method}
 
-The control method is formulated as a linearized Green's function
-problem \cite{Gebbie--2012:Tracer}. Observations of the
-basinwide-average temperature profiles at 15 vertical levels are used
-for the HMS {\it Challenger} expedition and the 1990s WOCE campaign.
-Additional data include the global-mean surface temperature timeseries
-from Ocean2k and HadISST, and regional changes in HadISST. The problem
-is solved for adjustments to the regionally-averaged subduction
-temperature in 14 oceanographically-defined surface patches
-\cite{Gebbie-Huybers-2010:Total}. The temperature timeseries for the
-surface patches are expected to have an autocovariance with a 50-year
-timescale. Accordingly, the solution and its covariance are found by a
-tapered, weighted least-squares method \cite{Wunsch--1996:Ocean}.
+\subsection{Vertical profile of temperature difference}
 
-\newpage
-
-{\bf {\Large Supplementary Text}}
-
-\section{Model}
-
-\subsection{Passive temperature anomaly model}
-
-The property budget in a gridcell is,
+The temperature difference between the historical observations and the
+corresponding World Ocean Atlas (WOA) value is,
 \begin{equation}
-\label{eq:local}
-\frac{d\theta(r_i,t)}{dt} = \sum_{j=1}^N F(r_j,r_i,t)\theta(r_j,t) -F(r_i,r_j,t)\theta(r_i,t),
+\Delta T(r_i) = T(r_i,t_w) - T(r_i,t_h),
 \end{equation}
-where, for illustration, we write the budget specifically for the
-potential temperature, $\theta(r_i,t)$.  At location, $r_i$, and time,
-$t$, there are $N$ neighboring gridcells, and $F(r_j,r_i,t)$ is the
-mass flux from location $r_j$ to $r_i$.  Concatenating the potential
-temperature equations from all locations, we rewrite
-equation~(\ref{eq:local}) as,
+where $T(r_i,t_h)$ is the $i$th {\it historical} temperature
+observation at location, $r_i$, and time, $t_h$, and $T(r_i,t_w)$ is
+the WOA temperature at the same location. The observations are
+combined into a vector,
 \begin{equation}
-\label{eq:tendency1}
-\frac{d{\boldsymbol \theta}}{dt} = {\bf L}(t) {\boldsymbol \theta}(t),
-\end{equation}
-where the entries in ${\bf L}(t)$ are determined by the $F(r_i,r_j,t)$ values. A general time-stepping rule for temperature is,
-\begin{equation}
-\label{eq:timestepping}
-{\boldsymbol \theta}(t+ \Delta t) = {\bf A}(t) {\boldsymbol \theta}(t) + {\bf B} {\boldsymbol \theta}_{b}(t+\Delta t), 
-\end{equation}
-where ${\boldsymbol \theta}(t)$ is a vector containing the
-three-dimensional distribution of potential temperature at time, $t$,
-${\bf A}(t)$ is the time-varying advective-diffusive propagator that
-is the discrete-time equivalent of ${\bf L}(t)$, and ${\bf B}$ imposes
-the Dirichlet boundary conditions,
-${\boldsymbol \theta}_{b}(t+\Delta t)$. In this formulation, the
-boundary conditions hold instantaneously, such that they hold at time,
-$t+{\Delta}t$, though a similar formulation could be made for
-restoring boundary conditions that have some finite timescale.
-
-For a fixed circulation described by ${\overline {\bf A}}$, there is a
-corresponding {\it equilibrium temperature},
-${\boldsymbol \theta}_{eq}$, and equilibrium boundary condition,
-${\boldsymbol \theta}^{eq}_{b}$, such that the time-stepping
-equation~(\ref{eq:timestepping}) becomes,
-\begin{equation}
-\label{eq:equilibriumtimestepping}
-{\boldsymbol \theta}_{eq} = {\overline {\bf A}} {\boldsymbol \theta}_{eq} + {\bf B} {\boldsymbol \theta}^{eq}_{b}. 
-\end{equation}
-For non-pathological ${\overline {\bf A}}$ matrices and a given ${\boldsymbol \theta}^{eq}_{b}$, the equilibrium temperature distribution is unique.
-The temperature field remains at equilibrium so long as the circulation does not change. The result of subtracting equation~(\ref{eq:equilibriumtimestepping}) from (\ref{eq:timestepping}) is the perturbation temperature equation,
-\begin{equation}
-\label{eq:perturbationtemperature}
-{\boldsymbol \theta}^\prime(t+ \Delta t) = {\overline {\bf A}} {\boldsymbol \theta}^\prime(t) +  {\bf A}^\prime(t){\boldsymbol \theta(t)} + {\bf B} {\boldsymbol  \theta}^\prime_{b}(t+\Delta t), 
-\end{equation}
-where the perturbation (or disequilibrium) temperature is defined,
-%\begin{equation}
-${\boldsymbol \theta}^\prime(t) = {\boldsymbol \theta}(t) - {\boldsymbol \theta}_{eq}$,
-%\end{equation}
-and the time-varying circulation is,
-%\begin{equation}
-${\bf A}^\prime(t) = {\bf A}(t) - {\overline {\bf A}}$.
-%\end{equation} 
-
-\subsection{WOCE-derived circulation model}
-
-A global advection-diffusion balance for the interior (i.e., below the maximum wintertime mixed layer) ocean was found by Gebbie and Huybers (2012).
-Using global climatologies of temperature, salinity, phosphate, nitrate, oxygen, oxygen-isotope ratio, and radiocarbon, Gebbie and Huybers (2012) solved for the set of $F(r_i,r_j,t_w)$ values that hold at time, $t_w$, of the World Ocean Circulation Experiment (WOCE, $1990-2003$ C.E.). Following the steps above, this is equivalent to solving for the circulation matrix, ${\bf A}(t_w)$.
-With $2^{\circ}$ by $2^{\circ}$ horizontal resolution and 33 vertical levels, the matrix, ${\bf A}(t_w)$, is highly sparse with a
-size of $280043 \times 291156$, and ${\bf B}$ has the dimension of $11113 \times 291156$.
-We hypothesize that the perturbation potential temperature field can be stepped forward in time with the WOCE-derived circulation, \begin{equation}
-\label{eq:model}
-{\boldsymbol \theta}^\prime(t+ \Delta t) = {\bf A}(t_w) {\boldsymbol \theta}^\prime(t) + {\bf B} {\boldsymbol  \theta}^\prime_{b}(t+\Delta t).
-\end{equation}
-% where ${\bf A}(t_w)$ is the discrete-time equivalent of ${\bf L}$, and
-% ${\bf B}$ is a matrix that maps from the surface boundary to the
-% global model grid in order to enforce Dirichlet (concentration)
-% boundary conditions of ${\boldsymbol \Theta}_{b}$. 
-% With $4^{\circ}$ by $4^{\circ}$ horizontal resolution and 33 vertical levels, the matrix ${\bf A}$ is highly sparse with a
-% size of $57XXX \times 74064$, and ${\bf B}$ has a dimension of $17,XXX \times 74064$.
-Comparison of (\ref{eq:perturbationtemperature}) and (\ref{eq:model}) shows that the error level for replacing ${\bf A}(t)$ with a matrix fixed in time is ${\cal O}[{\bf A}^\prime(t){\boldsymbol \theta(t)}]$, and the expected error in inserting ${\bf A}(t_w)$ for ${\overline {\bf A}}$ is smaller,  ${\cal O}[{\bf A}^\prime(t){\boldsymbol \theta^\prime(t)}]$. If these terms turn out to be large, the model assumptions may be rejected when performing a data-model comparison. To run the model via equation~(\ref{eq:model}), the initial conditions, ${\boldsymbol \theta}^\prime(t_0)$, and the history of boundary conditions, ${\boldsymbol \theta}^\prime_b(t)$, over the interval of simulation are needed. The surface boundary conditions are discussed next.
-
-\section{Surface temperature history}
-
-\subsection{HadISST product}
-
-The SST history of the time period $1870-2015$ C.E. is derived from HadISST 1.1 monthly-average sea surface temperature \cite{Rayner-Parker-2003:Global}. The original $1^\circ \times 1^\circ$ horizontal resolution product is downsampled in space and by using a running average in time with 5-year resolution. In regions without a reconstruction, nearest neighbor extrapolation is used.
-
-In the subtropics, the SST signal that is preferentially transmitted to the ocean interior occurs in the late wintertime for an interval of 2-4 months \cite{Stommel--1979:Determination}. In recognition that the model to be used later in this work does not include a seasonal cycle, we translate the HadISST SST into a subduction temperature. To approximate this mixed-layer ``demon'' \cite{Stommel--1979:Determination}, we identify the 3 calendar months that have the coldest SST over the $1870-2017$ C.E. period, where we assume that these correspond to the densest seawater and, therefore, waters that are most likely to permanently subduct. We define the subduction temperature to be the timeseries of the average SST over these 3 months for the 5-year intervals starting with 1870 C.E. and ending at 2015 C.E. 
-%The anomalous subduction temperature is defined relative to a spatially-varying reference field for the segment, 1995-2000 CE, to roughly correspond to the WOCE era. 
-
-%We believe that regional averages of the SST history are more reliable than the global surface distributions. 
-Recognizing that SST variability is likely to be regionally heterogeneous, we focus on 14 modes of circulation, based upon the response to regionally-averaged subduction temperature in the following regions: North Pacific, Arctic, Mediterranean,  the Labrador Sea, Nordic Seas, Weddell Sea, Ross Sea, the Subantarctic, and the combined Subtropics and Tropics. The last two regions are further split into Pacific, Atlantic, and Indian sub-regions \cite{Gebbie-Huybers-2011:How}. The modes, ${\bf V}$, are defined by the relationship,
-\begin{equation}
-{\hat {\boldsymbol \theta}}_b = {\bf V}{\bf b},
-\end{equation}
-% \begin{equation}
-% {\bf c}_b = {\bf V}{\bf b}
-% \end{equation}
-where ${\hat {\boldsymbol \theta}}_b$ %${\bf c}_b$
-is the filtered version of the spatial distribution of subduction temperature,  ${\bf V}$ has the dimension of the number of regions (n=14) by the number of surface points ($n=11113$), and ${\bf b}$ is the set of expansion coefficients for the modes. 82\% of the original variability is kept after filtering.
-
-The expansion coefficients that fit the volume-weighted regional-average subduction temperature are,
-\begin{equation}
-{\bf b} = ({\bf V}^T {\bf W}^{-1} {\bf V})^{-1} {\bf V}^T{\bf W}^{-1} {\boldsymbol \theta}_b,
-\end{equation}
-where ${\bf W}^{-1}$ has the area of each surface cell on the diagonal and zero elsewhere. Under this assumption, ${\bf b}$ corresponds to the area-weighted average subduction temperature in a region. Using these modes, the subduction temperature field is reconstructed as a filtered version:
-\begin{equation}
-{\hat {\boldsymbol \theta}_b} = {\bf V} ({\bf V}^T {\bf W}^{-1} {\bf V})^{-1} {\bf V}^T{\bf W}^{-1} {\boldsymbol \theta}_b,
-\end{equation}
-where the hat reflects the filtering.
-
-
-\subsection{Blending the proxy and instrumental reconstructions}
-
-Prior to 1870 C.E., a simple average of the Ocean2k SST network
-\cite{Mcgregor-2015:Robust} is taken. No regional variations in
-surface temperature are assumed in this first-guess reconstruction.
-Thus, the HadISST 1.1 record includes 2D surface variability, but the
-paleo-proxy SST reconstructions are restricted to information about
-the global mean.  In the overlap period $1870-1950$ C.E. where both
-proxy and instrumental surface temperature records are available, the
-records are blended together with a linearly-varying weight through
-time, where the proxy record has 100\% weight at 1870 C.E. and the
-instrumental product is given 100\% weight at 1950 C.E. A major
-uncertainty in the blending process is the mean offset of the proxy
-dataset. We choose the mean offset value of $0.067^{\circ}$C that leads to a Common Era
-simulation that best fits the HMS {\it Challenger} basinwide-average
-data (Fig.~S1). The resulting timeseries of regionally-averaged
-temperature is then computed for 14 surface regions (Fig.~S2).
-
-% To blend the two products, we find use the time interval, 1870-1875 CE, as the reference point, where the global mean HadISST 1.1 value is referenced to the paleo-proxy value. Then, the paleo-estimated SST change relative to 1872.5 CE is used to perturb the entire HadISST field. 
-
-% While the spatial pattern of HadISST 1.1 SST in 1872.5 CE is relatively uncertain, we choose to use it as a template of Common Era temperature change because it helps maintain sea surface temperatures that are always above freezing. The 1872.5 CE field is relatively cold, but the Antarctic and Arctic temperatures do not go below the freezing point, even though they would have if a global perturbation were applied to the WOCE SST pattern. 
-
-%% FIGURE S1. OPTIMIZED THE MEAN OFFSET
-
-% FIGURE S2.
-% \noindent {\bf Fig. Anomalous subduction temperature, 1870-2015 C.E., relative to an equilibrium %baseline at 15 C.E.} The 5-year temporal average in 14 surface regions ({\it colored lines, solid and dashed}) for the following regions: North Pacific (NPAC), Arctic (ARC), Mediterranean (MED), Ross Sea (ROSS), Weddell Sea (WED), Labrador Sea (LAB), Greenland-Iceland-Norwegian Seas (GIN), Adelie sector (ADEL), Atlantic, Pacific, and Indian sectors of the Subantarctic (ASUBANT, PSUBANT, ISUBANT), and the subtropics and tropics (ATROP, PTROP, ITROP). The global subduction temperature anomaly ({\it thick, black line}) is an area-weighted average of all regions.
-
-
-
-\section{Simulation of the Common Era}
-
-\label{sec:simulation}
-
-When the model is run with filtered boundary conditions, equation~(\ref{eq:model}) becomes,
-\begin{equation}
-{\boldsymbol \theta}(t+\Delta t) = {\bf A}(t_w){\boldsymbol \theta}(t) + {\bf BVb}(t+\Delta t),  
-\end{equation}
-where the prime is dropped from the potential temperature anomaly for ease of notation as the full potential temperature field will not be discussed further.
-% \begin{equation}
-% {\boldsymbol \theta}(t+\Delta t) = {\bf A}_{W}{\boldsymbol \theta}(t) + {\bf B}{\boldsymbol  \theta}_{b}(t+\Delta t) 
-% %{\bf BVb}(t+\Delta t)  
-% \end{equation}
-% \begin{equation}
-% {\boldsymbol \theta}(t+\Delta t) = {\bf A}_{W}{\boldsymbol \theta}(t) + {\bf BVb}(t+\Delta t)  
-% \end{equation}
-By performing multiple time steps and rearranging the time indices, 
-a simplified relationship for the temperature distribution at time, $t$, is
-found:
-\begin{equation}
-\label{eq:timestep}
-{\boldsymbol \theta}(t) = {\bf A}(t_w)^N {\boldsymbol \theta}(t-N \Delta t) + \sum^{N-1}_{i=0} {\bf
-  A}(t_w)^i \: {\bf BVb} \: (t- i\Delta t) .
-\end{equation}
-% \begin{equation}
-% {\boldsymbol \theta}(t) = {\bf A}^N {\bf V}{\bf b}(t_0) + \sum^{N-1}_{i=K} {\bf
-%   A}^i \: {\bf B} \: {\bf V}{\bf b}(t_0) + \sum^{K-1}_{i=0} {\bf
-%   A}^i \: {\bf B} \: {\bf V}{\bf b} (t- i\Delta t) .
-% \end{equation}
-
-It is useful to simplify the timestepping equation by defining the Green's functions,
-% \begin{equation}
-% {\bf G}(N) = ({\bf A}(t_w)^N + \sum^{N-1}_{i=K} {\bf
-%   A}(t_w)^i \: {\bf B}){\bf V},
-% \end{equation}
-\begin{equation}
-{\bf G}(i) = {\bf A}(t_w)^i {\bf B} {\bf V},
-\end{equation}
-that are a function of timesteps, $i$. 
-%Here we consider cases where $N\Delta t = 5000$ years, and thus ${\bf A}(t_w) {\boldsymbol \theta}(t-N\Delta t)$ is neglected.
-In cases that are initialized from equilibrium (i.e., ${\boldsymbol \theta}(t<t_0)=0$), the Green's function form of the model equation is a discrete convolution,
-\begin{equation}
-\label{eq:equilibriumgreens}
-{\boldsymbol \theta}(t) = \sum^{K-1}_{i=0}  {\bf G}(i) \; {\bf b} (t - i \Delta t),
-\end{equation}
-where $K={\Delta}t/(t-t_0)$, the number of timesteps from initial time, $t_0$, to current time, $t$.
-The potential temperature at an interior point is a linear function of the boundary temperatures at previous times. Only the lag,
-$i\Delta t$, is important for determining the relevant matrix, ${\bf G}(i)$.
-
-The Green's function form of the model permits the influence of different parts of the boundary temperature history to be decomposed by redefining the limits of the summation. Note that the Green's functions are efficient to compute and store, as they require a number of forward simulations equal to the columns of ${\bf V}$ (i.e., 14), and have a size of $291156 \times 14$. Cases that are not initialized from equilibrium are handled in the control problem discussed later.
-The collection of ${\bf G}(i)$ functions at all times has been termed
-the multiple-source boundary propagator
-\cite{Haine-Hall-2002:generalized} or the boundary Green's function
-\cite{Wunsch--2002:Oceanic}, and ref. \cite{Gebbie-Huybers-2012:mean}
-shows that it can be determined from modern-day tracer
-observations. The boundary Green's function is calculated by
-perturbing the surface tracer concentration at previous times and
-locations, and thus, 14 model simulations are performed for 5,000 years (one for each mode or region). In order to accurately resolve tracer transport, ${\bf G}(i)$ is computed offline with 33 vertical levels and an adaptive timestep that is much shorter than the time resolution of the surface boundary conditions and depends upon spatial gradients. The stiffness of the differential equation is taken into account when choosing the timestepping algorithm (``ode15s'' in MATLAB). Then, the high resolution ${\bf G}(i)$ is linearly interpolated onto the proper surface times, evenly spaced with 5 year resolution, for
-use in the simulation. 
-%Here, we expect the time change of the average source values to vary by $XX^{\circ}$C per timestep of 5 years, and thus
-%$\alpha_t=1/(XX^{\circ}$C). This parameter is
-%based upon XX.
-
-%  The first two terms on the right hand side represent the effect of disequilibrium at the initial time, whereas the last term represents the effect of the boundary temperature history of the simulation interval. One could further split the boundary temperature influence into an early and late interval.
-% % %When running from equilibrium, $\theta(t_0) = 0$ and,
-% % \begin{equation}
-% % {\boldsymbol \theta}(t) = \sum^{N-1}_{i=0}  {\bf G}(i) \; {\bf b} (t - i \Delta t).
-% % \end{equation}
-% %In some locations, the memory of the ocean exceeds the available time history of the boundary temperature. 
-% In the case the model is initialized from equilibrium at $t_0$, the
-%  the equation becomes
-% \begin{equation}
-% \label{eq:timestep2}
-% {\boldsymbol \theta}(t) = {\bf A}(t_w)^{N-K-1}{\boldsymbol \theta}(t_0) + \sum^{N-1}_{i=K} {\bf
-%   A}(t_w)^i \: {\bf BV} \: {\bf b}(t_0) + \sum^{K-1}_{i=0} {\bf
-%   A}(t_w)^i \: {\bf BVb}(t- i\Delta t) .
-% \end{equation}
-%Here we have initial conditions at some time, $t_0$. Equation~(\ref{eq:timestep}) can still be used where we substitute ${\bf b}(t< t_0) = {\bf b}(t_0)$. Then
-%This form of the forward model is useful in the Section below.
-%Focusing on a point and introducing the vector ${\bf r}$
-%to be a mapping onto that point, we obtain
-%\begin{equation}
-%\label{eq:discreteconvolution_app}
-% c(r,t) = \sum^{N-1}_{i=0} {\bf r}^T \: {\bf L}^i \: {\bf B} \; {\bf  c}_{b}(t - i %\Delta t) 
-%\end{equation}
-%Constant circulation. \cite{Roemmich-Wunsch-1984:Apparent} agree that 1957 and 1981 circulations were very similar, including heat transport.
-%\newpage
-% \section{Simulation of the Common Era-concise}
-% % \begin{equation}
-% % {\boldsymbol \Theta}(t+ \Delta t) = {\bf A} {\boldsymbol \Theta}(t) + {\bf A}^\prime(t) {\boldsymbol \Theta}(t)  + {\bf B} {\boldsymbol
-% %   \Theta}_{b}(t+\Delta t) 
-% % \end{equation}
-% \begin{equation}
-% \mbox{Perturbation temperature: }{\boldsymbol \theta}(t) = {\boldsymbol \Theta}(t) - {\boldsymbol \Theta}_{eq}
-% \end{equation}
-% \begin{equation}
-% {\boldsymbol \theta}(t+ \Delta t) = {\bf A}_{eq} {\boldsymbol \theta}(t) +  {\bf A}^\prime(t){\boldsymbol \theta(t)} + {\bf B} {\boldsymbol  \theta}_{b}(t+\Delta t) 
-% \end{equation}
-% \begin{equation}
-% \mbox{ Assuming :} {\bf A}_{eq} \equiv {\bf A}_{W} 
-% \end{equation}
-% %and the filtered subduction temperature:
-% \begin{equation}
-% {\boldsymbol \theta}(t+\Delta t) = {\bf A}_{W}{\boldsymbol \theta}(t) + {\bf B}{\boldsymbol  \theta}_{b}(t+\Delta t) 
-% %{\bf BVb}(t+\Delta t)  
-% \end{equation}
-% \begin{equation}
-% \mbox{ error level :} {\cal O}[{\bf A}^\prime(t){\boldsymbol \theta(t)}]
-% \end{equation}
-%\newpage
-% \begin{equation}
-% {\boldsymbol \theta}(t) = {\bf A}^N {\bf V}{\bf b}(t_0) + \sum^{N-1}_{i=K} {\bf
-%   A}^i \: {\bf B} \: {\bf V}{\bf b}(t_0) + \sum^{K-1}_{i=0} {\bf
-%   A}^i \: {\bf B} \: {\bf V}{\bf b} (t- i\Delta t) .
-% \end{equation}
-
-% \section{Simulation of the Common Era}
-
-% Using the time- and space-averaged SST histories, the model equation becomes,
-% %\begin{equation}
-% %{\bf c}(t) = {\bf A}^N {\bf V}{\bf b}(t-N \Delta t) + \sum^{N-1}_{i=0} {\bf
-% %  A}^i \: {\bf B} \: {\bf V} {\bf b} (t- i\Delta t) .
-% %\end{equation}
-% \begin{equation}
-% {\bf c}(t) = {\bf A}^N {\bf V}{\bf b}(t_0) + \sum^{N-1}_{i=K} {\bf
-%   A}^i \: {\bf B} \: {\bf V}{\bf b}(t_0) + \sum^{K-1}_{i=0} {\bf
-%   A}^i \: {\bf B} \: {\bf V}{\bf b} (t- i\Delta t) .
-% \end{equation}
-
-% Next, define the Green's function as:
-% \begin{equation}
-% {\bf G}(N) = ({\bf A}^N + \sum^{N-1}_{i=K} {\bf
-%   A}^i \: {\bf B}){\bf V} 
-% \end{equation}
-% and
-% \begin{equation}
-% {\bf G}(i) = {\bf A}^i {\bf B} {\bf V},
-% \end{equation}
-% so that the model equation can be written in the form of a discrete convolution:
-% %where we use the 8 closest gridpoints weighted by their distance away
-% %from the core site to form ${\bf r}$.  Defining ${\bf g}(i)^T = {\bf
-% %  r}^T {\bf L}^i {\bf B}$, this equation is simplified into the
-% %boundary Green function form of the transport model
-% \begin{equation}
-%   \label{eq:discreteconvolution}
-%  {\bf c}(t) = \sum^{K-1}_{i=0}  {\bf G}(i)^T \; {\bf b} (t - i \Delta t).
-% \end{equation}
-% The tracer concentration at an interior point is a linear
-% function of the surface concentration at previous times. Only the lag,
-% $i\Delta t$, is important for determining the relevant matrix, ${\bf
-%   G}(i)$. What are the limits of this equation for different times?
-
-\subsection{Effect of time-varying circulation}
-
-We explore the effect of a time-varying circulation by performing
-simulations of the Common Era where ocean circulation
-strength is assumed to linearly covary with global-mean surface
-temperature. To approximate how this forcing might affect ocean
-circulation, we assume that the Little Ice Age circulation was 25\%
-slower than found for the 1990s \cite{Lund-Lynch-Stiegl-2006:Gulf}.
-To specify this altered circulation we modify the circulation matrix
-such that it is equal to $3{\bf A}(t_w)/4$ when the global-mean
-surface temperature is coldest around 1800 C.E. A second simulation is
-also performed where the sign of the dependence on surface temperature
-is reversed, as is suggested by reports of a 20th Century Atlantic
-overturning circulation slowdown
-\cite{Rahmstorf-Box-2015:Exceptional}.
-
-Despite the large opposing effects of the time-varying circulation in
-these two additional simulations, Common Era temperature evolution at
-3500 m depth shows the telltale signs of the Medieval Warm Period,
-Little Ice Age, and modern warming (Fig.~S3). The effect of the
-time-varying circulation strength is to modify the timing and
-magnitude of these climatic signals. The case with a reduced
-circulation during the LIA leads to an interior ocean that takes
-longer to respond to surface climate change. The slower circulation
-also leads to a greater smoothing of the surface signal and a smaller
-magnitude of the surface expression at depth. Deep Pacific cooling
-exists in all scenarios, however, and its magnitude is double in the
-case of the modern-slowdown circulation relative to the LIA-slowdown
-circulation. Similar changes occur in the magnitude of 20th Century
-Atlantic warming, where the LIA-slowdown case warms at half the rate
-of the modern-slowdown case.
-
-A further set of simulations is used to explore the evolution of the
-deep temperature in two limiting cases where the circulation is
-uniformly sped up or slowed down by 25\% relative to EQ-0015 for the
-entire Common Era. In the case where the ocean circulates faster, we
-modify the Green's functions such that the time-lag is decreased by
-25\%. Thus, the fast circulation is related to the WOCE-era
-circulation by, ${\bf G}(i) = {\bf G}_{fast}(0.75 i)$, where
-${\bf G}_{fast}(i)$ is the Green's function for the fast
-circulation. The simulations are calculated as presented in Section~S4
-but with the substitution of the modified Green's functions. These two
-additional simulations appear to generally bound the previous results
-with the time-varying circulation. Most importantly, it is found that
-20th Century deep Pacific cooling occurs under the entire range of
-circulation strength tested here.
-
-\section{HMS {\it Challenger} observations}
-%\section{Basinwide-average temperature profiles}
-\label{sec:basinwideaverage}
-
-%Average interpolation difference: 6mK, bias=0.7mK
-% $y_i = T(r_i)$, where the $i$th observation is located at $r_i$.
-
-
-\subsection{HMS {\it Challenger} thermometer corrections}
-
-The HMS {\it Challenger} observations are corrected for the compressibility of the thermometers \cite{Tait--1882:Pressure}. Subsequent to the cruise, a bias of no more than 0.04$^\circ$C per the equivalent of a kilometer of depth was estimated in pressure-tank experiments \cite{Tait--1882:Pressure}. In order to guard against biases that would predispose our analysis toward deep-Pacific cooling, temperature is adjusted to be 0.04$^\circ$C cooler per kilometer of depth, in keeping with previous analyses \cite{Roemmich-Gould-2012:135}. With this adjustment, the amount of Pacific cooling is diminished between the {\it Challenger} and WOCE eras.
-
-In order to avoid biases associated with the seasonal cycle of temperature, we only analyze {\it Challenger} data that is deeper than the maximum mixed-layer depth. No data from the surface or 100 fathoms (182 m) depth is used. 
-
-Max-min thermometers are misleading in regions where temperature inversions exist. The data actually corresponds to a shallower location than reported, leading to a comparison with WOCE data that is too deep. This will produce a cooling bias in the WOCE-{\it Challenger} temperature difference. For this reason, 164 points that are located where modern-day temperature inversions exist are eliminated.
-
-% XXX REWRITE THIS.
-% To test the dependence of the model-data misfit on this Tait correction, we define a cost function that is the misfit of the Atlantic- and Pacific-mean {\it Challenger}-to-WOCE temperature differences as estimated by the EQ-0015 simulation and the observations. The cost function is evaluated as a function of the assumed Tait correction on the {\it Challenger} observations. We find that the {\it Challenger}-to-WOCE differences are most similar to the EQ-0015 simulation when the depth correction has a value near $-0.05^{\circ}$C/km (Fig.~S4). At this value, the deep Pacific is still inferred to have cooled by $0.03^{\circ}$C and $0.05^{\circ}$C at 2500 m and 3500 m depth, respectively. When the {\it Challenger} temperatures are corrected to be even colder (i.e., a correction with numerical value less than $-0.05^{\circ}$C/km), then the observed Atlantic warming exceeds that in the EQ-0015 simulation and the model-data fit worsens. 
-
-\subsection{HMS {\it Challenger} depth corrections}
-
-The HMS {\it Challenger} expedition estimated the depth of their
-observations according to line out.  Errors in {\it Challenger} depths
-will lead to comparison of temperature estimates against incorrect
-depths in the WOCE climatology.  In general, estimates that are biased
-deep will be compared against WOCE temperatures that are too cold and,
-therefore, the analysis would be biased toward showing cooling;
-whereas estimates that are biased shallow will show the opposite.
-
-The potential for biases in depth estimates can be considered in the
-context of the cruise report entry from station 225 on March 23rd 1875
-\cite{Murray--1895:summary}, when the Challenger Deep was
-discovered:
-\begin{quote}
-  At 4 a.m.~got up steam.  At 5.15~a.m. shortened and furled sail.
-  At 6 a.m.~proceeded under steam, and sounded in 4575 fathoms.  The
-  line was checked at 4575 fathoms, and the accumulator showed that
-  the weights were off.  It must, therefore, just have got to the
-  bottom as it was checked.  To leave no doubt as to the correctness
-  of the sounding, the line was again let go at 12.30 p.m~ with a
-  weight of 4 cwts.~(instead of 3 cwts.~as usual), and the depth
-  obtained amounted to 4475 fathoms, only 100 fathoms less than the
-  first sounding.
-\end{quote}
-
-The lesser depth obtained when adding additional weight is consistent
-with at least three distinct scenarios. One, considered by Roemmich et
-al.~(2012), would be for the line in the first sounding to have
-deviated more in the vertical than did the line in the second
-sounding.  The shorter length in the second case would indicate a more
-vertical path to the bottom, as would be consistent with having added
-additional weight.  Note that the protocol of the {\it Challenger}
-navigating under steam while sounding, as noted in the above quote, is
-for the explicit purpose of keeping the line vertical, though
-deviations of some unknown degree are inevitable.
- 
-A second possibility is that the rope stretched further upon adding
-additional weight.  The {\it Challenger} expedition used one-inch
-diameter hemp rope that had a breaking strength estimated at 14
-cwt.  (We retain the use of fathoms and cwt in this description for
-ease of reference to the original documents, and note that one fathom
-is 1.83 m and one cwt is 112 pounds, or 50.8 kg.) The load on the rope
-is a combination of the 4 cwt sinkers added at the bottom plus a
-reported rope weight of 8 pounds per 100 fathoms when submerged.  Such
-a load implies that the rope was within 30\% of its breaking strength
-and would have been subject to stretch
-\cite{McKenna-Hearle-2004:Handbook}. The shallower recorded depth on
-the second sounding is then plausibly a result of the additional
-weight leading to greater stretch.
-
-The final possibility considered here is that the sounding occurred
-over a region with bathymetric variations, and the second sounding
-hit a relatively higher portion of the seafloor than the first.  This
-last possibility is simply a nuisance with regard to our primary
-interest being to ascertain if there are depth biases in the open
-ocean.
-
-Overall control of depth anomalies by oblique line payout or line
-stretch can be distinguished by comparing the depths obtained from the
-HMS {\it Challenger} expedition to those estimated in modern
-bathymetry.  We use the GEBCO Digital Atlas
-\cite{Intergovernm--2003:BODC} at one-arc-minute resolution.  In order
-to avoid regions with variable bathymetry, and hence substantial
-uncertainty in true depth on account of position uncertainty, analyses
-are restricted to regions where GEBCO seafloor bathymetry has a
-standard deviation of less than 100 m within half a degree of the
-reported location of a sounding.  Only regions north of 50$^\circ$S
-are considered in order to avoid the strong currents present in the
-Southern Ocean.  Out of a total of 296 soundings, this screening
-criteria leaves 69 data points for purposes of analysis.
-
-There is excellent correspondence between the {\it Challenger} and GEBCO depth
-estimates, reflected in a Pearson's correlation coefficient of 0.99.
-A robust regression is used, however, because one of the data points
-has an apparent discrepancy of more than a kilometer, suggesting some
-error in recording of depth or position.  We use the MATLAB ``robustfit''
-program that employs an iteratively reweighted least squares technique
-using a bisquare weighting function.  The estimated slope of
-{\it Challenger} depth as a function of GEBCO depth is $0.96$, with a
-standard error of $\pm 0.01$ (Fig.~S4).  That is, {\it Challenger} depths
-underestimate GEBCO depths by 4\%, a result that is significant at
-four standard deviations.  Such a stretch is consistent with modern
-hemp rope being loaded to 25\% of its breaking strength
-\cite{McKenna-Hearle-2004:Handbook}.  If oblique line payout was a
-more important factor, {\it Challenger} depths would be systematically
-overestimated instead of underestimated.
-
-Similar results are obtained using a normal least-squares or a
-weighted least-squares regression that takes into account bathymetric
-roughness and variable loading of the line.  Were bottom depth
-standard deviations of 500 m permitted, over 200 data points would be
-included in the analysis and a similar stretch obtained, but results
-would only be significant at two standard deviations, rather than four, consistent with the effect of additional noise.  These results
-strongly support rope stretch as a more important factor in
-controlling depth estimates than oblique line payout outside of the Southern Ocean.
-
-%http://www.langmanropes.com/langman-en/products/rope-by-industry/decoration-commerce/hemp-rope
-
-
-The WOCE-derived temperatures depend upon the depth of the {\it Challenger} observations. Taking into account the stretch of the hemp rope, the depth of the observation is between 0 and 219 meters deeper than originally reported, with a root-mean-square (RMS) adjustment of 13 meters. The inferred WOCE temperatures would typically be colder when the depth is increased. The extreme temperature corrections are $0.03^{\circ}$C and $-0.31^{\circ}$C, respectively, with the RMS adjustment being $-0.02^{\circ}$C. No corrections for rope stretch are applied because they remain uncertain and they would increase the 20th Century cooling signal.
-
-%% FIGURE S3. TEMPERATURE CORRECTION.
-%Tcorrection_z_25oct2017.eps
-% \noindent {\bf Fig. Adjustment in WOCE temperatures that correspond to {\it Challenger} data locations due to stretching of the hemp rope.} The correction in WOCE temperature ({\it blue dots}) at each {\it Challenger} temperature measurement, and the median ({\it red square}) and mean ({\it orange circle}) of the correction in 250-meter bins. 
-
-\subsection{{\it Challenger}-to-WOCE temperature difference}
-
-The temperature difference between an HMS {\it Challenger} observation and the corresponding WOCE Global Hydrographic Climatology (WGHC) value \cite{Gouretski-Koltermann-2004:WOCE} is, 
-\begin{equation}
-\Delta \theta(r_i) = T(r_i,t_w) - T(r_i,t_c),
-\end{equation}
-where $T(r_i,t_c)$ is the $i$th {\it Challenger} temperature observation at location, $r_i$, and time, $t_c$, and  $T(r_i,t_w)$ is the WOCE temperature at the same location. 
-We use a 3D interpolation scheme based on trilinear interpolation to map the WGHC to the {\it Challenger} locations. 
-%The WOCE temperature is determined by trilinear interpolation of the mapped climatology onto the {\it Challenger} data locations. 
-After keeping {\it Challenger} data points that have at least 3 neighboring WGHC profiles, those that are deeper than the seasonally-maximum mixed layer depth, and those that are not at a location with a modern-day temperature inversion, we are left with $M=3212$ observations around the world ocean (see Table~S1). The observations are combined into a vector,
-\begin{equation}
-{\bf d} = \left(\begin{array}{c} \Delta \theta(r_1) \\ \Delta \theta(r_2) \\ \vdots \\ \Delta \theta(r_M) 
+{\boldsymbol \Delta}{\bf T} = \left(\begin{array}{c} \Delta T(r_1) \\
+                                      \Delta T(r_2) \\ \vdots \\
+                                      \Delta T(r_M) 
  \end{array} \right) .
 \end{equation}
 Temperature changes at a given pressure are assumed equivalent to potential temperature changes.
 
 \subsection{Basinwide-average temperature profiles}
 
-Our goal is to extract the decadal signal of water-mass change from the HMS {\it Challenger} temperature observations. In particular, we wish to isolate the basinwide-mean vertical profiles for the Pacific, Atlantic, Southern, and Indian Oceans ($\overline{\Delta \theta(z)}^{pac},\overline{\Delta \theta(z)}^{atl},\overline{\Delta \theta(z)}^{sth}, \overline{\Delta \theta(z)}^{ind}$). The Southern Ocean is defined as everywhere south of $45^\circ$S in the Pacific sector and south of $35^{\circ}$S in the Atlantic sector. The Arctic is included as part of the Atlantic. We define one vector that we wish to solve for,
-% ${\bf x} = [\overline{T}_{pac}(z) ~~\overline{T}_{atl}(z) ~~\overline{T}_{sth}(z) ~~\overline{T}_{ind}(z)]^T$, where $T$ is the vector transpose. 
+Our goal is to extract the decadal signal of water-mass change from
+the historical temperature observations 
 \begin{equation}
-{\bf m} = \left(\begin{array}{c} \overline{\Delta \theta(z)}^{pac} \\\overline{\Delta \theta(z)}^{atl} \\\overline{\Delta \theta(z)}^{sth} \\\overline{\Delta \theta(z)}^{ind} 
- \end{array} \right). 
+\overline{{\boldsymbol \Delta}{\bf T}} = \left(\begin{array}{c} \overline{\Delta \theta(z_1)}
+                  \\\overline{\Delta \theta(z_2)} \\ \vdots \\ \overline{\Delta \theta(z)_K} 
+ \end{array} \right),
 \end{equation}
-Given knowledge of the basinwide averages, one can make a prediction for each WOCE$-${\it Challenger} temperature difference,
+where we have defined a grid of $K$ depths.  Given knowledge of the
+basinwide averages, one can make a prediction for each WOA$-$historical temperature difference,
 \begin{equation}
-{\bf d} = {\bf Hm} + {\bf q},
+{\boldsymbol \Delta}{\bf T} = {\bf H}\overline{{\boldsymbol \Delta}{\bf T}} + {\bf q},
 \end{equation}
-where ${\bf H}$ maps the basinwide mean onto the observational point by noting the basin of the observations and vertical linear interpolation, ${\bf q}$ is contamination by measurement error and signals that are not representative of the decadal-mean, basinwide-average temperature. The contamination is decomposed into three parts,
+where ${\bf H}$ maps the basinwide mean onto the observational point
+by noting the basin of the observations and vertical linear
+interpolation, ${\bf q}$ is contamination by measurement error and
+signals that are not representative of the decadal-mean,
+basinwide-average temperature. The contamination is decomposed into
+three parts,
 \begin{equation}
 {\bf q} = {\bf n}_T + {\bf n}_S + {\bf n}_M,
 \end{equation}
-where ${\bf n}_T$ is contamination by transient effects such as isopycnal heave due to internal waves or mesoscale eddies, ${\bf n}_S$ is due to the irregular spatial sampling of each basin, and ${\bf n}_M$ is measurement or calibration error of the thermometer. Note that no depth correction is made here, and temperature differences may be biased toward warming. 
+where ${\bf n}_T$ is contamination by transient effects such as
+isopycnal heave due to internal waves or mesoscale eddies, ${\bf n}_S$
+is due to the irregular spatial sampling of each basin, and
+${\bf n}_M$ is measurement or calibration error of the
+thermometer. Note that no depth correction is made here, and
+temperature differences may be biased toward warming.
 
 The expected size of ${\bf n}_T$ is related to the energy in the
-interannual and higher-frequency bands. We use estimates from the WGHC
+interannual and higher-frequency bands. We use estimates from the WOCE
+Global Hydrographic Climatology \cite{Gouretski-Koltermann-2004:WOCE}
 to quantify this error and its spatial pattern.  Errors that primarily
-reflect an uncertainty due to a representativity error were
-previously estimated \cite{Gouretski-Koltermann-2004:WOCE}, where the
-magnitude of interannual temperature variability is $1.6^{\circ}$C at
-the surface, decreasing to $0.8^{\circ}$C below the mixed layer, and
-$0.02^{\circ}$C at 3000 meters depth. Inherent in their mapping is a
-horizontal lengthscale of 450 km. This corresponds to a vertical
-lengthscale of 450 meters when applying an aspect ratio based upon
-mean depth and lateral extent of the ocean. Their mapping is the
-degree of error necessary to place the non-synoptic cruises of the
-WOCE era into a coherent picture. Estimated errors are similar to
+reflect an uncertainty due to a representativity error were previously
+estimated in this climatology, where the magnitude of interannual
+temperature variability is $1.6^{\circ}$C at the surface, decreasing
+to $0.8^{\circ}$C below the mixed layer, and $0.02^{\circ}$C at 3000
+meters depth. Inherent in their mapping is a horizontal lengthscale of
+$L_{xy}^{T}=450$ km. This corresponds to a vertical lengthscale of
+$L_z^{T}=450$ meters when applying an aspect ratio based upon mean
+depth and lateral extent of the ocean. Their mapping is the degree of
+error necessary to place the non-synoptic cruises of a 10-year time
+interval into a coherent picture. Estimated errors are similar to
 those of \cite{Wortham-Wunsch-2014:multidimensional}, who also note
 that the spatial scales increase as the temporal scales
 increase. Above 1300 meters depth, the aliased variability is
@@ -754,7 +225,7 @@ typically larger than the measurement error described below.
 Next we describe the second moment matrix of temporal contamination,
 ${\bf R}_{TT} =<{\bf n}_T ({\bf n}_T)^T>$. Note that ${\bf n}_T$
 depends on the difference of contamination during the two time
-periods, $n_T(r_i) = \eta_T(r_i,t_w) - \eta_T(r_i,t_c)$, where
+periods, $n_T(r_i) = \eta_T(r_i,t_w) - \eta_T(r_i,t_h)$, where
 $\eta_T(r,t)$ is the difference between temperature at a given time
 and the decadal average. The WGHC statistics give the error covariance
 for $\eta_T(r,t_w)$ not $n_T(r)$. This covariance matrix is
@@ -771,45 +242,33 @@ where the autocorrelation function, $\rho(\delta)$, is given by a
 Gaussian with a horizontal lengthscale of 450 km and a vertical
 lengthscale of 450 meters. We derive the covariance matrix by pre- and
 post-multiplying the correlation matrix,
-${\bf R}_{\eta\eta} = {\boldsymbol \sigma}_\eta {\bf R}_{\rho}
-{\boldsymbol \sigma}_\eta^T$,
-where ${\boldsymbol \sigma}_\eta$ is the vector of the standard
-deviation of the WGHC interannual variability. The energy in
-interannual bands is assumed to be similar during the 1870s and 1990s,
-as well as statistically independent, and thus,
-${\bf R}_{TT} = 2{\bf R}_{\eta\eta}$.
+${\bf R}_{\eta\eta} = {\boldsymbol \sigma}_\eta {\boldsymbol
+  \sigma}_\eta^T \circ {\bf R}_{\rho} $, where
+${\boldsymbol \sigma}_\eta$ is the vector of the standard deviation of
+the WGHC interannual variability and $\circ$ is the Hadamard
+product. Here the time interval of the historical cruises is about 20
+years, or twice as long as the WOCE era. Due to the red spectrum of
+ocean varabilility, the potential for aliased variability over this
+longer time interval is increased. We roughly approximate this extra
+energy with $T_{ratio} = 2$. Both the modern and historical intervals
+have variability and are assumed to be statistically independent, and
+thus, ${\bf R}_{TT} = 2 T_{ratio} {\bf R}_{\eta\eta}$.
 
 We assume that the variance due to spatial water-mass variability,
 i.e., ${\bf R}_{SS} =<{\bf n}_S ({\bf n}_S)^T>$, has a magnitude that
 is $20\%$ that of the temporal variability as the local water-mass
 variability on interannual scales is dwarfed by heaving motions
-\cite{Huang--2015:Heaving}. These water-mass variations are assumed to
-have a larger spatial scale ($3000$ km horizontally, 1.5 km vertically),
-as seen in an evaluation of water-mass fractions on an isobaric
-surface \cite{Gebbie-Huybers-2010:Total}. Accounting for this spatial
-variability has the potential to increase the final error of our
-estimates by taking into account biases that may occur due to the
-specific {\it Challenger} expedition track. Finally, we assume that
-the measurement error, ${\bf R}_{MM}$ is equal to $0.14^{\circ}$C
+\cite{Huang--2015:Heaving}. The relevant parameter is
+$S_{ratio} = 0.2$. These water-mass variations are assumed to have a
+larger spatial scale ($L_{xy}^S = 2000$ km horizontally, $L_z^S = 1$
+km vertically), as seen in an evaluation of water-mass fractions on an
+isobaric surface \cite{Gebbie-Huybers-2010:Total}. Accounting for this
+spatial variability has the potential to increase the final error of
+our estimates by taking into account biases that may occur due to the
+specific expedition tracks. Finally, we assume that the measurement
+covariance, ${R_{MM}}$, is a matrix with the diagonal equal to the
+observational uncertainty, $\sigma_{obs} = 0.14^{\circ}$C, squared
 \cite{Roemmich-Gould-2012:135}.
-
-%of the water-mass signal which varies on sub-basin scales
-%We also combine all observations into the vector, ${\bf y}$. 
-% Each observation is contaminated by other signals, however, represented as follows,
-% \begin{equation}
-% {\bf y} = {\bf E} {\bf x} + {\bf x}^\prime_T + {\bf x}^\prime_S + {\bf n},
-% \end{equation}
-% \begin{equation}
-% {\bf y} = {\bf E} {\bf x} + [{\bf n}_T(t_w) - {\bf n}_T(t_c)] + [{\bf n}_S(t_w) - {\bf n}_S(t_c)] + [{\bf n}_M(t_w) - {\bf n}_M(t_c)]
-% \end{equation}
-% where ${\bf E}$ maps the basinwide mean onto the observational point by noting the basin of the observations and vertical linear interpolation, 
-%Here we ask whether the data reflect a long-term trend or aliased interannual and annual variability.
-%A null hypothesis is that the Argo-Challenger temperature differences represent interannual and higher frequency variability.
-% so that the HMS {\it Challenger} constraints become,
-% \begin{equation}
-% {\bf y} = {\bf Ex} + {\bf q}.
-% \end{equation}
-
 
 We solve for the basinwide-average temperature profiles using a
 weighted and tapered least-squares formulation that minimizes, 
@@ -819,301 +278,65 @@ J = {\bf q}^T {\bf R}_{qq}^{-1} {\bf q} + {\bf m}^T {\bf S}^{-1} {\bf m},
 \end{equation}  
 where ${\bf R}_{qq}$ reflects the combined effect of the three types of errors (i.e., ${\bf R}_{qq} = {\bf R}_{TT} + {\bf R}_{SS} + {\bf R}_{MM}$). This least-squares weighting %(i.e., ${\bf W} = {\bf R}_{qelta}q}$) 
 is chosen such that the solution coincides with the maximum likelihood estimate (assuming that the prior statistics are normally distributed and appropriately defined).
-Only a weak prior assumption, reflected in the weighting matrix, ${\bf S}$, is placed on the solution, namely that the correlation lengthscale is 1000 m in the vertical, the variance is on the order of ($0.1^\circ$C$)^2$, and the expected value is $<{\bf m}>=0$.
+Only a weak prior assumption, reflected in the weighting matrix, ${\bf
+  S}$, is placed on the solution, namely that the correlation
+lengthscale is $L_z^{AVG} = 1000$ m in the vertical, the variance is on the order of
+($\sigma_S = 1^\circ$C$)^2$, and the expected value is $<\overline{{\boldsymbol \Delta}{\bf T}}>=0$.
 The least-squares estimate is then,
 \begin{equation}
-{\tilde {\bf m}} = ({\bf H}^T {\bf R}_{qq}^{-1} {\bf H} + {\bf S}^{-1} )^{-1} {\bf H}^T {\bf R}_{qq}^{-1} {\bf d}.
+\tilde{\overline{{\boldsymbol \Delta}{\bf T}}} = ({\bf H}^T {\bf R}_{qq}^{-1} {\bf H} + {\bf S}^{-1} )^{-1} {\bf H}^T {\bf R}_{qq}^{-1} {\boldsymbol \Delta}{\bf T}.
 \end{equation}
  The error covariance of the estimate is,
 \begin{equation}
   \label{eq:covariance17}
-  \mbox{{\bf C}}_{{\tilde m}{\tilde m}} = ({\bf H}^T {\bf R}_{qq}^{-1} {\bf H} + {\bf S}^{-1} )^{-1},
+  \mbox{{\bf C}}_{{\tilde{\Delta T}}} = ({\bf H}^T {\bf R}_{qq}^{-1} {\bf H} + {\bf S}^{-1} )^{-1},
 \end{equation}
 where the standard error is
-$\sigma_{\tilde m} = \sqrt{\mbox{diag}(\mbox{{\bf C}}_{{\tilde
-      m}{\tilde m}})}$.
-This method also recovers the off-diagonal terms that correspond to
-the correlated errors among different parts of the basinwide-average.
+${\boldsymbol \sigma}_{\tilde{\Delta T}} =
+\sqrt{\mbox{diag}(\mbox{{\bf C}}_{{\tilde{\Delta T}}})}$.  This method
+also recovers the off-diagonal terms that correspond to the correlated
+errors among different parts of the basinwide-average.
 
-Our estimate of the WOCE$-${\it Challenger} temperature difference is
-very similar to what would have been obtained using a simple
-arithmetic mean where the data are binned according to depth and basin. We also obtain basinwide-average profiles for the Southern
-and Indian Oceans, but the uncertainties in those regions
-are larger than the Atlantic and Pacific on account of the small number of data points. When combining the
-estimates from the four basins according to their respective volumes,
-we obtain a global estimate of the WOCE-{\it Challenger} temperature
-differences (Fig. S5). The results have a similar vertical structure to those
-found for the Argo-{\it Challenger} time interval, but the magnitude
-of change is slightly smaller as would be expected in the shorter
-WOCE-{\it Challenger} interval.
+\subsection{Historical thermometer corrections}
 
+The historical observations are corrected for the
+compressibility of the thermometers \cite{Tait--1882:Pressure}.
+Subsequent to the cruise, a bias of no more than 0.04$^\circ$C per the
+equivalent of a kilometer of depth was estimated in pressure-tank
+experiments \cite{Tait--1882:Pressure}. In order to guard against
+biases that would predispose our analysis toward deep-Pacific cooling,
+temperature is adjusted to be 0.04$^\circ$C cooler per kilometer of
+depth, in keeping with previous analyses
+\cite{Roemmich-Gould-2012:135}. With this adjustment, the amount of
+Pacific cooling is diminished between the historical and recent eras.
 
-\section{Comparison to ocean reanalysis products}
+We correct for pressure-compression effects altering the mercury level
+in the max-min thermometers used in the {\it historical} expedition.
+Subsequent to the cruise, a bias of no more than 0.04$^\circ$C per the
+equivalent of a kilometer of depth was estimated in pressure-tank
+experiments\cite{Tait--1882:Pressure}. In order to guard against
+biases that would predispose our analysis toward deep-Pacific cooling,
+we adjust temperature to be 0.04$^\circ$C cooler per kilometer of
+depth, in keeping with previous
+analyses\cite{Roemmich-Gould-2012:135}. With this adjustment, the
+amount of Pacific cooling is diminished between the historical and WOA
+eras.
 
-A recent intercomparison of ocean reanalyses of temperature
-\cite{Palmer-Roberts-2017:Ocean} finds deep-ocean trends between
-1970-2009 and 1993-2009 that contain substantial spread across
-different estimates. In order to facilitate comparision, analogous
-quantities are calculated over the depth range $750-5750$ m and time
-interval $1970-2010$ C.E.  The resulting pattern and magnitudes are
-similar to the average of the ocean reanalyses
-\cite{Palmer-Roberts-2017:Ocean}.  In particular, the depth-integrated
-temperature trend is positive in the Atlantic and Southern Oceans, and
-negative in the North Pacific and parts of the Indian Ocean (Fig.~S6).
+There are other issues related to the depth of the observation.  In
+abyssal locations with temperature inversions, the max-min thermometer
+will lead to a cold bias that may obscure trends in temperature since
+the historical expeditions were completed. For this reason, points
+could be (but are not) eliminated from the analysis.
 
-\section{Inverse method}
-
-The surface boundary conditions have a number of uncertainties, and
-here we develop an optimal control problem that adjusts these
-conditions in light of the observations of the ocean interior. In
-cases that are initialized from equilibrium (i.e.,
-${\boldsymbol \theta}(t<t_0)=0$), the Green's function form of the
-model equation is a discrete convolution. We revise
-equation~(\ref{eq:equilibriumgreens}) to allow for perturbations to
-the boundary conditions, ${\boldsymbol \delta}{\bf b}(t-i{\Delta}t)$,
-\begin{equation}
-  \label{eq:disequilibriumgreens}
-  {\boldsymbol \theta}(t) = \sum^{K-1}_{i=0} {\bf G}(i) [{\bf b} (t - i \Delta t) +  {\boldsymbol \delta}{\bf b}(t-i{\Delta}t)] + \sum^{N-1}_{i=K} {\bf G}(i) [{\bf b} (t_0) +  {\boldsymbol \delta}{\bf b}(t_0)],  
-\end{equation}
-where the number of timesteps between the initial and current time is
-given by $K={\Delta}t/(t-t_0)$.  The second term represents
-disequilibrium initial conditions and vanishes in the case of
-equilibrium initial condition case because ${\bf b}(t_0)=0$.
-
-%ONCATENATE ALL THE EQUATIONS INTO ONE MASTER EQUATION.
-We employ a ``whole domain'' method where all times are combined into one matrix equation by defining,
-\begin{equation}
-  {\bf u}_0 = \left(\begin{array}{c} {\bf b}(t_0) \\ {\bf b}(t_0+{\Delta}t) \\ \vdots \\ {\bf b}(t_0+K{\Delta}t) \end{array} \right),   {\bf u} = \left(\begin{array}{c} {\boldsymbol \delta}{\bf b}(t_0) \\ {\boldsymbol \delta}{\bf b}(t_0+{\Delta}t) \\ \vdots \\ {\boldsymbol \delta}{\bf b}(t_0+K{\Delta}t) \end{array} \right),
-  \end{equation}
-where ${\bf u}_0$ is the first-guess control vector, and ${\bf u}$ contains the control adjustments.
-Equation~(\ref{eq:disequilibriumgreens}) expresses a linear relationship that is now written more concisely,
-\begin{equation}
-{\boldsymbol \theta}(t) = {\boldsymbol \Gamma}(t) [{\bf u}_0 + {\bf u}],  
-\end{equation}
-where ${\boldsymbol \Gamma}(t)$ is the whole-domain form of the Green's function that requires concatenating the ${\bf G}(i)$ functions into the proper columns.
-
-Here we use observations in two time intervals, where we define the time-average temperature during these intervals to be, ${\boldsymbol \theta}(t_w) = {\overline {\boldsymbol \theta(t)}}^W$ and ${\boldsymbol \theta}(t_c) = {\overline {\boldsymbol \theta(t)}}^C$, for WOCE and {\it Challenger}, respectively. Similarly we define, ${\boldsymbol \Gamma}(t_w) = {\overline {\boldsymbol \Gamma(t)}}^W$ and ${\boldsymbol \Gamma}(t_c) = {\overline {\boldsymbol \Gamma(t)}}^C$.
-Then the model equation for these temperatures is,
-\begin{equation}
-{\boldsymbol \theta}(t_w) = {\boldsymbol \Gamma}(t_w) [{\bf u}_0 + {\bf u}], {\boldsymbol \theta}(t_c) = {\boldsymbol \Gamma}(t_c) [{\bf u}_0 + {\bf u}],
-\end{equation}
-for WOCE and {\it Challenger}, respectively.
-% \sum^{K-1}_{i=0} {\bf G}(i) [{\bf b} (t - i \Delta t) +  {\boldsymbol \delta}{\bf b}(t-i{\Delta}t)] + \sum^{N-1}_{i=K} {\bf G}(i) [{\bf b} (t_0) + {\boldsymbol \delta}{\bf b}(t_0)]  
-% \end{equation}
-The 3D distribution of {\it Challenger}-to-WOCE differences is then simply the difference of these last two expressions. The model output is averaged by depth and basin to produce estimates of the basinwide-average, decadal-mean, {\it Challenger}-to-WOCE temperature difference. The averaging operator, ${\bf E}$, maps the global grid into the basinwide averages for the four ocean basins. Then the modeled value can be compared to the observations from Section~\ref{sec:basinwideaverage},
-\begin{equation}
-\label{eq:wocechallenger}
-{\bf m} =  {\bf E} [{\boldsymbol \Gamma}(t_w)-{\boldsymbol \Gamma}(t_c)] ( {\bf u}_0 + {\bf u}) + {\boldsymbol \mu}, \end{equation}
-where ${\boldsymbol \mu}$ is the model-data misfit. The following substitutions, ${\bf D} = {\bf E} [{\boldsymbol \Gamma}(t_w)-{\boldsymbol \Gamma}(t_c)]$ and ${\bf y} = {\bf m} - {\bf Du}_0$, transform equation~(\ref{eq:wocechallenger}) to a simple linear matrix equation,
-%is linearized to simplify the solution method:
-\begin{equation}
-{\bf D} {\bf u} = {\bf y}  + {\boldsymbol \mu},
-\label{eq:linearized}
-\end{equation}
-where the surface boundary adjustments, ${\bf u}$, can be inverted from the observations, ${\bf y}$.
-
-% The tracer concentration at an interior point is a linear function of the surface concentration at previous times. Only the lag,
-% $i\Delta t$, is important for determining the relevant matrix, ${\bf G}(i)$.
-% \begin{equation}
-%   {\hat {\bf G}} = \left(\begin{array}{cccc} {\bf G}(t_0) & {\bf G}(t_0+5) & \hdots & {\bf G}(t_0+2000) \end{array} \right),
-% \end{equation}
-
-% \begin{equation}
-% {\bf c} = {\hat {\bf G}} {\hat {\bf b}}
-%   \end{equation}
-
-% Given the modern-day circulation pathways and a past estimate of
-% surface $\theta$, we have a means of estimating
-% $\theta$ at the sites of the HMS Challenger data.  Appending the surface
-% source vectors for all times, ${\vec \theta}_{sfc}(t)$, into one vector of unknowns, ${\bf x}$,
-% we search for a solution to the set of simultaneous equations,
-% \begin{equation}
-% {\cal G} {\bf x} = {\vec \theta}^{obs}  + {\bf n}
-% \label{eq:wholedomain}
-% \end{equation}
-% where ${\cal G}$ is a linear operator composed of equations of the
-% form of (\ref{eq:nonlinear}) with the proper ${\bf g}(i)$ functions
-% placed on the right chronology and the right location, each
-% row of ${\cal G}$ corresponds to an observational constraint, ${\vec
-%   \theta}^{obs}$ is the vector of $\theta$
-% observations, and ${\bf n}$ is the observational error.
-% WRITE DOWN G FOR CHALLENGER AND G FOR ARGO. SUBTRACT THE TWO.
-% WRITE DOWN THE OBSERVATIONAL CONSTRAINT IN MATRIX FORM.
-% The solution of the inverse problem is written as an anomaly problem.
-%initiated with a good first
-%guess, ${\bf x}_0$. All solutions can now be written in the form,
-%${\bf x} = {\bf x}_0 + {\bf u}$, and 
-
-%where ${\bf G} = \partial {\cal G}/\partial {\bf x}]_{{\bf x}_0}$ and
-%${\bf y}= \delta^{18}$O$^{obs}_c - {\cal G}[{\bf x}_0]$.  
-To determine whether a solution is acceptable, a cost function is defined as the
-sum of squared data-model misfits: J$_{data} = ({\bf Du} - {\bf y})^T {\bf C}^{-1}_{{\tilde m}{\tilde m}} ({\bf Du} - {\bf y})$, where the weighting matrix, ${\bf C}^{-1}_{{\tilde m}{\tilde m}}$, is taken from the uncertainty of the basinwide-average profiles in Section~\ref{sec:basinwideaverage}. 
-If the data-model misfit is within the expected uncertainty, then
-J$_{data}$ will be approximately equal to the number of
-elements in the basinwide-average profiles.
-
-To keep the characteristics of the control adjustments reasonable,
-a second term is added to the cost function:
-%\begin{equation}
-%\label{eq:temporalsmoothness}
-$\mbox{J}_u = {\bf u}^T {\bf R}_{uu}^{-1} {\bf u}$,
-%\end{equation}
-where the weighting matrix ${\bf R}_{uu}^{-1}$ has two parts.
-The first part enforces temporal smoothness of the control adjustments.
-For the 14 surface regions, we compute the standard deviation of the variability from $1870-2015$ C.E. To approximate the increasing uncertainty in the boundary conditions farther back into the past, the diagonal elements of this first part of ${\bf R}_{uu}$ are proportional to the instrumental standard deviation multiplied by a factor that increases linearly from 0 at 2015 C.E. to 0.5 at the year 1515 C.E. Regions are assumed to have a standard deviation no smaller than $0.1^{\circ}$C. The expected autocovariance saturates at this value of half of the instrumental standard deviation at all times prior to 1515 C.E. The off-diagonal elements of the first part of ${\bf R}_{uu}$ are filled by assuming a Gaussian covariance timescale of 100 years. The second part of ${\bf R}_{uu}$ enforces a global constraint. In order to explore the effect of regional changes to the surface temperature, the global area-averaged surface temperature is considered known with an uncertainty of $0.05{^\circ}$C. The global area-averaged temperature is computed, ${\boldsymbol \theta}_g = {\boldsymbol \Gamma}_g {\boldsymbol \theta}$, and the added component of ${\bf R}_{uu}$ is  $(0.05^{\circ}$C$)^2 {\boldsymbol \Gamma}^T_g{\boldsymbol \Gamma}_g$.
- 
-
-%DO WE EXPLICITLY STATE THE GLOBAL MEAN CONSTRAINT SOMEWHERE IN THE EQUATIONS?
-
-% As the solution, ${\bf x}$, contains concentrations from all times, we have a
-% ``whole domain'' formulation that also allows temporal smoothing
-% constraints. 
-% Here we put a constraint on the size of temporal
-% variability with a cost function term
-% \begin{equation}
-% \label{eq:temporalsmoothness}
-% \mbox{J}_t = \alpha_t^2 \sum_{i=1}^{N_t} \sum_{j=1}^{14} \{ {\bf r}^T_j [
-%  {\vec \theta}_{sfc}(-i\Delta t)  - {\vec \theta}_{sfc}(-i\Delta t + \Delta t)] \}^2
-% \end{equation}
-% where ${\bf r}_j$ is a vector that averages the source values into 14
-% water-mass sub-regions such as the Labrador, Nordic, Weddell, and Ross
-% Seas \cite[for a complete list, see Fig.
-% 7,][]{Gebbie-Huybers-2011:How-is-the-ocean}. Here,
-% we expect the time change of the average source values to vary by $XX^{\circ}$C per timestep of 5 years, and thus
-% $\alpha_t=1/(XX^{\circ}$C). This parameter is
-% based upon XX. In matrix
-% form, the additional cost function term is $\mbox{J}_t = {\bf u}^T
-% {\bf F}^T {\bf W}_t {\bf F}{\bf u} \equiv {\bf u}^T {\bf S}_t^{-1}{\bf
-%   u}$, where ${\bf F}$ performs the water-mass averaging and
-% differencing in~(\ref{eq:temporalsmoothness}), the tracer values in
-% (\ref{eq:temporalsmoothness}) are anomalies referenced to the first
-% guess, and ${\bf W}_t$ is a weighting matrix with $\alpha_t^2$ on the
-% diagonal.
-
-The complete cost function is combined from the foregoing 2 parts,
-$\mbox{J} = \mbox{J}_{data} + \mbox{J}_u$:
-\begin{equation} \label{eq:Jall}
-\mbox{J} = ({\bf Du} - {\bf y})^T {\bf C}^{-1}_{{\tilde m}{\tilde m}} ({\bf Du} - {\bf y})
-+ {\bf u}^T {\bf R}_{uu}^{-1} {\bf u}.
-\end{equation}
-When considering all possible regional and local changes,
-equation~(\ref{eq:Jall}) has 5600 unknowns and 132 observational
-constraints, indicating a formally underdetermined problem. 
-The solution to the tapered weighted least-squares problem is,
-\begin{equation}
-{\bf u} = {\bf R}_{uu} {\bf D}^T ({\bf D} {\bf R}_{uu} {\bf D}^T + {\bf C}_{{\tilde m}{\tilde m}})^{-1}
-{\bf y}.
-\end{equation}
-The solution covariance is also calculated from the underdetermined, least-squares formula. The results of the inversion are shown in Figs.~S7-S9.
-
-\section{Ocean heat content}
-
-The ocean heat content is a function of the thermodynamic property of potential enthalpy \cite{McDougall--2003:Potential,IOC--2010:IAPSO:},
-%fine a baseline using the WOCE Global Hydrographic Climatology (WGHC) \cite{Gouretski-Koltermann-2004:WOCE}
-\begin{equation}
-{\cal H}(t) =  c_p^0 \sum^M_{j=1} V_j \rho_j(t) \Theta_j(t) - {\cal H}_0,
-\end{equation}
-where $c_p^0\equiv 3991.867$ J/(kg K) is the specific heat capacity, $V_j$ is the volume of gridbox $j$, $\rho_j$ is the seawater density, $\Theta_j$ is the Conservative Temperature, and ${\cal H}_0$ is a reference value. We define the following vectors,
-\begin{equation}
-{\bf r}(t) =  c_p^0 [V_1 \rho_1(t)   ~~V_2 \rho_2(t)  \ldots V_M \rho_M(t)]^T,
-{\boldsymbol \Theta}(t) =  [\Theta_1(t)   ~~\Theta_2(t)  \ldots \Theta_M(t)]^T,
-\end{equation}
-where $^T$ is the transpose. Now the heat content at any time, $t$, 
-is,
-\begin{equation}
-{\cal H}(t) =  {\bf r}(t)^T {\boldsymbol \Theta}(t) - {\cal H}_0.
-\end{equation}
-%where ${\boldsymbol \Theta}(t)$ is the Conservative Temperature put into vector form.
-In this work, we compute ${\bf r}(t_w)$ using the WOCE Hydrographic
-Climatology \cite{Gouretski-Koltermann-2004:WOCE} and approximate this
-quantity as being fixed in time, i.e.,
-${\bf r}(t) \equiv {\bf r}(t_w)$ for all $t$. In addition, we replace
-Conservative Temperature, ${\boldsymbol \Theta}(t)$, with potential
-temperature, ${\boldsymbol \theta}(t)$, because the empirical WOCE circulation \cite{Gebbie-Huybers-2012:mean} was
-originally derived with ${\boldsymbol \theta}(t)$.  The ocean heat
-content equation is then simplified,
-\begin{equation}
-{\cal H}(t) \approx  {\bf r}(t_w)^T {\boldsymbol \theta}(t) - {\cal H}_0,
-\end{equation}
-and the heat uptake in the interval, $t_1 < t < t_2$, is the difference in heat content:
-\begin{equation}
-H(t_1,t_2) \equiv {\cal H}(t_2) - {\cal H}(t_1) \approx  {\bf r}(t_w)^T[  {\boldsymbol \theta}(t_2)  -{\boldsymbol \theta}(t_1)], 
-\end{equation}
-where the reference value vanishes. For a temperature change of
-$2^{\circ}$C, the density change leads to an error in ${\bf r}(t)$ no
-greater than $0.1\%$. In assuming that spatial and temporal variations
-are described by ${\boldsymbol \theta}(t)$ instead of
-${\boldsymbol \Theta}(t)$, there is a time-mean offset due to
-differences in the Conservative to potential temperature scales, but
-this error is mostly eliminated by computing differences in heat
-content (i.e., heat uptake) rather than absolute heat content.
-% Rearranging, we find where ${\cal H}^\prime=-11.3$ ZJ (1 ZJ
-% $\equiv 10^{21}$J) accounts for mean
-Time-variable errors in using potential temperature are no larger than
-$0.3\%$. Including both the density and potential temperature errors,
-the total error in the heat content equation is no larger than $0.4\%$
-or 1 part in 250. 
-
-%Other assumptions in the problem, notably the
-%assumptions made in deriving the passive temperature anomaly model, likely cause greater errors.
-
-% \begin{equation}
-% {\cal H}(t) \approx  {\bf r}^T \vec{\theta}(t) +  ( {\cal H}(t_w) - {\bf r}^T \vec{\theta}^w) = {\bf r}^T \vec{\theta}(t) + {\cal H}^\prime
-% \end{equation}
-
-
-% where 
-
-%  referenced to the WGHC value
-
-
- 
-%\subsection{Heat uptake}
-
-
-%where $\Delta(\theta) = \theta(t_2)-\theta(t_1)$. 
-
-% In the formulation of the transient model, the ocean temperature has two parts: $\vec{\theta}(t) = {\bf R}{\bf c}(t) + {\bf S}{\bf q}(t)$, where ${\bf c}(t)$ is the interior temperature and ${\bf q}(t)$ is sea surface temperature. This step is taken to decrease the size of the model state. By linearity
-% \begin{equation}
-% \Delta{\cal H}(t) \approx  {\bf r}^T [{\bf R} \Delta{\bf c}(t) + {\bf S}  \Delta{\bf q}(t)].   
-% \end{equation}
-% The heat uptake is dominated by the first term, with a size of 20,000 ZJ, indicating the subsurface heat uptake. The second term has a size of about 1,700 ZJ, or less than $10\%$ of the first term.
+Results are labeled with ` tait` when pressure corrections are
+applied. 
 
 \newpage
 
-\bibliography{all}
+\bibliography{HistoricalIndianOcean}
 
 \bibliographystyle{Science}
 
-
-
-% Following is a new environment, {scilastnote}, that's defined in the
-% preamble and that allows authors to add a reference at the end of the
-% list that's not signaled in the text; such references are used in
-% *Science* for acknowledgments of funding, help, etc.
-
-%\begin{scilastnote}
-% \item We've included in the template file \texttt{scifile.tex} a new
-% environment, \texttt{\{scilastnote\}}, that generates a numbered final
-% citation without a corresponding signal in the text.  This environment
-% can be used to generate a final numbered reference containing
-% acknowledgments, sources of funding, and the like, per {\it Science\/}
-% style.
-%\item Thanks to Ulysses Ninnemann, Kerim Nisancioglu, Tor Eldevik, and Tore Furevik for discussions. The Ocean Outlook III workshop in Bergen for presenting a keynote lecture.
-%\end{scilastnote}
-
-
-
-% For your review copy (i.e., the file you initially send in for
-% evaluation), you can use the {figure} environment and the
-% \includegraphics command to stream your figures into the text, placing
-% all figures at the end.  For the final, revised manuscript for
-% acceptance and production, however, PostScript or other graphics
-% should not be streamed into your compliled file.  Instead, set
-% captions as simple paragraphs (with a \noindent tag), setting them
-% off from the rest of the text with a \clearpage as shown  below, and
-% submit figures as separate files according to the Art Department's
-% instructions.
 
 
 \clearpage
@@ -1131,221 +354,16 @@ or 1 part in 250.
 
 
 
-\begin{figure}%[htbp]
-\begin{center}
-\includegraphics[scale=0.9]{suppfigs/Joffset_31-Oct-2017.eps}
-\noindent{{\bf Fig.~S1. Optimal offset of proxy and instrumental surface temperature datasets.} The cost function, $J$, calculated as the misfit between a Common Era simulation run from equilibrium at 15 C.E. (EQ-0015) and the basinwide-average WOCE minus {\it Challenger} temperature differences. The boundary conditions are re-derived as a function of the offset, where positive values of the offset indicate that the instrumental surface temperature product is shifted to more positive values relative to the proxy record. The optimal offset is $0.067^{\circ}$C. The expected value of $J$ is normalized to 1 based on the data error statistics.}
-\end{center} 
-\end{figure}
-
-\begin{figure}%[htbp]
-\begin{center}
-\includegraphics[scale=0.85]{suppfigs/thetab_allregions_26-Oct-2017.eps}
-\noindent {\bf Fig.~S2. First guess of the anomalous subduction temperature, $1870-2015$ C.E., relative to an equilibrium baseline at 15 C.E.} The 5-year temporal average in 14 surface regions ({\it colored lines, solid and dashed}) for the following regions: North Pacific (NPAC), Arctic (ARC), Mediterranean (MED), Ross Sea (ROSS), Weddell Sea (WED), Labrador Sea (LAB), Greenland-Iceland-Norwegian Seas (GIN), Adelie sector (ADEL), Atlantic, Pacific, and Indian sectors of the Subantarctic (ASUBANT, PSUBANT, ISUBANT), and the subtropics and tropics (ATROP, PTROP, ITROP). The global subduction temperature anomaly ({\it thick, black line}) is an area-weighted average of all regions.
-\end{center} 
-\end{figure}
-
-\begin{figure}%[htbp]
-\begin{center}
-\includegraphics[scale=0.65]{suppfigs/fastslow_timeseries_3500m_26-Mar-2018C.png}
-\noindent {\bf Fig.~S3. Simulations of the Common Era with varying circulation strength.} Timeseries of anomalous potential temperature at 3500 m depth for the mean Pacific ({\it top panel}) and mean Atlantic ({\it bottom panel}) as defined north of $30^{\circ}$S. Four simulations are compared to the simulation from the main text that used a circulation from the 1990s ({\it ``EQ-0015'', thick solid line}). Two simulations have a circulation strength that linearly covaries with surface temperature:  one where the circulation rate is 25\% slower during the Little Ice Age ({\it ``LIA SLOW'', thin solid line}), and one where the modern circulation is relatively slow and the Little Ice Age is faster by 25\% ({\it ``MDRN SLOW'', dotted line}). Two other simulations use fixed circulations throughout the Common Era: 25\% weaker ({\it ``BIAS SLOW'', dashed line}) and 25\% stronger ({\it ``BIAS FAST'', dash-dot line}) than EQ-0015. Note the differing temperature scales in the two panels.
-\end{center} 
-\end{figure}
-
 % \begin{figure}%[htbp]
-%   \begin{center}
-%     \includegraphics[scale=0.9]{suppfigs/tait_correction_28oct2017.eps}
-%     \noindent{{\bf Fig.~S4. Dependence of the goodness of fit of
-%         EQ-0015 on the Tait correction.} The cost function, $J$, is a nondimensional quantity
-%       calculated as the misfit between the EQ-0015 simulation and the
-%       basinwide-average WOCE minus {\it Challenger} temperature
-%       differences. The Tait correction is varied according to the
-%       x-axis, and an optimal correction is found near
-%       $-0.05^{\circ}$C/km. The expected value of $J$ is normalized to
-%       one based on the data error statistics.}
+% \begin{center}
+% \includegraphics[scale=0.9]{suppfigs/Joffset_31-Oct-2017.eps}
+% \noindent{{\bf Fig.~S1. Optimal offset of proxy and instrumental surface temperature datasets.} The cost function, $J$, calculated as the misfit between a Common Era simulation run from equilibrium at 15 C.E. (EQ-0015) and the basinwide-average WOA minus {\it historical} temperature differences. The boundary conditions are re-derived as a function of the offset, where positive values of the offset indicate that the instrumental surface temperature product is shifted to more positive values relative to the proxy record. The optimal offset is $0.067^{\circ}$C. The expected value of $J$ is normalized to 1 based on the data error statistics.}
 % \end{center} 
 % \end{figure}
 
-\begin{figure}%[htbp]
-\begin{center}
-\includegraphics[scale=0.75]{suppfigs/depth_bias.eps}
-\noindent {\bf Fig.~S4. Challenger versus GEBCO estimates of bottom
-  depth.}  The one-to-one line ({\it dashed black}) is steeper than the
-results of a robust regression ({\it solid red}), indicating that Challenger
-depths are systematically understimated by 4\% of GEBCO depth.  The
-one-standard devation uncertainty on the slope esimate is only 1\%,
-indicating that the underestimation of depth is significant at four
-sigma.
-\end{center} 
-\end{figure}
-
-
-% \begin{figure}%[htbp]
-%   \begin{center}
-%     \includegraphics[scale=0.8]{suppfigs/Tcorrection_z_17july2018.eps} \\
-%     \noindent {\bf Fig.~S5. Adjustment in WOCE temperatures at the {\it Challenger} data locations due to stretching
-%       of the hemp rope.} The correction in WOCE temperature ({\it blue
-%       dots}) at each {\it Challenger} temperature measurement, and the
-%     median ({\it red square}) and mean ({\it orange circle}) of the
-%     correction in 100-fathom bins from $200-1600$ fathoms. All 5010 {\it Challenger} data points are plotted. \end{center} \end{figure}
-% %% fIGURE S5.
-% \begin{figure}%[htbp]
-%   \begin{center}
-%     \includegraphics[scale=0.85]{suppfigs/DT_woce_challenger_avgtype_14jun2018.eps} \\
-%     \noindent {\bf Fig.~S6. Dependence of WOCE minus HMS {\it
-%         Challenger} temperature on averaging method.} Atlantic and
-%     Pacific basinwide-average differences as a function of depth. The
-%     covariance-weighted averages are included with $\pm 2\sigma$
-%     error bars, computed with a tapered, weighted least-squares
-%     formula (``COV'', {\it solid lines}). For comparision, averages are also
-%     computed under the assumption that each datapoint is independent
-%     using a simple arithmetic mean (``IND'', {\it dashed
-%       lines}).  \end{center} \end{figure}
-
-
-%% FIGURE S6.
-\begin{figure}%[htbp]
-\begin{center}
-\includegraphics[scale=0.85]{suppfigs/DT_woce_challenger_allregions_20jul2018.eps} \\
-\noindent {\bf Fig. S5. Global estimate of WOCE minus HMS {\it Challenger} temperature and the dependence on multiple ocean
-  basins.} Basinwide-average temperature differences and their
-$2\sigma$ uncertainties are computed for the Atlantic ('ATL') and Pacific
-('PAC') basins defined according to the text ({\it colored lines with errorbars}). Each
-profile is computed with a weighted, tapered least-squares method that
-accounts for the expected covariance in interannual and
-higher-frequency variations.  The global-mean profile of {\it
-  Challenger}-to-WOCE temperature changes as computed by averaging the
-basinwide estimates in a way that accounts for their differing volumes
-({\it Solid, black line with errorbars}). The global profile is
-similar to a previous estimate of {\it Challenger}-to-WOCE changes
-made to mid-depths \cite{Roemmich-Gould-2012:135} ({\it green line},
-``TOT (RGG12)'', including the zero-crossing near 1800 m depth from
-warming to cooling.
-%The surface warming is slightly less than the previous estimate, as would be expected with warming occurring in the longer interval between WOCE and Argo time periods. 
-\end{center} 
-\end{figure}
-
-%% S7.
-%%% ADD PALMER FIGURES HERE. EQ15 AND OPT15
-\begin{figure}%[htbp]
-\begin{center}
-\includegraphics[scale=0.95]{suppfigs/Cmeters_1970-2010_OPT-0015_17-Jul-2018.eps}\\
-\noindent {\bf Fig.~S6. Depth-integrated temperature trend}
-Temperature trend between 1970-2010 C.E. for the inversion
-of the Common Era (OPT-0015) integrated over 750-5750 meters depth.
-The resulting quantity is in units of kelvin-meters per year. The scale is saturated at $\pm 8$K*m/yr.
-% ({\it Top}): Temperature trend between 1970-2010 C.E. for a simulation
-% of the Common Era (EQ-0015) integrated over 750-5750 meters depth.
-% The resulting quantity is in units of kelvin-meters per year. ({\it
-%   Bottom}): Same as top, but for an inversion constrained with {\it
-%   Challenger} data (OPT-0015). The contour interval is $0.5$ K*m/yr,
-% and the scale is saturated at $\pm 5$K*m/yr.
-\end{center} 
-\end{figure}
-
-%% FIGURES S8. PLAN VIEW AT ALL DEPTHS. 
-\begin{figure}%[htbp]
-\begin{center}
-\includegraphics[scale=0.48]{suppfigs/DT_woce_challenger_OPT-0015_6panel_18-Jul-2018.png}\\
-\noindent {\bf Fig.~S7. HMS {\it Challenger} to WOCE temperature
-  changes.} Temperature difference between a WOCE climatology
-\cite{Gouretski-Koltermann-2004:WOCE} and HMS {\it Challenger}
-observations ({\it colored squares}) and the reconstructed
-temperature-difference field from an inversion constrained by the
-basinwide-average observations (OPT-0015, {\it background
-  colors}). Maps are at the following depths: ({\it left column})
-1829 m (1000 fathoms), 2012 m (1100 fathoms), 2195 m (1200 fathoms), and ({\it right column}) 2377 m (1300 fathoms),  2560 m (1400 fathoms), 2743 m (1500 fathoms). The contour interval is 2.5 cK.
-\end{center} 
-\end{figure}
-
-%% FIGURE S9. OPT15 ALL SURFACE REGIONS.
-
-\begin{figure}%[htbp]
-\begin{center}
-\includegraphics[scale=0.9]{suppfigs/thetab_all_OPT-0015_17-Jul-2018.eps}\\
-\noindent {\bf Fig.~S8. Anomalous subduction temperature, 15-2015
-  C.E., relative to an equilibrium baseline, from an inversion of the
-  {\it Challenger} observations (OPT-0015).} The 5-year temporal
-average in 14 surface regions ({\it colored lines, solid and dashed})
-for the following regions: North Pacific (NPAC), Arctic (ARC),
-Mediterranean (MED), Ross Sea (ROSS), Weddell Sea (WED), Labrador Sea
-(LAB), Greenland-Iceland-Norwegian Seas (GIN), Adelie sector (ADEL),
-Atlantic, Pacific, and Indian sectors of the Subantarctic (ASUBANT,
-PSUBANT, ISUBANT), and the subtropics and tropics (ATROP, PTROP,
-ITROP). The global subduction temperature anomaly ({\it thick, black
-  line}) is an area-weighted average of all regions.
-\end{center} 
-\end{figure}
-
-%% FIGURE S10. OPT15 TATLZ TPACZ.
-\begin{figure}%[htbp]
-\begin{center}
-%\includegraphics[scale=0.9]{suppfigs/OPT15_2panel_01-Nov-2017.png}\\
-%\includegraphics[scale=0.85]{suppfigs/Tpacatlz_stretch_OPT-0015_22-Mar-2018.png}\\
-\includegraphics[scale=0.85]{suppfigs/Tpacatlz_stretch_OPT-0015_2panel_17-Jul-2018C.png}\\
-\noindent {\bf Fig.~S9. Inversion of {\it Challenger data} for
-  interior ocean response (OPT-0015).} ({\it Top}): Time-evolution of
-Pacific-average potential temperature profile as reconstructed from
-the inversion OPT-0015.
-({\it Bottom}): Similar to top, but for the Atlantic-average profile. The color shading has a 2.5 cK interval from -35 to 35 cK. \\
-\end{center} 
-\end{figure}
-
-%\newpage
-%{\footnotesize
-\begin{table}%[c] 
-\small
-\begin{tabular}{|c|c|ccccc|}
-\hline
-Depth [fathoms] & Depth [m] & GLOBAL & PAC  & ATL &  STH & IND  \\
-\hline 
-%    733  &        437     &     282     &       9     &       5 \\
-%    410    &      223     &     178     &       4    &        5 \\
-%    237     &     106     &     121      &      6     &       4 \\
-%    220   &       100     &     113      &      4     &       3 \\
-%    193   &        95      &     91       &     4     &       3 \\
-%    183   &        91      &     87       &     2      &      3 \\
-%    172    &       91      &     74       &     4     &       3 \\
-%    162    &       89     &      68      &      2      &      3 \\
-%     153   &        82    &       64     &       4     &       3 \\
-%     141   &        83     &      54     &       2     &       2 \\
-%     129   &        77    &       49     &       2    &        1 \\
-%     138   &        78    &       57     &        2   &         1 \\
-%     127   &        73    &       52     &       2    &        0 \\
-%     148   &        84    &       61     &       3     &       0 \\
-% \hline
-%
-%\hline
-200 &         366     &  733 & 437   &   233   &    59   &     4  \\
-300 &         549    &   410 &  223   &   141   &    42   &     4 \\
-400  &        732   &    237 &   106   &   105   &    23   &     3 \\
-500  &        914   &   220 &    100    &   99   &    19    &    2 \\
-600   &      1097   &   193 &     95   &    80   &    16   &     2 \\ 
-700   &      1280    &  183 &     91   &    77   &    13   &     2 \\ 
-800  &       1463   &   172 &      91   &    67   &    12   &     2 \\ 
-900   &      1646    &  162 &      89   &    65   &     6   &     2 \\
-1000  &       1829   &  153 &     82   &    62   &     7   &     2 \\
-1100  &       2012   &  141 &     83   &    50   &     7   &     1  \\
-1200  &       2195   &  130 &     77   &    47   &     6   &     0  \\
-1300   &      2377   &  137 &     78   &    51   &     8    &    0  \\
-1400  &       2560   &  128 &     73   &    48   &     7    &    0  \\
-1500   &      2743   &  133 &     76   &    51    &    6    &    0   \\
-1550-bot &  2834-bot &  80 &   33  &   17  &  30    &    0   \\ \hline
-Total   &     &  3212 & 1734   &    1193     &    261   &       24   \\ \hline
-  \end{tabular}\\
-  \noindent{{\bf Table~S1.} Number of HMS {\it Challenger} temperature observations per depth bin indicated by its mean depth ({\it left column}), and sorted by the total number ({\it GLOBAL}), and by Pacific (PAC), Atlantic (ATL), Southern (STH), and Indian (IND) Oceans. Observations that are shallower than the modern-day seasonally-maximum mixed-layer depth are excluded. Observations in the STH and IND regions are listed but not used for purposes of constraining the OPT-0015 inversion.}
-  \label{tab:challengerobs}
-\end{table}
-%}
-
-\begin{figure}%[htbp]
-\begin{center}
-%\includegraphics[scale=0.9]{suppfigs/OPT15_2panel_01-Nov-2017.png}\\
-%\includegraphics[scale=0.85]{suppfigs/Tpacatlz_stretch_OPT-0015_28-Nov-2017.png}\\
-\noindent{{\bf Movie~S1. 2,000-year evolution of potential temperature anomaly at 2500 meters depth from OPT-0015}. Black contour lines are indicated from $-95$ cK to $95$ cK at intervals of 10~cK.}  
-\end{center} 
-\end{figure}
-
 \end{document}
 
-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

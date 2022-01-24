@@ -87,7 +87,7 @@ How to set up a LaTex file for compilation/bibliography:
 -[[https://github.com/cpitclaudel/biblio.el/blob/master/README.md][Biblio.el to look up references from internet]]
  `M-x biblio-lookup` or `M-x crossref-lookup`
 
- how to import new citations
+ how to import new citations \\
  - `B` in main.bib, give doi.
    or 
   - `M-x biblio-lookup`, choose CrossRef, use `e` to import to ebib
@@ -95,3 +95,5 @@ How to set up a LaTex file for compilation/bibliography:
       - `C-c b` to cite new key
 Otherwise dependent bib will be overwritten with full main.bib. 
 
+how to compile LaTex and view PDF \\
+ - `C-c C-a`
