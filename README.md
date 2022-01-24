@@ -6,15 +6,30 @@ to make a reproducible scientific project named
 
 It is authored by G Jake Gebbie.
 
+# Reproducibility
+
+To (locally) reproduce this project, do the following:
+
+0. Download this code base. Notice that raw data are typically not included in the
+   git-history and may need to be downloaded independently.
+1. Open a Julia console and do:
+   ```
+   julia> using Pkg
+   julia> Pkg.add("DrWatson") # install globally, for using `quickactivate`
+   julia> Pkg.activate("path/to/this/project")
+   julia> Pkg.instantiate()
+   ```
+
+This will install all necessary packages for you to be able to run the scripts and
+everything should work out of the box, including correctly finding local paths.
+
 # Code structure
 
-The script at `scripts/GazelleValdiviaPlanet.jl`
-solves for the Indian Ocean average temperature change from the time of three historical ocean voyages (from the Gazelle, Valdivia, and Planet, respectively) up to the most recent climatology from the World Ocean Atlas. The scripts runs 8 sets of parameters (and creates 8 solutions) for temperature change and its standard error as a function of depth. 
+The script at `scripts/TemperatureDifference_Allparams.jl`
+solves for the Indian Ocean average temperature change from the time of two different historical time periods up to the most recent climatology from the World Ocean Atlas. The scripts runs 24 sets of parameters (and creates 24 solutions) for temperature change and its standard error as a function of depth. 
 
-Basinwide-temperature change is solved using code in `src/HistoricalIndianOcean.jl` that represents an inverse method that accounts for three distinct sources of contamination in temperature observations. The list of available functions is stated in the `export` statement at the top of this source code.
-
-The most "objective" choice of parameters is probably:
-
+The script at `scripts/TemperatureDifference_Bestparams.jl`
+solves for the Indian Ocean average temperature change using the best algorithmic parameters:
 `Tbar_LxyS=2000000` m \\
 `LxyT=450000` m \\
 `LzAVG=500` m \\
@@ -24,6 +39,14 @@ The most "objective" choice of parameters is probably:
 `tratio=2.0` \\
  `σS=1.0` degrees C \\
  `σobs=0.14` degrees C .
+
+3 cases are solved: \\
+1. from the time of the historical cruises Valdivia, Gazelle, and Planet  up to the most recent climatology from the World Ocean Atlas,
+2. from this same time but with the Tait pressure correction applied to historical data,
+3. from the time of the historical cruises Valdivia, Gazelle, and Planet  up to the World Ocean Atlas 1955-1964 time interval.
+
+Basinwide-temperature change is solved using code in `src/HistoricalIndianOcean.jl` that represents an inverse method that accounts for three distinct sources of contamination in temperature observations. The list of available functions is stated in the `export` statement at the top of this source code.
+
 
 All error bars are 1 sigma. Unicode symbols are used in some places; please submit a GitHub Issue if they cause problems.
 
@@ -46,19 +69,29 @@ For an interactive session, it is possible to run the lines of `GazelleValdiviaP
 3. check that bin averages reproduce your previous results.
 4. Figures are rudimentary. With the csv output, perhaps it is easiest for you to make them publication ready.
 
-# Reproducibility
+# LaTex documentation
 
-To (locally) reproduce this project, do the following:
+Documentation is found in a LaTex-generated document in `papers` directory. 
 
-0. Download this code base. Notice that raw data are typically not included in the
-   git-history and may need to be downloaded independently.
-1. Open a Julia console and do:
-   ```
-   julia> using Pkg
-   julia> Pkg.add("DrWatson") # install globally, for using `quickactivate`
-   julia> Pkg.activate("path/to/this/project")
-   julia> Pkg.instantiate()
-   ```
+How to set up a LaTex file for compilation/bibliography:
+- open *tex file to enter AucTeX
+- `C-c e` to open ebib, should open main.bib
+  - first time creating dependent bib database, use `M c` or similar
+    - later times, be sure to `o` open the dependent database in ebib
+ - `z` to minimize ebib
+   -  [[http://joostkremers.github.io/ebib/ebib-manual.html#associating-a-database-with-a-text-buffer][associate a database with tex buffer]], doesn't seem to work automagically
+     use elisp to set `ebib-local-bibfiles` or `C-h v` to manually customize
+    `M-:` then  ` (setq ebib-local-bibfiles '("ClimSens.bib")) `
+     `C-c b` will insert new citation from main.bib, add it to the local bib file
+     - takes a couple of compiles to get all references/bib correct in pdf file
+-[[https://github.com/cpitclaudel/biblio.el/blob/master/README.md][Biblio.el to look up references from internet]]
+ `M-x biblio-lookup` or `M-x crossref-lookup`
 
-This will install all necessary packages for you to be able to run the scripts and
-everything should work out of the box, including correctly finding local paths.
+ how to import new citations
+ - `B` in main.bib, give doi.
+   or 
+  - `M-x biblio-lookup`, choose CrossRef, use `e` to import to ebib
+    - must switch back to dependent bib file before citing in tex, use `o`
+      - `C-c b` to cite new key
+Otherwise dependent bib will be overwritten with full main.bib. 
+
