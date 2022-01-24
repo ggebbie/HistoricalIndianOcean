@@ -75,7 +75,7 @@ Documentation is found in a LaTex-generated document in `papers` directory.
 
 How to set up a LaTex file for compilation/bibliography:
 - open *tex file to enter AucTeX
-- `C-c e` to open ebib, should open main.bib
+- `C-c e` to open ebib, should open main.bib, If it doesn't, then toggle LaTeX mode with `M-x LaTeX-mode` (not just latex-mode, not sure why there are two modes with different capitalization)
   - first time creating dependent bib database, use `M c` or similar
     - later times, be sure to `o` open the dependent database in ebib
  - `z` to minimize ebib
