@@ -56,7 +56,7 @@ Output of the code is not included with this GitHub repository. Figures are crea
 
 # How to run the code
 
-Install the latest stable version of Julia (currently 1.7+). Figure are made with PyPlot which requires Julia to have PyCall installed. Instructions are available at https://github.com/ggebbie/TMI.jl for this step. The code can be run at the command line by changing to the repository base directory and running:
+Install the latest stable version of Julia (currently 1.7+). Figures are made with PyPlot which requires Julia to have PyCall installed. Instructions are available at https://github.com/ggebbie/TMI.jl for this step. The code can be run at the command line by changing to the repository base directory and running:
 
 `julia scripts/TemperatureDifference_Bestparams.jl` .
 
@@ -69,11 +69,11 @@ For an interactive session, it is possible to run the lines of `TemperatureDiffe
 3. check that bin averages reproduce your previous results.
 4. Figures are rudimentary. With the csv output, perhaps it is easiest for you to make them publication ready.
 
-# LaTex documentation
+# LaTeX documentation
 
-Documentation is found in a LaTex-generated document in `papers` directory. 
+Documentation is found in a LaTeX-generated document in `papers` directory. 
 
-How to set up a LaTex file for compilation/bibliography:
+How to set up a LaTeX file for compilation/bibliography:
 - open *tex file to enter AucTeX
 - `C-c e` to open ebib, should open main.bib, If it doesn't, then toggle LaTeX mode with `M-x LaTeX-mode` (not just latex-mode, not sure why there are two modes with different capitalization)
   - first time creating dependent bib database, use `M c` or similar
@@ -95,5 +95,5 @@ How to set up a LaTex file for compilation/bibliography:
       - `C-c b` to cite new key
 Otherwise dependent bib will be overwritten with full main.bib. 
 
-how to compile LaTex and view PDF \\
+how to compile LaTeX and view PDF \\
  - `C-c C-a`
