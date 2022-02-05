@@ -185,9 +185,9 @@ the historical temperature observations
 where we have defined a grid of $K$ depths.  Given knowledge of the
 basinwide averages, one can make a prediction for each WOA$-$historical temperature difference,
 \begin{equation}
-{\boldsymbol \Delta}{\bf T} = {\bf H}\overline{{\boldsymbol \Delta}{\bf T}} + {\bf q},
+{\boldsymbol \Delta}{\bf T} = {\bf V}\overline{{\boldsymbol \Delta}{\bf T}} + {\bf q},
 \end{equation}
-where ${\bf H}$ maps the basinwide mean onto the observational point
+where ${\bf V}$ maps the basinwide mean onto the observational point
 by noting the basin of the observations and vertical linear
 interpolation, ${\bf q}$ is contamination by measurement error and
 signals that are not representative of the decadal-mean,
@@ -284,18 +284,46 @@ lengthscale is $L_z^{AVG} = 500$ m in the vertical, the variance is on the order
 ($\sigma_S = 1^\circ$C$)^2$, and the expected value is $<\overline{{\boldsymbol \Delta}{\bf T}}>=0$.
 The least-squares estimate is then,
 \begin{equation}
-\tilde{\overline{{\boldsymbol \Delta}{\bf T}}} = ({\bf H}^T {\bf R}_{qq}^{-1} {\bf H} + {\bf S}^{-1} )^{-1} {\bf H}^T {\bf R}_{qq}^{-1} {\boldsymbol \Delta}{\bf T}.
+\tilde{\overline{{\boldsymbol \Delta}{\bf T}}} = ({\bf V}^T {\bf R}_{qq}^{-1} {\bf V} + {\bf S}^{-1} )^{-1} {\bf V}^T {\bf R}_{qq}^{-1} {\boldsymbol \Delta}{\bf T}.
 \end{equation}
  The error covariance of the estimate is,
 \begin{equation}
   \label{eq:covariance17}
-  \mbox{{\bf C}}_{{\tilde{\Delta T}}} = ({\bf H}^T {\bf R}_{qq}^{-1} {\bf H} + {\bf S}^{-1} )^{-1},
+  \mbox{{\bf C}}_{{\tilde{\Delta T}}} = ({\bf V}^T {\bf R}_{qq}^{-1} {\bf V} + {\bf S}^{-1} )^{-1},
 \end{equation}
 where the standard error is
 ${\boldsymbol \sigma}_{\tilde{\Delta T}} =
 \sqrt{\mbox{diag}(\mbox{{\bf C}}_{{\tilde{\Delta T}}})}$.  This method
 also recovers the off-diagonal terms that correspond to the correlated
 errors among different parts of the basinwide-average.
+
+\subsection{Ocean heat content change}
+
+Ocean heat content change, $\Delta {\cal H}$, is a linear function of
+the temperature change and can be written as an inner vector product:
+\begin{equation}
+\Delta {\cal H} = {\bf h}^T \tilde{\overline{{\boldsymbol \Delta}{\bf T}}},
+\end{equation}
+where ${\bf h}$ is a vector containing coefficients related to ocean
+heat capacity, seawater density, the representative area of the Indian
+Ocean, and the integration of temperature change over the vertical
+dimension. Here we integrate to a depth of $z\star = 700$ m so that we
+obtain heat content change from the sea surface to this depth. The
+Indian Ocean area is assumed to be equal to 15\% of the global ocean
+area at all depths (ignoring the hypsometric effect).
+  
+The error covariance of $\Delta {\cal H}$ is an outer product, 
+\begin{equation}
+\mbox{{\bf C}}_{H} = <({\bf h}^T \tilde{\overline{{\boldsymbol \Delta}{\bf T}}})({\bf h}^T \tilde{\overline{{\boldsymbol \Delta}{\bf T}}})^T>,
+\end{equation}
+where $<>$ refers to the expected value. ${\bf C}_H$ is a scalar like $\Delta {\cal H}$.
+Rearranging this equation, we obtain, 
+\begin{equation}
+\mbox{{\bf C}}_{H} =  {\bf h}^T \mbox{{\bf C}}_{{\tilde{\Delta T}}} {\bf h},
+\end{equation}
+where $\mbox{{\bf C}}_{{\tilde{\Delta T}}}$ is known from the
+calculation of the previous section. The standard error of the heat
+content change is the square root of $\mbox{{\bf C}}_{H}$.
 
 \subsection{Historical thermometer corrections}
 
