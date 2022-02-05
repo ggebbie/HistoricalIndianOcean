@@ -230,7 +230,8 @@ function basinwide_avg(params)
     Km =  degree_meters(T̄,zgrid,zstar)
 
     # Indian Ocean area divided by 10^21.
-    indian_area_m21 = 70.5*exp10(-6)
+    # 15% of global ocean area
+    indian_area_m21 = 0.15*0.71*4π*6300_000^2*1e-21
 
     factor = 3996.0 * 1035.0 * indian_area_m21 # ZJ/(Km)
     # heat content
