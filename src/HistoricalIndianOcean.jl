@@ -7,7 +7,7 @@ using DrWatson, Distances, TMI,
 export R2_covariance, Loc, observational_covariance,
     weighted_covariance, error_covariance, woce_error,
     vertical_smoothness, vertical_map, basinwide_avg,
-    read_historical_data
+    read_historical_data, degree_meters
 
 import TMI.interpindex
 
@@ -172,15 +172,15 @@ function vertical_map(zobs,zgrid)
 end
 
 """
-    function basinwide_avg(T,Rqq,H,S)
+    function basinwide_avg(T,Rqq,V,S)
     Short version of arguments
 """
-function basinwide_avg(T,Rqq,H,S)
+function basinwide_avg(T,Rqq,V,S)
     
     # solve for T̄.
-    iRqqH = Rqq\H;
-    inside = iRqqH'*H + S\I
-    rhs = iRqqH'*T
+    iRqqV = Rqq\V;
+    inside = iRqqV'*V + S\I
+    rhs = iRqqV'*T
     T̄ = inside\rhs
 
     Ctt = inv(inside)
@@ -194,14 +194,14 @@ function basinwide_avg(T,Rqq,H,S)
 end
 
 """
-    function basinwide_avg(T,Rqq,H,S)
+    function basinwide_avg(T,Rqq,V,S)
     Long version of arguments
     T, H, locs, zgrid are fixed
     params is a dictionary of variable parameters
 """
 function basinwide_avg(params)
 
-    @unpack delta, σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, zgrid = params
+    @unpack delta, σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, zgrid, zstar = params
     
     T,locs = read_historical_data(delta)
 
@@ -209,26 +209,47 @@ function basinwide_avg(params)
     [zobs[r] = locs[r].depth for r in eachindex(locs)]
 
     # make H matrix, vertical map onto grid
-    H = vertical_map(zobs,zgrid)
+    V = vertical_map(zobs,zgrid)
 
     Rqq = error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS)
     S = vertical_smoothness(zgrid,σS,LzAVG)
 
         # solve for T̄.
-    iRqqH = Rqq\H;
-    inside = iRqqH'*H + S\I
-    rhs = iRqqH'*T
+    iRqqV = Rqq\V;
+    inside = iRqqV'*V + S\I
+    rhs = iRqqV'*T
     T̄ = inside\rhs
 
-    Ctt = inv(inside)
+    CT̄ = inv(inside)
     σT̄ = zeros(length(T̄))
     for ii in eachindex(T̄)
-        σT̄[ii] = sqrt(Ctt[ii,ii]);
+        σT̄[ii] = sqrt(CT̄[ii,ii]);
     end
+
+    # compute Heat Content down to depth 
+    Km =  degree_meters(T̄,zgrid,zstar)
+
+    # Indian Ocean area divided by 10^21.
+    indian_area_m21 = 70.5*exp10(-6)
+
+    factor = 3996.0 * 1035.0 * indian_area_m21 # ZJ/(Km)
+    # heat content
+    H = factor * Km
+
+    # uncertainty in heat content
+    σH = 0.0
+    nbins = size(CT̄,2)
+    tmp = zeros(nbins)
+    for nn = 1:nbins
+        tmp[nn] = factor*degree_meters(CT̄[:,nn],zgrid,zstar)
+    end
+    σH = √(factor*degree_meters(tmp,zgrid,zstar))
     
     output = copy(params)
     output["T̄"]= T̄
     output["σT̄"] = σT̄
+    output["H"] = H # ZJ
+    output["σH"] = σH # error covariance of basinwide avg
     return output
     
 end
@@ -272,6 +293,33 @@ function read_historical_data(delta)
 
     return ΔT, locs
 
+end
+
+"""
+    function degree_meters(T,z,zstar)
+"""
+function degree_meters(T,z,zstar)
+
+    # layer thickness
+    # Δ::Vector{Float64} = z[2:end] - z[1:end-1]
+    Km = 0.0
+    nbins = length(T) - 1
+    # layer fraction
+
+    for i in 1:nbins
+        Δ = z[i+1] - z[i]
+        if z[i] < zstar < z[i+1]
+            δ = (zstar - z[i])/Δ
+        elseif zstar ≥ z[i+1]
+            δ = 1.0
+        elseif zstar ≤ z[i]
+            δ = 0.0
+        end
+
+        Km += (T[i] * (2-δ) + T[i+1] * δ) * δ * Δ / 2 
+    end
+    
+    return Km
 end
 
 end # module HistoricalIndianOcean

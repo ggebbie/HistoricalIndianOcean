@@ -8,7 +8,6 @@ using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV, DataFrames
 
 # What temperature field?
 delta = ["T","T_tait","T_5564"]
-#delta = ["T"]
 
 # input parameters
 LxyT = 450_000 # m
@@ -19,7 +18,7 @@ LxyS = 2_000_000 # xylengthscale = meters
 LzS = 1000 # zlengthscale  = meters
 
 sratio = (1/5.)^2 
-σobs = 0.14  # deg C # obs error from HMS Challenger
+σobs = 0.14  # °C: obs error from HMS Challenger
 
 LzAVG = 500 # meters
 
@@ -33,16 +32,24 @@ tratio = 2.0 # amplify variability expected by a decadal average
 zgridedge = [-1, 1, 100, 300, 500, 1000, 2000, 3000]
 zgrid = [0, 50, 200, 400, 750, 1500, 2500]
 
+zstar = 700 # meters, depth over which heat content difference is calculated
+
 # Several parameter containers
-allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid
+allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid zstar
 allparams["zgrid"] = [zgrid]
 
 dicts = dict_list(allparams)
+
+# take cumulative sum of ΔT
+#Km = degree_meters(output["T̄"],output["zgrid"],Hdepth)
 
 for (i, d) in enumerate(dicts)
 
     output = basinwide_avg(d)
 
+    println("H=",output["H"])
+    println("σH=",output["σH"])
+    
     # output full state of analysis to jld2
     @tagsave(datadir("best",savename("DTbar",d,"jld2",accesses=["delta"])), output)
 
