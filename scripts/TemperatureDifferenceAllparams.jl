@@ -45,6 +45,9 @@ for (i, d) in enumerate(dicts)
 
     output = basinwide_avg(d)
 
+    println("H=",output["H"])
+    println("σH=",output["σH"])
+
     # output full state of analysis to jld2
     @tagsave(datadir("all",savename("DTbar",d,"jld2",accesses=accessvars)), output)
 
