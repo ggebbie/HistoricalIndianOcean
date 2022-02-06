@@ -18,7 +18,7 @@ LxyS = 2_000_000 # xylengthscale = meters
 LzS = 1000 # zlengthscale  = meters
 
 sratio = (1/5.0)^2
-sratio = 1.0
+
 σobs = 0.14  # °C: obs error from HMS Challenger
 
 LzAVG = 500 # meters

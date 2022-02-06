@@ -44,7 +44,7 @@ function error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS)
     # add covariance together
     #Rss =  weighted_covariance(locs,√sratio*ση,LxyS,LzS) + weighted_covariance(locs,√sratio*√tratio*ση,LxyS,LzS)
 
-    Rss = (tratio + 1) * sratio * weighted_covariance(locs,ση,LxyT,LzT)
+    Rss = (tratio + 1) * sratio * weighted_covariance(locs,ση,LxyS,LzS)
     
     Rtt = (tratio + 1) * weighted_covariance(locs,ση,LxyT,LzT)
     
