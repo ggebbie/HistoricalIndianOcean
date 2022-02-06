@@ -240,8 +240,8 @@ reconstructed by first creating a correlation matrix,
 \end{equation}
 where the autocorrelation function, $\rho(\delta)$, is given by a
 Gaussian with a horizontal lengthscale of 450 km and a vertical
-lengthscale of 450 meters. We derive the covariance matrix by pre- and
-post-multiplying the correlation matrix,
+lengthscale of 450 meters. We derive the covariance matrix by
+weighting the correlation matrix,
 ${\bf R}_{\eta\eta} = {\boldsymbol \sigma}_\eta {\boldsymbol
   \sigma}_\eta^T \circ {\bf R}_{\rho} $, where
 ${\boldsymbol \sigma}_\eta$ is the vector of the standard deviation of
@@ -282,13 +282,19 @@ weighted and tapered least-squares formulation that minimizes,
 \label{eq:qWq}
 J = {\bf q}^T {\bf R}_{qq}^{-1} {\bf q} + {\bf m}^T {\bf S}^{-1} {\bf m},
 \end{equation}  
-where ${\bf R}_{qq}$ reflects the combined effect of the three types of errors (i.e., ${\bf R}_{qq} = {\bf R}_{TT} + {\bf R}_{SS} + {\bf R}_{MM}$). This least-squares weighting %(i.e., ${\bf W} = {\bf R}_{qelta}q}$) 
-is chosen such that the solution coincides with the maximum likelihood estimate (assuming that the prior statistics are normally distributed and appropriately defined).
-Only a weak prior assumption, reflected in the weighting matrix, ${\bf
-  S}$, is placed on the solution, namely that the correlation
-lengthscale is $L_z^{AVG} = 500$ m in the vertical, the variance is on the order of
-($\sigma_S = 1^\circ$C$)^2$, and the expected value is $<\overline{{\boldsymbol \Delta}{\bf T}}>=0$.
-The least-squares estimate is then,
+where ${\bf R}_{qq}$ reflects the combined effect of the three types
+of errors (i.e.,
+${\bf R}_{qq} = {\bf R}_{TT} + {\bf R}_{SS} + {\bf R}_{MM}$). This
+least-squares weighting %(i.e., ${\bf W} = {\bf R}_{qelta}q}$)
+is chosen such that the solution coincides with the maximum likelihood
+estimate (assuming that the prior statistics are normally distributed
+and appropriately defined).  Only a weak prior assumption, reflected
+in the weighting matrix, ${\bf S}$, is placed on the solution, namely
+that the correlation lengthscale is $L_z^{AVG} = 500$ m in the
+vertical, the variance is on the order of ($\sigma_S = 1^\circ$C$)^2$,
+and the expected value is
+$<\overline{{\boldsymbol \Delta}{\bf T}}>=0$.  The least-squares
+estimate is then,
 \begin{equation}
 \tilde{\overline{{\boldsymbol \Delta}{\bf T}}} = ({\bf V}^T {\bf R}_{qq}^{-1} {\bf V} + {\bf S}^{-1} )^{-1} {\bf V}^T {\bf R}_{qq}^{-1} {\boldsymbol \Delta}{\bf T}.
 \end{equation}
