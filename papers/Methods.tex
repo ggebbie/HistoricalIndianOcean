@@ -250,7 +250,7 @@ product. Here the time interval of the historical cruises is about 20
 years, or twice as long as the WOCE era. Due to the red spectrum of
 ocean varabilility, the potential for aliased variability over this
 longer time interval is increased. To get a better constraint on
-T_ratio, we have to assume a frequency spectrum. If we assume the
+$T_{ratio}$, we have to assume a frequency spectrum. If we assume the
 power density spectrum is red with a power law of $f^{-2}$, then we
 can integrate to determine the variance at frequencies greater than
 1/(30 yr) and 1/(10 yr). The variance at frequencies greater than f is
@@ -265,13 +265,20 @@ i.e., ${\bf R}_{SS} =<{\bf n}_S ({\bf n}_S)^T>$, has a magnitude that
 is $20\%$ that of the temporal variability as the local water-mass
 variability on interannual scales is dwarfed by heaving motions
 \cite{Huang--2015:Heaving}. The relevant parameter is
-$S_{ratio} = (0.2)^2$. These water-mass variations are assumed to have a
-larger spatial scale ($L_{xy}^S = 2000$ km horizontally, $L_z^S = 1$
+$S_{ratio} = (0.2)^2$. These water-mass variations are assumed to have
+a larger spatial scale ($L_{xy}^S = 2000$ km horizontally, $L_z^S = 1$
 km vertically), as seen in an evaluation of water-mass fractions on an
 isobaric surface \cite{Gebbie-Huybers-2010:Total}. Accounting for this
 spatial variability has the potential to increase the final error of
 our estimates by taking into account biases that may occur due to the
-specific expedition tracks. Finally, we assume that the measurement
+specific expedition tracks. Numerically, we calculate ${\bf R}_{SS}$
+in two steps. We form a new ${\bf R}_{\eta\eta}$ correlation matrix
+that takes into account the water-mass lengthscales. Then we adjust
+the variance according to $S_{ratio}$ via the equation,
+${\bf R}_{SS} = S_{ratio} (T_{ratio} + 1){\bf R}_{\eta\eta}$, because
+the values in ${\bf R}_{SS}$ are relative to those in ${\bf R}_{TT}$.
+
+Finally, we assume that the measurement
 covariance, ${R_{MM}}$, is a matrix with the diagonal equal to the
 observational uncertainty, $\sigma_{obs} = 0.14^{\circ}$C, squared
 \cite{Roemmich-Gould-2012:135}.
