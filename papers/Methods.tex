@@ -249,17 +249,23 @@ the WGHC interannual variability and $\circ$ is the Hadamard
 product. Here the time interval of the historical cruises is about 20
 years, or twice as long as the WOCE era. Due to the red spectrum of
 ocean varabilility, the potential for aliased variability over this
-longer time interval is increased. We roughly approximate this extra
-energy with $T_{ratio} = 2$. Both the modern and historical intervals
-have variability and are assumed to be statistically independent, and
-thus, ${\bf R}_{TT} = 2 T_{ratio} {\bf R}_{\eta\eta}$.
+longer time interval is increased. To get a better constraint on
+T_ratio, we have to assume a frequency spectrum. If we assume the
+power density spectrum is red with a power law of $f^{-2}$, then we
+can integrate to determine the variance at frequencies greater than
+1/(30 yr) and 1/(10 yr). The variance at frequencies greater than f is
+proportional to 1/f, so the ratio of variance greater than 1/(30 yr)
+to that greater than 1/(10 yr) is $T_{ratio} = 30/10 = 3$. Both the
+modern and historical intervals have variability and are assumed to be
+statistically independent, and thus,
+${\bf R}_{TT} = (T_{ratio} + 1){\bf R}_{\eta\eta}$.
 
-We assume that the variance due to spatial water-mass variability,
+We assume that the covariance due to spatial water-mass variability,
 i.e., ${\bf R}_{SS} =<{\bf n}_S ({\bf n}_S)^T>$, has a magnitude that
 is $20\%$ that of the temporal variability as the local water-mass
 variability on interannual scales is dwarfed by heaving motions
 \cite{Huang--2015:Heaving}. The relevant parameter is
-$S_{ratio} = 0.2$. These water-mass variations are assumed to have a
+$S_{ratio} = (0.2)^2$. These water-mass variations are assumed to have a
 larger spatial scale ($L_{xy}^S = 2000$ km horizontally, $L_z^S = 1$
 km vertically), as seen in an evaluation of water-mass fractions on an
 isobaric surface \cite{Gebbie-Huybers-2010:Total}. Accounting for this

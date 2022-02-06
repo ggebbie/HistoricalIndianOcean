@@ -17,12 +17,12 @@ LzT = 450 # m
 LxyS = 2_000_000 # xylengthscale = meters
 LzS = 1000 # zlengthscale  = meters
 
-sratio = (1/5.)^2 
+sratio = (1/5.0)
 σobs = 0.14  # °C: obs error from HMS Challenger
 
 LzAVG = 500 # meters
 
-tratio = 2.0 # amplify variability expected by a decadal average
+tratio = 3.0 # amplify variability expected by a decadal average
 
 σS = 1.0 # first-guess size of anomalies, deg C
 

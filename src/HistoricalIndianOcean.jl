@@ -32,14 +32,19 @@ function error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS)
     TMIversion = "modern_90x45x33_GH10_GH12"
     A, Alu, γ, TMIfile, L, B = TMI.config_from_nc(TMIversion)
 
-    # tratio = how much bigger is sqrt of variability for this time interval
-    # relative to the woce time interval.
-    # For longer time intervals, tratio is larger if frequency spectrum is red.
-    ση = tratio * woce_error(TMIversion,locs,γ)
+    ση = woce_error(TMIversion,locs,γ)
 
     # multiply expected error by water-mass variability fraction
-    Rss = 2*weighted_covariance(locs,sratio*ση,LxyS,LzS)
-    Rtt =  2*weighted_covariance(locs,ση,LxyT,LzT)
+    # tratio = how much bigger is sqrt of variability for this time interval
+    # relative to the woce time interval.
+    # For longer time intervals, tratio is larger.
+    Rtt =  weighted_covariance(locs,ση,LxyT,LzT)
+
+    # assume independence between two time periods
+    # add covariance together
+    Rss =  weighted_covariance(locs,√sratio*ση,LxyS,LzS) + weighted_covariance(locs,√sratio*√tratio*ση,LxyS,LzS)
+    #Rss = (tratio + 1) * sratio * weighted_covariance(locs,ση,LxyS,LzS)
+    Rtt =  weighted_covariance(locs,ση,LxyT,LzT) + weighted_covariance(locs,√tratio*ση,LxyT,LzT)
     Rmm = observational_covariance(σobs)
     
     Rqq  = Rss + Rtt + Rmm
