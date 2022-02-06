@@ -22,7 +22,7 @@ sratio = (1/5.)^2
 
 LzAVG = [500, 1000] # meters
 
-tratio = [1.0,2.0] # amplify variability expected by a decadal average
+tratio = [1.0,2.0,3.0,4.0] # amplify variability expected by a decadal average
 
 σS = [0.5,1.0] # first-guess size of anomalies, deg C
 
@@ -32,8 +32,10 @@ tratio = [1.0,2.0] # amplify variability expected by a decadal average
 zgridedge = [-1, 1, 100, 300, 500, 1000, 2000, 3000]
 zgrid = [0, 50, 200, 400, 750, 1500, 2500]
 
+zstar = 700
+
 # Several parameter containers
-allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid
+allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid zstar
 allparams["zgrid"] = [zgrid]
 accessvars = ["delta","LzAVG","tratio","σS"]
 
