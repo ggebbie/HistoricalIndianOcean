@@ -17,14 +17,14 @@ LzT = 450 # m
 LxyS = 2_000_000 # xylengthscale = meters
 LzS = 1000 # zlengthscale  = meters
 
-sratio = (1/5.)^2 
+sratio = [1/25, 1/4] 
 σobs = 0.14  # deg C # obs error from HMS Challenger
 
-LzAVG = [500, 1000] # meters
+LzAVG = [500] # meters
 
-tratio = [1.0,2.0,3.0,4.0] # amplify variability expected by a decadal average
+tratio = [2.0,3.0,4.0] # amplify variability expected by a decadal average
 
-σS = [0.5,1.0] # first-guess size of anomalies, deg C
+σS = [1.0] # first-guess size of anomalies, deg C
 
 ## Next set the fixed variables ################
 
@@ -37,7 +37,7 @@ zstar = 700
 # Several parameter containers
 allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid zstar
 allparams["zgrid"] = [zgrid]
-accessvars = ["delta","LzAVG","tratio","σS"]
+accessvars = ["delta","tratio","sratio"]
 
 dicts = dict_list(allparams)
 
@@ -61,7 +61,7 @@ for (i, d) in enumerate(dicts)
     CSV.write(datadir("all",savename("DTbar",d,"csv",accesses=accessvars)),df)
 
     # make profile figure
-    figure(i)
+    figure(99)
     clf()
     plot(output["T̄"],zgrid)
     errorbar(output["T̄"],zgrid,xerr=output["σT̄"])
