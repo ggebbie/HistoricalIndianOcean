@@ -73,27 +73,27 @@ For an interactive session, it is possible to run the lines of `TemperatureDiffe
 
 Documentation is found in a LaTeX-generated document in `papers` directory. 
 
-How to set up a LaTeX file for compilation/bibliography:
-- open *tex file to enter AucTeX
-- `C-c e` to open ebib, should open main.bib, If it doesn't, then toggle LaTeX mode with `M-x LaTeX-mode` (not just latex-mode, not sure why there are two modes with different capitalization)
-  - first time creating dependent bib database, use `M c` or similar
-    - later times, be sure to `o` open the dependent database in ebib
- - `z` to minimize ebib
-   -  [[http://joostkremers.github.io/ebib/ebib-manual.html#associating-a-database-with-a-text-buffer][associate a database with tex buffer]], doesn't seem to work automagically
-     use elisp to set `ebib-local-bibfiles` or `C-h v` to manually customize
-    `M-:` then  ` (setq ebib-local-bibfiles '("ClimSens.bib")) `
-     `C-c b` will insert new citation from main.bib, add it to the local bib file
-     - takes a couple of compiles to get all references/bib correct in pdf file
--[[https://github.com/cpitclaudel/biblio.el/blob/master/README.md][Biblio.el to look up references from internet]]
+How to set up a LaTeX file for compilation/bibliography:\
+- open *tex file to enter AucTeX\
+- `C-c e` to open ebib, should open main.bib, If it doesn't, then toggle LaTeX mode with `M-x LaTeX-mode` (not just latex-mode, not sure why there are two modes with different capitalization)\
+  - first time creating dependent bib database, use `M c` or similar\
+    - later times, be sure to `o` open the dependent database in ebib\
+ - `z` to minimize ebib\
+   - [associate a database with tex buffer](http://joostkremers.github.io/ebib/ebib-manual.html#associating-a-database-with-a-text-buffer), doesn't seem to work automagically\
+     use elisp to set `ebib-local-bibfiles` or `C-h v` to manually customize\
+    `M-:` then  ` (setq ebib-local-bibfiles '("ClimSens.bib")) `\
+     `C-c b` will insert new citation from main.bib, add it to the local bib file\
+     - takes a couple of compiles to get all references/bib correct in pdf file\
+- [Biblio.el to look up references from internet](https://github.com/cpitclaudel/biblio.el/blob/master/README.md) \
  `M-x biblio-lookup` or `M-x crossref-lookup`
 
- how to import new citations \\
- - `B` in main.bib, give doi.
-   or 
-  - `M-x biblio-lookup`, choose CrossRef, use `e` to import to ebib
-    - must switch back to dependent bib file before citing in tex, use `o`
-      - `C-c b` to cite new key
+ how to import new citations \
+ - `B` in main.bib, give doi.\
+   or \
+  - `M-x biblio-lookup`, choose CrossRef, use `e` to import to ebib\
+    - must switch back to dependent bib file before citing in tex, use `o`\
+      - `C-c b` to cite new key\
 Otherwise dependent bib will be overwritten with full main.bib. 
 
-how to compile LaTeX and view PDF \\
+how to compile LaTeX and view PDF \
  - `C-c C-a`
