@@ -275,6 +275,9 @@ function read_historical_data(delta)
     url = "https://docs.google.com/uc?export=download&id="*file_id
     filename = datadir("HistoricalIndianOcean.nc")
 
+    # make data directory
+    !isdir(datadir()) && mkdir(datadir())
+
     # download if not already done
     !isfile(filename) &&  google_download(url,datadir())
 

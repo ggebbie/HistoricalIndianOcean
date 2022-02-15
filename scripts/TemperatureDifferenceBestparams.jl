@@ -36,7 +36,8 @@ zgrid = [0, 50, 200, 400, 750, 1500, 2500]
 zstar = 700 # meters, depth over which heat content difference is calculated
 
 # Several parameter containers
-allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid zstar
+allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid zstar 
+
 allparams["zgrid"] = [zgrid]
 
 dicts = dict_list(allparams)
@@ -49,6 +50,7 @@ for (i, d) in enumerate(dicts)
     println("σH=",output["σH"])
     
     # output full state of analysis to jld2
+    !isdir(datadir("best")) && mkdir(datadir("best"))
     @tagsave(datadir("best",savename("DTbar",d,"jld2",accesses=["delta"])), output)
 
     # output profile information to csv
@@ -57,7 +59,6 @@ for (i, d) in enumerate(dicts)
     zoutput = Dict(yax => output["zgrid"], xax => output["T̄"], "σΔT̄ [°C]" => output["σT̄"])
     df = DataFrame(zoutput)
     println(df)
-    !isdir(datadir("best")) && mkdir(datadir("best"))
     CSV.write(datadir("best",savename("DTbar",d,"csv",accesses=["delta"])),df)
 
     # make profile figure
@@ -74,8 +75,9 @@ for (i, d) in enumerate(dicts)
 
     titlelabel = replace(savename(d,accesses=["delta"]),"_" => " ")
     title(titlelabel,fontsize=10)
-    
-    !isdir(plotsdir("best")) && mkdir(plotsdir("best"))
+
+    # make whole path if necessary
+    !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
     figname = plotsdir("best",savename("DTbar",d,"pdf",accesses=["delta"]))
     savefig(figname)
 

@@ -49,6 +49,7 @@ for (i, d) in enumerate(dicts)
     println("σH=",output["σH"])
 
     # output full state of analysis to jld2
+    !isdir(datadir("best")) && mkdir(datadir("best"))
     @tagsave(datadir("all",savename("DTbar",d,"jld2",accesses=accessvars)), output)
 
     # output profile information to csv
@@ -73,7 +74,7 @@ for (i, d) in enumerate(dicts)
     titlelabel = replace(savename(d,accesses=accessvars),"_" => " ")
     title(titlelabel,fontsize=10)
 
-    !isdir(plotsdir("all")) && mkdir(plotsdir("all"))
+    !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
     figname = plotsdir("all",savename("DTbar",d,"pdf",accesses=accessvars))
     savefig(figname)
 
