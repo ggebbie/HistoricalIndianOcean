@@ -30,17 +30,17 @@ solves for the Indian Ocean average temperature change from the time of two diff
 
 The script at `scripts/TemperatureDifference_Bestparams.jl`
 solves for the Indian Ocean average temperature change using the best algorithmic parameters:
-`Tbar_LxyS=2000000` m \\
-`LxyT=450000` m \\
-`LzAVG=500` m \\
-`LzS=1000` m \\
-`LzT=450` m \\
-`sratio=0.04` \\
-`tratio=2.0` \\
- `σS=1.0` degrees C \\
+`Tbar_LxyS=2000000` m \
+`LxyT=450000` m \
+`LzAVG=500` m \
+`LzS=1000` m \
+`LzT=450` m \
+`sratio=0.04` \
+`tratio=2.0` \
+ `σS=1.0` degrees C \
  `σobs=0.14` degrees C .
 
-3 cases are solved: \\
+3 cases are solved: \
 1. from the time of the historical cruises Valdivia, Gazelle, and Planet  up to the most recent climatology from the World Ocean Atlas,
 2. from this same time but with the Tait pressure correction applied to historical data,
 3. from the time of the historical cruises Valdivia, Gazelle, and Planet  up to the World Ocean Atlas 1955-1964 time interval.
@@ -52,7 +52,7 @@ All error bars are 1 sigma. Unicode symbols are used in some places; please subm
 
 # Code output
 
-Output of the code is not included with this GitHub repository. Figures are created in a `plots` directory. CSV output for vertical profile quantities is created in `data/csv`. The complete state of the analysis is saved in Julia output at `data/jld2`. Output in NetCDF or Excel formats could also be created with a little extra work.
+Output of the code is not included with this GitHub repository. Figures are created in a `plots` directory. The `all` directory is output from the sensitivity study using all parameters. The `best` directory contains just the plots from the best parameter choises.  CSV output for vertical profile quantities is created in `data/*/*csv`. The complete state of the analysis is saved in Julia output at `data/*/*jld2`. Output in NetCDF or Excel formats could also be created with a little extra work.
 
 # How to run the code
 
@@ -64,36 +64,35 @@ For an interactive session, it is possible to run the lines of `TemperatureDiffe
 
 # Additional steps
 
-1. explanation of all parameters
-2. copy and update relevant parts of Gebbie & Huybers 2019 supplementary material into GitHub.
-3. check that bin averages reproduce your previous results.
-4. Figures are rudimentary. With the csv output, perhaps it is easiest for you to make them publication ready.
+1. check that bin averages reproduce results with HMS Challenger
+2. Figures are rudimentary and could be improved.
 
 # LaTeX documentation
 
 Documentation is found in a LaTeX-generated document in `papers` directory. 
 
-How to set up a LaTeX file for compilation/bibliography:\
-- open *tex file to enter AucTeX\
-- `C-c e` to open ebib, should open main.bib, If it doesn't, then toggle LaTeX mode with `M-x LaTeX-mode` (not just latex-mode, not sure why there are two modes with different capitalization)\
-  - first time creating dependent bib database, use `M c` or similar\
-    - later times, be sure to `o` open the dependent database in ebib\
- - `z` to minimize ebib\
-   - [associate a database with tex buffer](http://joostkremers.github.io/ebib/ebib-manual.html#associating-a-database-with-a-text-buffer), doesn't seem to work automagically\
-     use elisp to set `ebib-local-bibfiles` or `C-h v` to manually customize\
-    `M-:` then  ` (setq ebib-local-bibfiles '("ClimSens.bib")) `\
-     `C-c b` will insert new citation from main.bib, add it to the local bib file\
-     - takes a couple of compiles to get all references/bib correct in pdf file\
+How to set up a LaTeX file for compilation/bibliography:
+- open *tex file to enter AucTeX
+- `C-c e` to open ebib, should open main.bib, If it doesn't, then toggle LaTeX mode with `M-x LaTeX-mode` (not just latex-mode, not sure why there are two modes with different capitalization)
+  - first time creating dependent bib database, use `M c` or similar
+    - later times, be sure to `o` open the dependent database in ebib
+ - `z` to minimize ebib
+   - [associate a database with tex buffer](http://joostkremers.github.io/ebib/ebib-manual.html#associating-a-database-with-a-text-buffer), doesn't seem to work automagically 
+     use elisp to set `ebib-local-bibfiles` or `C-h v` to manually customize
+    `M-:` then  ` (setq ebib-local-bibfiles '("HistoricalIndianOcean.bib")) `
+     `C-c b` will insert new citation from main.bib, add it to the local bib file
+     - takes a couple of compiles to get all references/bib correct in pdf file
 - [Biblio.el to look up references from internet](https://github.com/cpitclaudel/biblio.el/blob/master/README.md) \
  `M-x biblio-lookup` or `M-x crossref-lookup`
+  First open ebib in the main database before doing a crossref lookup
 
- how to import new citations \
- - `B` in main.bib, give doi.\
-   or \
-  - `M-x biblio-lookup`, choose CrossRef, use `e` to import to ebib\
-    - must switch back to dependent bib file before citing in tex, use `o`\
+ how to import new citations 
+ - `B` in main.bib, give doi.
+   or 
+  - `M-x biblio-lookup`, choose CrossRef, use `e` to import to ebib
+    - must switch back to dependent bib file before citing in tex, use `o`
       - `C-c b` to cite new key\
-Otherwise dependent bib will be overwritten with full main.bib. 
+Otherwise the dependent bib will be overwritten with full main.bib. 
 
-how to compile LaTeX and view PDF \
- - `C-c C-a`
+how to compile LaTeX and view PDF 
+ - `C-c C-a` ;; i.e., do all
