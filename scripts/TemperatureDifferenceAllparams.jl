@@ -26,18 +26,22 @@ tratio = [2.0,3.0,4.0] # amplify variability expected by a decadal average
 
 σS = [1.0] # first-guess size of anomalies, deg C
 
+latbdy = [-50,-40,-30]
+
 ## Next set the fixed variables ################
 
 # For the purposes of the line plot in the current version of the manuscript I binned the data into the following depth ranges, which give a reasonably balanced set of obs in each range
 zgridedge = [-1, 1, 100, 300, 500, 1000, 2000, 3000]
-zgrid = [0, 50, 200, 400, 750, 1500, 2500]
+zgridmid = [0, 50, 200, 400, 750, 1500, 2500]
+zgrid = Vector{Any}(undef,1)
+zgrid[1] = zgridmid 
 
 zstar = 700
 
 # Several parameter containers
-allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid zstar
-allparams["zgrid"] = [zgrid]
-accessvars = ["delta","tratio","sratio"]
+allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latbdy zgrid zstar 
+#allparams["zgrid"] = [zgrid]
+accessvars = ["delta","tratio","sratio","latbdy"]
 
 dicts = dict_list(allparams)
 

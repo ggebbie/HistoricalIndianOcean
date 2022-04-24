@@ -209,9 +209,9 @@ end
 """
 function basinwide_avg(params)
 
-    @unpack delta, σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, zgrid, zstar = params
+    @unpack delta, σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, latbdy, zgrid, zstar = params
     
-    T,locs = read_historical_data(delta)
+    T,locs = read_historical_data(delta,latbdy)
 
     zobs = zeros(length(locs))
     [zobs[r] = locs[r].depth for r in eachindex(locs)]
@@ -239,7 +239,8 @@ function basinwide_avg(params)
 
     # Indian Ocean area divided by 10^21.
     # 15% of global ocean area
-    indian_area_m21 = 0.15*0.71*4π*6300_000^2*1e-21
+    indian_area_m21 = indianarea(latbdy)*1e-21
+    #indian_area_m21 = 0.15*0.71*4π*6300_000^2*1e-21
 
     factor = 3996.0 * 1035.0 * indian_area_m21 # ZJ/(Km)
     # heat content
@@ -264,9 +265,14 @@ function basinwide_avg(params)
 end
 
 """
+    function read_historical_data(delta,latbdy = -90)
+
    Read data regarding historical Indian Ocean cruises
+
+    `latbdy` defines southern boundary of Indian Ocean.
+    default value is the South Pole 
 """
-function read_historical_data(delta)
+function read_historical_data(delta,latbdy = -90)
     
     # HistoricalIndianOcean.nc: data from Gazelle, etc.
     # https://drive.google.com/file/d/1-mOo6dwHVwv0TJMoFiYR5QWxykJhNwWK/view?usp=sharing
@@ -284,7 +290,9 @@ function read_historical_data(delta)
     nc = NCDataset(filename)
 
     Tname = "delta_"*delta
-    igood = findall(!ismissing,nc[Tname])
+    igood1 = findall(!ismissing,nc[Tname])
+    igood2 = findall(x -> x > latbdy,nc["lat"])
+    igood = intersect(igood1,igood2)
     nobs = count(!ismissing,nc[Tname])
 
     locs = Vector{Loc}(undef,nobs)
