@@ -93,7 +93,8 @@ function woce_error(TMIversion,locs,γ)
     # take synthetic observations
     # get observational uncertainty
     
-    σθ = TMI.readtracer(inputfile,"σθ")
+    #σθ = TMI.readtracer(inputfile,"σθ")
+    σθ = readfield(inputfile,"σθ",γ)
 
     # get weighted interpolation indices
     # equivalent to TMI E matrix
