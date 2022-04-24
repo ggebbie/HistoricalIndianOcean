@@ -27,20 +27,22 @@ tratio = 3.0 # amplify variability expected by a decadal average
 
 σS = 1.0 # first-guess size of anomalies, deg C
 
+latbdy = -50
+
 ## Next set the fixed variables ################
 
 # For the purposes of the line plot in the current version of the manuscript I binned the data into the following depth ranges, which give a reasonably balanced set of obs in each range
 zgridedge = [-1, 1, 100, 300, 500, 1000, 2000, 3000]
-zgrid = [0, 50, 200, 400, 750, 1500, 2500]
+zgridmid = [0, 50, 200, 400, 750, 1500, 2500]
+zgrid = Vector{Any}(undef,1)
+zgrid[1] = zgridmid 
 
 zstar = 700 # meters, depth over which heat content difference is calculated
 
 # Several parameter containers
-allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG zgrid zstar 
+bestparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latbdy zgrid zstar 
 
-allparams["zgrid"] = [zgrid]
-
-dicts = dict_list(allparams)
+dicts = dict_list(bestparams)
 
 for (i, d) in enumerate(dicts)
 
@@ -64,10 +66,10 @@ for (i, d) in enumerate(dicts)
     # make profile figure
     figure(i)
     clf()
-    plot(output["T̄"],zgrid)
+    plot(output["T̄"],zgrid[1])
     #plot(ΔT̄.+σT̄,-zgrid)
     #plot(ΔT̄.-σT̄,-zgrid)
-    errorbar(output["T̄"],zgrid,xerr=output["σT̄"])
+    errorbar(output["T̄"],zgrid[1],xerr=output["σT̄"])
     xlabel(xax)
     ylabel(yax)
     grid()
