@@ -7,7 +7,7 @@ using DrWatson, Distances, TMI,
 export R2_covariance, Loc, observational_covariance,
     weighted_covariance, error_covariance, woce_error,
     vertical_smoothness, vertical_map, basinwide_avg,
-    read_historical_data, degree_meters
+    read_historical_data, degree_meters, indianarea
 
 import TMI.interpindex
 
@@ -117,7 +117,7 @@ end
     add method to TMI.interpindex
     all Loc type to work with interpindex
 """
-function interpindex(loc::Loc,γ::TMI.grid)
+function interpindex(loc::Loc,γ::Grid)
 
     loctuple = (loc.lon,loc.lat,loc.depth)
     wis = interpindex(loctuple,γ)
@@ -332,6 +332,37 @@ function degree_meters(T,z,zstar)
     end
     
     return Km
+end
+
+"""
+function indianarea(latboundary,γ)
+
+calculate Indian Ocean area [m²] given a southern latitudinal boundary
+"""
+function indianarea(latboundary,TMIversion ="modern_90x45x33_GH10_GH12")
+    
+    A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
+    area = cellarea(γ)
+
+    # now read indian ocean d values.
+    bindian = zerosurfaceboundary(γ)
+
+    list = ("ADEL","SUBANTIND","TROPIND")
+    for region in list
+        bindian += TMI.surfaceregion(TMIversion,region,γ)
+    end
+
+    # make a mask for the latitudinal boundary
+    for i in eachindex(γ.lon)
+        for j in eachindex(γ.lat)
+            if γ.lat[j] < latboundary && !isnan(bindian.tracer[i,j])
+                bindian.tracer[i,j] =  0.0
+            end
+        end
+    end
+
+    # now multiply mask by area
+    return sum((bindian.tracer .* area)[γ.wet[:,:,1]])
 end
 
 end # module HistoricalIndianOcean
