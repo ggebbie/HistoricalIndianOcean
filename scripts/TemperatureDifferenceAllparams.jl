@@ -26,7 +26,7 @@ tratio = [2.0,3.0,4.0] # amplify variability expected by a decadal average
 
 σS = [1.0] # first-guess size of anomalies, deg C
 
-latbdy = [-50,-40,-30]
+latsouth = [-50,-40,-30]
 
 ## Next set the fixed variables ################
 
@@ -39,7 +39,7 @@ zgrid[1] = zgridmid
 zstar = 700
 
 # Several parameter containers
-allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latbdy zgrid zstar 
+allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latsouth zgrid zstar 
 #allparams["zgrid"] = [zgrid]
 accessvars = ["delta","tratio","sratio","latbdy"]
 

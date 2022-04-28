@@ -64,14 +64,13 @@ for (i, d) in enumerate(dicts)
     CSV.write(datadir("best",savename("DTbar",d,"csv",accesses=["delta"])),df)
 
     dfscalar = DataFrame(Dict("ΔH [ZJ]" => output["H"],"σ(ΔH) [ZJ]" => output["σH"], "z⋆ [m]" => zstar))
-    CSV.write(datadir("all",savename("DH",d,"csv",accesses=["delta"])),dfscalar)
+    println("save to ",datadir("best",savename("DH",d,"csv",accesses=["delta"])))
+    CSV.write(datadir("best",savename("DH",d,"csv",accesses=["delta"])),dfscalar)
 
     # make profile figure
     figure(i)
     clf()
     plot(output["T̄"],zgrid[1])
-    #plot(ΔT̄.+σT̄,-zgrid)
-    #plot(ΔT̄.-σT̄,-zgrid)
     errorbar(output["T̄"],zgrid[1],xerr=output["σT̄"])
     xlabel(xax)
     ylabel(yax)
