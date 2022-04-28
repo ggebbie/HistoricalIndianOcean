@@ -27,7 +27,7 @@ tratio = 3.0 # amplify variability expected by a decadal average
 
 σS = 1.0 # first-guess size of anomalies, deg C
 
-latbdy = -50
+latsouth = -50
 
 ## Next set the fixed variables ################
 
@@ -40,7 +40,7 @@ zgrid[1] = zgridmid
 zstar = 700 # meters, depth over which heat content difference is calculated
 
 # Several parameter containers
-bestparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latbdy zgrid zstar 
+bestparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latsouth zgrid zstar 
 
 dicts = dict_list(bestparams)
 
@@ -96,21 +96,3 @@ end
 #ΔTmean = mean(skipmissing(ΔT))
 #ΔTstd = std(skipmissing(ΔT))
 #err_naive = ΔTstd/sqrt(count(!ismissing,ΔT))
-
-#=
-# testing Named Tuples
-# locs = NamedTuple{(:lon,:lat,:depth),T}()
-# locs = (lon = lon[1], lat=lat[1], depth=depth[1])
-# names = (:lon,:lat,:depth)
-# loc = NamedTuple{names,(T,T,T)}()
-# for i in eachindex(lon)
-#     loc[i] = (lon = lon[i], lat=lat[i], depth=depth[i])
-# end
-
-# this works, but doesn't specify types
-#NamedTuple{(:lon,:lat,:depth)}(loc1)
-#T = Float64
-# loc = Vector{@NamedTuple{lon::T,lat::T,depth::T}}(undef,2)
-# loc[1] = @NamedTuple{lon::T,lat::T,depth::T}((loc1))
-# loc[2] = @NamedTuple{lon::T,lat::T,depth::T}((loc2))
-=#
