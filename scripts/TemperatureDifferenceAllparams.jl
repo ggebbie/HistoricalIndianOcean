@@ -26,7 +26,8 @@ tratio = [2.0,3.0,4.0] # amplify variability expected by a decadal average
 
 σS = [1.0] # first-guess size of anomalies, deg C
 
-latsouth = [-50,-40,-30]
+#latsouth = [-50,-40,-30]
+latsouth = [-50]
 
 ## Next set the fixed variables ################
 
