@@ -26,10 +26,10 @@ function error_covariance(locs,sratio,LxyT,LzT, LxyS, LzS)
     σobs: observational covariance
     sratio: fraction of water-mass variability to total (heaving, waves) variability 
 """
-function error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS)
+function error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS,TMIversion = "modern_90x45x33_GH10_GH12")
 
     # hard-wire the TMI version
-    TMIversion = "modern_180x90x33_GH11_GH12"
+
     A, Alu, γ, TMIfile, L, B = TMI.config_from_nc(TMIversion)
 
     ση = woce_error(TMIversion,locs,γ)
@@ -348,7 +348,7 @@ function indianarea(latboundary,γ)
 
 calculate Indian Ocean area [m²] given a southern latitudinal boundary
 """
-function indianarea(latboundary,TMIversion ="modern_180x90x33_GH11_GH12")
+function indianarea(latboundary,TMIversion ="modern_90x45x33_GH10_GH12")
     
     A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
     area = cellarea(γ)
