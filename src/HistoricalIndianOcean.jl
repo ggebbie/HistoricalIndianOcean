@@ -26,12 +26,12 @@ function error_covariance(locs,sratio,LxyT,LzT, LxyS, LzS)
     σobs: observational covariance
     sratio: fraction of water-mass variability to total (heaving, waves) variability 
 """
-function error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS,TMIversion = "modern_90x45x33_GH10_GH12")
+function error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS,γ, TMIversion)
 
     # hard-wire the TMI version
+    #A, Alu, γ, TMIfile, L, B = TMI.config_from_nc(TMIversion)
 
-    A, Alu, γ, TMIfile, L, B = TMI.config_from_nc(TMIversion)
-
+    # or instead, only need the TMI grid, so pass γ argument
     ση = woce_error(TMIversion,locs,γ)
 
     # multiply expected error by water-mass variability fraction
@@ -210,7 +210,7 @@ end
 """
 function basinwide_avg(params)
 
-    @unpack delta, σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, latsouth, zgrid, zstar = params
+    @unpack delta, σobs, tratio, sratio, LxyT, LzT, LxyS, LzS, σS, LzAVG, latsouth, zgrid, zstar, γ, TMIversion = params
     
     T,locs = read_historical_data(delta,latsouth)
 
@@ -220,7 +220,7 @@ function basinwide_avg(params)
     # make H matrix, vertical map onto grid
     V = vertical_map(zobs,zgrid)
 
-    Rqq = error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS)
+    Rqq = error_covariance(locs,σobs,tratio,sratio,LxyT,LzT, LxyS, LzS, γ, TMIversion)
     S = vertical_smoothness(zgrid,σS,LzAVG)
 
         # solve for T̄.
@@ -239,9 +239,11 @@ function basinwide_avg(params)
     Km =  degree_meters(T̄,zgrid,zstar)
 
     # Indian Ocean area divided by 10^21.
-    # 15% of global ocean area
-    indian_area_m21 = indianarea(latsouth)*1e-21
+    # 15% of global ocean area would be an approximation.
     #indian_area_m21 = 0.15*0.71*4π*6300_000^2*1e-21
+
+    # wrote this function to handle changes in southern latitude.
+    indian_area_m21 = indianarea(latsouth,γ,TMIversion)*1e-21
 
     factor = 3996.0 * 1035.0 * indian_area_m21 # ZJ/(Km)
     # heat content
@@ -348,9 +350,9 @@ function indianarea(latboundary,γ)
 
 calculate Indian Ocean area [m²] given a southern latitudinal boundary
 """
-function indianarea(latboundary,TMIversion ="modern_90x45x33_GH10_GH12")
+function indianarea(latboundary,γ,TMIversion)
     
-    A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
+    #A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
     area = cellarea(γ)
 
     # now read indian ocean d values.

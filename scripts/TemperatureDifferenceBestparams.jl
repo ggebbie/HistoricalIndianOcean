@@ -39,8 +39,13 @@ zgrid[1] = zgridmid
 
 zstar = 700 # meters, depth over which heat content difference is calculated
 
+# save computation by loading TMI grid as a fixed variable.
+# only γ is needed
+TMIversion = "modern_90x45x33_GH10_GH12"
+A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
+
 # Several parameter containers
-bestparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latsouth zgrid zstar 
+bestparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latsouth zgrid zstar γ TMIversion 
 
 dicts = dict_list(bestparams)
 

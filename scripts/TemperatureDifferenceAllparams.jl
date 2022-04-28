@@ -38,9 +38,14 @@ zgrid[1] = zgridmid
 
 zstar = 700
 
+# save computation by loading TMI grid as a fixed variable.
+# only γ is needed
+TMIversion = "modern_90x45x33_GH10_GH12"
+A, Alu, γ, TMIfile, L, B = config_from_nc(TMIversion)
+
 # Several parameter containers
-allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latsouth zgrid zstar 
-#allparams["zgrid"] = [zgrid]
+allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latsouth zgrid zstar γ TMIversion
+
 accessvars = ["delta","tratio","sratio","latsouth"]
 
 dicts = dict_list(allparams)
