@@ -41,7 +41,7 @@ zstar = 700
 # Several parameter containers
 allparams = @strdict delta σobs tratio sratio LxyT LzT LxyS LzS σS LzAVG latsouth zgrid zstar 
 #allparams["zgrid"] = [zgrid]
-accessvars = ["delta","tratio","sratio","latbdy"]
+accessvars = ["delta","tratio","sratio","latsouth"]
 
 dicts = dict_list(allparams)
 
