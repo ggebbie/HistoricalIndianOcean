@@ -63,6 +63,9 @@ for (i, d) in enumerate(dicts)
     println(df)
     CSV.write(datadir("best",savename("DTbar",d,"csv",accesses=["delta"])),df)
 
+    dfscalar = DataFrame(Dict("ΔH [ZJ]" => output["H"],"σ(ΔH) [ZJ]" => output["σH"], "z⋆ [m]" => zstar))
+    CSV.write(datadir("all",savename("DH",d,"csv",accesses=accessvars)),dfscalar)
+
     # make profile figure
     figure(i)
     clf()

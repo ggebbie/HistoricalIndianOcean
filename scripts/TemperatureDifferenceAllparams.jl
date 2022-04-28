@@ -65,7 +65,7 @@ for (i, d) in enumerate(dicts)
     #!isdir(datadir("csv")) && mkdir(datadir("csv"))
     CSV.write(datadir("all",savename("DTbar",d,"csv",accesses=accessvars)),df)
 
-    dfscalar = DataFrame(Dict("H [ZJ]" => output["H"],"σH [ZJ]" => output["σH"]))
+    dfscalar = DataFrame(Dict("ΔH [ZJ]" => output["H"],"σ(ΔH) [ZJ]" => output["σH"],"z⋆ [m]" => zstar ))
     CSV.write(datadir("all",savename("DH",d,"csv",accesses=accessvars)),dfscalar)
     
     # make profile figure

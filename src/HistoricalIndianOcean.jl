@@ -245,6 +245,7 @@ function basinwide_avg(params)
 
     factor = 3996.0 * 1035.0 * indian_area_m21 # ZJ/(Km)
     # heat content
+    println("factor = ",factor)
     H = factor * Km
 
     # uncertainty in heat content
