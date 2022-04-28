@@ -53,7 +53,7 @@ for (i, d) in enumerate(dicts)
     println("σH=",output["σH"])
 
     # output full state of analysis to jld2
-    !isdir(datadir("best")) && mkdir(datadir("best"))
+    !isdir(datadir("all")) && mkdir(datadir("all"))
     @tagsave(datadir("all",savename("DTbar",d,"jld2",accesses=accessvars)), output)
 
     # output profile information to csv
@@ -65,6 +65,9 @@ for (i, d) in enumerate(dicts)
     #!isdir(datadir("csv")) && mkdir(datadir("csv"))
     CSV.write(datadir("all",savename("DTbar",d,"csv",accesses=accessvars)),df)
 
+    dfscalar = DataFrame(Dict("H [ZJ]" => output["H"],"σH [ZJ]" => output["σH"]))
+    CSV.write(datadir("all",savename("DH",d,"csv",accesses=accessvars)),dfscalar)
+    
     # make profile figure
     figure(99)
     clf()

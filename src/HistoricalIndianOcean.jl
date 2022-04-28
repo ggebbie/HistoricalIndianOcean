@@ -365,9 +365,9 @@ function indianarea(latboundary,TMIversion ="modern_90x45x33_GH10_GH12")
     # make a mask for the latitudinal boundary
     for i in eachindex(γ.lon)
         for j in eachindex(γ.lat)
-            if γ.lat[j] + dlat/2  < latboundary && !isnan(bindian.tracer[i,j])
+            if γ.lat[j] + Δ/2  < latboundary && !isnan(bindian.tracer[i,j])
                 bindian.tracer[i,j] =  0.0
-            elseif γ.lat[j] - dlat/2  < latboundary && !isnan(bindian.tracer[i,j])
+            elseif γ.lat[j] - Δ/2  < latboundary && !isnan(bindian.tracer[i,j])
                 # handle a partial cell
                 bindian.tracer[i,j] = 1 - ((latboundary - γ.lat[j] + Δ/2)/Δ)
             end
