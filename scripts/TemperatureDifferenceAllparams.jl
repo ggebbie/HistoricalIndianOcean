@@ -53,6 +53,10 @@ dicts = dict_list(allparams)
 
 for (i, d) in enumerate(dicts)
 
+    println(d["delta"])
+    println(d["tratio"])
+    println(d["sratio"])
+    println(d["latsouth"])
     output = basinwide_avg(d)
 
     println("H=",output["H"])
@@ -75,21 +79,21 @@ for (i, d) in enumerate(dicts)
     CSV.write(datadir("all",savename("DH",d,"csv",accesses=accessvars)),dfscalar)
     
     # make profile figure
-    # figure(99)
-    # clf()
-    # plot(output["T̄"],zgrid[1])
-    # errorbar(output["T̄"],zgrid[1],xerr=output["σT̄"])
-    # xlabel(xax)
-    # ylabel(yax)
-    # grid()
-    # gca().invert_yaxis()
+    figure(99)
+    clf()
+    plot(output["T̄"],zgrid[1])
+    errorbar(output["T̄"],zgrid[1],xerr=output["σT̄"])
+    xlabel(xax)
+    ylabel(yax)
+    grid()
+    gca().invert_yaxis()
 
-    # titlelabel = replace(savename(d,accesses=accessvars),"_" => " ")
-    # title(titlelabel,fontsize=10)
+    titlelabel = replace(savename(d,accesses=accessvars),"_" => " ")
+    title(titlelabel,fontsize=10)
 
-    # !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
-    # figname = plotsdir("all",savename("DTbar",d,"pdf",accesses=accessvars))
-    # savefig(figname)
+    !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
+    figname = plotsdir("all",savename("DTbar",d,"pdf",accesses=accessvars))
+    savefig(figname)
 
 end
 
