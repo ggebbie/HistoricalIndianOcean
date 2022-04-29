@@ -364,14 +364,24 @@ function indianarea(latboundary,γ,TMIversion)
     end
 
     Δ = γ.lat[2] -γ.lat[1]
+
+    latnorth = 9
+    
     # make a mask for the latitudinal boundary
     for i in eachindex(γ.lon)
         for j in eachindex(γ.lat)
-            if γ.lat[j] + Δ/2  < latboundary && !isnan(bindian.tracer[i,j])
+            # changed this to zero out any cell that overlaps the boundaries
+            # will compensate for overly large area of shelves in TMI
+            if γ.lat[j] - Δ/2  < latboundary && !isnan(bindian.tracer[i,j])
                 bindian.tracer[i,j] =  0.0
-            elseif γ.lat[j] - Δ/2  < latboundary && !isnan(bindian.tracer[i,j])
-                # handle a partial cell
-                bindian.tracer[i,j] = 1 - ((latboundary - γ.lat[j] + Δ/2)/Δ)
+            elseif γ.lat[j] + Δ/2  > latnorth && !isnan(bindian.tracer[i,j])
+                bindian.tracer[i,j] =  0.0
+
+                ## could account for partial cells
+                # here I simply make all partial cells = 0 above
+            # elseif γ.lat[j] - Δ/2  < latboundary && !isnan(bindian.tracer[i,j])
+            #     # handle a partial cell
+            #     bindian.tracer[i,j] = 1 - ((latboundary - γ.lat[j] + Δ/2)/Δ)
             end
         end
     end
