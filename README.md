@@ -29,7 +29,7 @@ The script at `scripts/TemperatureDifference_Allparams.jl`
 solves for the Indian Ocean average temperature change from the time of two different historical time periods up to the most recent climatology from the World Ocean Atlas. The scripts runs 24 sets of parameters (and creates 24 solutions) for temperature change and its standard error as a function of depth. 
 
 The script at `scripts/TemperatureDifference_Bestparams.jl`
-solves for the Indian Ocean average temperature change using the best algorithmic parameters:
+solves for the Indian Ocean average temperature change using the best algorithmic parameters: \
 `Tbar_LxyS=2000000` m \
 `LxyT=450000` m \
 `LzAVG=500` m \
@@ -40,7 +40,7 @@ solves for the Indian Ocean average temperature change using the best algorithmi
  `σS=1.0` degrees C \
  `σobs=0.14` degrees C .
 
-3 cases are solved: \
+3 cases are solved: 
 1. from the time of the historical cruises Valdivia, Gazelle, and Planet  up to the most recent climatology from the World Ocean Atlas,
 2. from this same time but with the Tait pressure correction applied to historical data,
 3. from the time of the historical cruises Valdivia, Gazelle, and Planet  up to the World Ocean Atlas 1955-1964 time interval.
@@ -56,16 +56,11 @@ Output of the code is not included with this GitHub repository. Figures are crea
 
 # How to run the code
 
-Install the latest stable version of Julia (currently 1.7+). Figures are made with PyPlot which requires Julia to have PyCall installed. Instructions are available at https://github.com/ggebbie/TMI.jl for this step. The code can be run at the command line by changing to the repository base directory and running:
+Install the latest stable version of Julia (currently 1.7+). Figures are made with PyPlot which requires Julia to have PyCall installed. Instructions are available at https://github.com/ggebbie/TMI.jl for this step. Once the package has been instantiated following #1 above, the code can be run at the command line by changing to the repository base directory and running:
 
-`julia scripts/TemperatureDifference_Bestparams.jl` .
+`julia scripts/TemperatureDifferenceBestparams.jl` .
 
-For an interactive session, it is possible to run the lines of `TemperatureDifference_Bestparams.jl` line by line. The statement `include("intro.jl")` will automatically activate the project environment and download and install the proper Julia packages. 
-
-# Additional steps
-
-1. check that bin averages reproduce results with HMS Challenger
-2. Figures are rudimentary and could be improved.
+For an interactive session, it is possible to run the lines of `TemperatureDifferenceBestparams.jl` line by line. The statement `include("intro.jl")` will automatically activate the project environment and download and install the proper Julia packages. 
 
 # LaTeX documentation
 
