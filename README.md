@@ -29,7 +29,7 @@ The script at `scripts/TemperatureDifference_Allparams.jl`
 solves for the Indian Ocean average temperature change from the time of two different historical time periods up to the most recent climatology from the World Ocean Atlas. The scripts runs 24 sets of parameters (and creates 24 solutions) for temperature change and its standard error as a function of depth. 
 
 The script at `scripts/TemperatureDifference_Bestparams.jl`
-solves for the Indian Ocean average temperature change using the best algorithmic parameters:
+solves for the Indian Ocean average temperature change using the best algorithmic parameters: 
 `Tbar_LxyS=2000000` m \
 `LxyT=450000` m \
 `LzAVG=500` m \
@@ -40,7 +40,7 @@ solves for the Indian Ocean average temperature change using the best algorithmi
  `σS=1.0` degrees C \
  `σobs=0.14` degrees C .
 
-3 cases are solved: \
+3 cases are solved: 
 1. from the time of the historical cruises Valdivia, Gazelle, and Planet  up to the most recent climatology from the World Ocean Atlas,
 2. from this same time but with the Tait pressure correction applied to historical data,
 3. from the time of the historical cruises Valdivia, Gazelle, and Planet  up to the World Ocean Atlas 1955-1964 time interval.
