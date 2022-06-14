@@ -62,11 +62,6 @@ Install the latest stable version of Julia (currently 1.7+). Figures are made wi
 
 For an interactive session, it is possible to run the lines of `TemperatureDifference_Bestparams.jl` line by line. The statement `include("intro.jl")` will automatically activate the project environment and download and install the proper Julia packages. 
 
-# Additional steps
-
-1. check that bin averages reproduce results with HMS Challenger
-2. Figures are rudimentary and could be improved.
-
 # LaTeX documentation
 
 Documentation is found in a LaTeX-generated document in `papers` directory. 
