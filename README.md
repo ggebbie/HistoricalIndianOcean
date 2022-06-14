@@ -56,11 +56,11 @@ Output of the code is not included with this GitHub repository. Figures are crea
 
 # How to run the code
 
-Install the latest stable version of Julia (currently 1.7+). Figures are made with PyPlot which requires Julia to have PyCall installed. Instructions are available at https://github.com/ggebbie/TMI.jl for this step. The code can be run at the command line by changing to the repository base directory and running:
+Install the latest stable version of Julia (currently 1.7+). Figures are made with PyPlot which requires Julia to have PyCall installed. Instructions are available at https://github.com/ggebbie/TMI.jl for this step. Once the package has been instantiated following #1 above, the code can be run at the command line by changing to the repository base directory and running:
 
-`julia scripts/TemperatureDifference_Bestparams.jl` .
+`julia scripts/TemperatureDifferenceBestparams.jl` .
 
-For an interactive session, it is possible to run the lines of `TemperatureDifference_Bestparams.jl` line by line. The statement `include("intro.jl")` will automatically activate the project environment and download and install the proper Julia packages. 
+For an interactive session, it is possible to run the lines of `TemperatureDifferenceBestparams.jl` line by line. The statement `include("intro.jl")` will automatically activate the project environment and download and install the proper Julia packages. 
 
 # LaTeX documentation
 

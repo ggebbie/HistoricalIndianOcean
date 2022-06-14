@@ -88,7 +88,7 @@ end
 function woce_error(TMIversion,locs,γ)
 
     # read WOCE error
-    inputfile = datadir("TMI_"*TMIversion*".nc")
+    inputfile = TMI.pkgdatadir("TMI_"*TMIversion*".nc")
 
     # take synthetic observations
     # get observational uncertainty
