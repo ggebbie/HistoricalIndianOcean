@@ -4,7 +4,7 @@
 include("intro.jl")
 
 using Revise
-using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV, DataFrames
+using HistoricalIndianOcean, DrWatson, TMI, CSV, DataFrames
 
 # What temperature field?
 delta = ["T","T_tait","T_5564"]
@@ -79,21 +79,21 @@ for (i, d) in enumerate(dicts)
     CSV.write(datadir("all",savename("DH",d,"csv",accesses=accessvars)),dfscalar)
     
     # make profile figure
-    figure(99)
-    clf()
-    plot(output["T̄"],zgrid[1])
-    errorbar(output["T̄"],zgrid[1],xerr=output["σT̄"])
-    xlabel(xax)
-    ylabel(yax)
-    grid()
-    gca().invert_yaxis()
+    # figure(99)
+    # clf()
+    # plot(output["T̄"],zgrid[1])
+    # errorbar(output["T̄"],zgrid[1],xerr=output["σT̄"])
+    # xlabel(xax)
+    # ylabel(yax)
+    # grid()
+    # gca().invert_yaxis()
 
-    titlelabel = replace(savename(d,accesses=accessvars),"_" => " ")
-    title(titlelabel,fontsize=10)
+    # titlelabel = replace(savename(d,accesses=accessvars),"_" => " ")
+    # title(titlelabel,fontsize=10)
 
-    !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
-    figname = plotsdir("all",savename("DTbar",d,"pdf",accesses=accessvars))
-    savefig(figname)
+    # !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
+    # figname = plotsdir("all",savename("DTbar",d,"pdf",accesses=accessvars))
+    # savefig(figname)
 
 end
 
