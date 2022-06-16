@@ -53,10 +53,6 @@ dicts = dict_list(allparams)
 
 for (i, d) in enumerate(dicts)
 
-    println(d["delta"])
-    println(d["tratio"])
-    println(d["sratio"])
-    println(d["latsouth"])
     output = basinwide_avg(d)
 
     println("H=",output["H"])
