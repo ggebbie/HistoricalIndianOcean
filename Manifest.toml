@@ -696,9 +696,9 @@ version = "0.3.7"
 
 [[deps.NetCDF]]
 deps = ["DiskArrays", "Formatting", "NetCDF_jll"]
-git-tree-sha1 = "63684fa08d4ba8a25badc9715048062b4c02c65c"
+git-tree-sha1 = "cddbb6187bee7bd4f19b1c0e5114e53a6d8275f4"
 uuid = "30363a11-5582-574a-97bb-aa9a979735b9"
-version = "0.11.5"
+version = "0.11.6"
 
 [[deps.NetCDF_jll]]
 deps = ["Artifacts", "HDF5_jll", "JLLWrappers", "LibCURL_jll", "LibSSH2_jll", "Libdl", "MbedTLS_jll", "Pkg", "Zlib_jll", "nghttp2_jll"]
