@@ -1,5 +1,9 @@
 # HistoricalIndianOcean
 
+These codes for calculating Indian Ocean basinwide temperature change accompany the paper:
+
+Wenegrat, J.O., E. Bonanno, U. Rack, and G. Gebbie, 2022: A century of observed temperature change in the Indian Ocean. Geophys. Res. Lett., in press, 2022.
+
 This code base is using the Julia Language and [DrWatson](https://juliadynamics.github.io/DrWatson.jl/stable/)
 to make a reproducible scientific project named
 > HistoricalIndianOcean
