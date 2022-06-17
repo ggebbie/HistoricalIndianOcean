@@ -1,5 +1,7 @@
 # HistoricalIndianOcean
 
+https://zenodo.org/badge/doi/10.5281/zenodo.6654779.svg
+
 These codes for calculating Indian Ocean basinwide temperature change accompany the paper:
 
 Wenegrat, J.O., E. Bonanno, U. Rack, and G. Gebbie, 2022: A century of observed temperature change in the Indian Ocean. Geophys. Res. Lett., in press, 2022.
