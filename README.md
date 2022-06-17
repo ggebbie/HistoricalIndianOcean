@@ -1,6 +1,6 @@
 # HistoricalIndianOcean
 
-[(https://zenodo.org/badge/doi/10.5281/zenodo.6654779.svg)]
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.6654779.svg)](https://zenodo.org/badge/doi/6654779)
 
 These codes for calculating Indian Ocean basinwide temperature change accompany the paper:
 
