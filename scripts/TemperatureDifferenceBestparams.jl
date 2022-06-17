@@ -4,7 +4,11 @@
 include("intro.jl")
 
 using Revise
-using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV, DataFrames
+using HistoricalIndianOcean, DrWatson, TMI, CSV, DataFrames
+
+# to make plots
+using Plots
+plotlyjs() # gr() is simpler but has problems on Wayland/Ubuntu 21.10
 
 # What temperature field?
 delta = ["T","T_tait","T_5564"]
@@ -73,19 +77,11 @@ for (i, d) in enumerate(dicts)
     CSV.write(datadir("best",savename("DH",d,"csv",accesses=["delta"])),dfscalar)
 
     # make profile figure
-    figure(i)
-    clf()
-    plot(output["T̄"],zgrid[1])
-    errorbar(output["T̄"],zgrid[1],xerr=output["σT̄"])
-    xlabel(xax)
-    ylabel(yax)
-    grid()
-    gca().invert_yaxis()
-
     titlelabel = replace(savename(d,accesses=["delta"]),"_" => " ")
-    title(titlelabel,fontsize=10)
+    plot(output["T̄"],zgrid[1],xerr=output["σT̄"],
+         xlabel=xax,ylabel=yax,title=titlelabel,yflip=true,legend=false)
 
-    # make whole path if necessary
+    # # make whole path if necessary
     !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
     figname = plotsdir("best",savename("DTbar",d,"pdf",accesses=["delta"]))
     savefig(figname)

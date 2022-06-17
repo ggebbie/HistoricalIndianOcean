@@ -314,6 +314,9 @@ function read_historical_data(delta,latsouth = -90)
         ΔT[ii] = nc[Tname][igood[ii]]
     end
 
+    # close the NetCDF file
+    close(nc)
+    
     return ΔT, locs
 
 end

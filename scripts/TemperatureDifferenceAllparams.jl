@@ -4,7 +4,11 @@
 include("intro.jl")
 
 using Revise
-using HistoricalIndianOcean, DrWatson, TMI, PyPlot, CSV, DataFrames
+using HistoricalIndianOcean, DrWatson, TMI, CSV, DataFrames
+
+# to make figures
+using Plots
+plotlyjs()
 
 # What temperature field?
 delta = ["T","T_tait","T_5564"]
@@ -53,10 +57,6 @@ dicts = dict_list(allparams)
 
 for (i, d) in enumerate(dicts)
 
-    println(d["delta"])
-    println(d["tratio"])
-    println(d["sratio"])
-    println(d["latsouth"])
     output = basinwide_avg(d)
 
     println("H=",output["H"])
@@ -77,19 +77,10 @@ for (i, d) in enumerate(dicts)
 
     dfscalar = DataFrame(Dict("ΔH [ZJ]" => output["H"],"σ(ΔH) [ZJ]" => output["σH"],"z⋆ [m]" => zstar ))
     CSV.write(datadir("all",savename("DH",d,"csv",accesses=accessvars)),dfscalar)
-    
-    # make profile figure
-    figure(99)
-    clf()
-    plot(output["T̄"],zgrid[1])
-    errorbar(output["T̄"],zgrid[1],xerr=output["σT̄"])
-    xlabel(xax)
-    ylabel(yax)
-    grid()
-    gca().invert_yaxis()
 
-    titlelabel = replace(savename(d,accesses=accessvars),"_" => " ")
-    title(titlelabel,fontsize=10)
+    titlelabel = replace(savename(d,accesses=["delta"]),"_" => " ")
+    plot(output["T̄"],zgrid[1],xerr=output["σT̄"],
+         xlabel=xax,ylabel=yax,title=titlelabel,yflip=true,legend=false)
 
     !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
     figname = plotsdir("all",savename("DTbar",d,"pdf",accesses=accessvars))
@@ -97,29 +88,8 @@ for (i, d) in enumerate(dicts)
 
 end
 
-# tests
-#readdir(datadir("csv"))
-#readdir(plotsdir())
 
 # Left to do: compare to bin-averaged ΔT
 #ΔTmean = mean(skipmissing(ΔT))
 #ΔTstd = std(skipmissing(ΔT))
 #err_naive = ΔTstd/sqrt(count(!ismissing,ΔT))
-
-#=
-# testing Named Tuples
-# locs = NamedTuple{(:lon,:lat,:depth),T}()
-# locs = (lon = lon[1], lat=lat[1], depth=depth[1])
-# names = (:lon,:lat,:depth)
-# loc = NamedTuple{names,(T,T,T)}()
-# for i in eachindex(lon)
-#     loc[i] = (lon = lon[i], lat=lat[i], depth=depth[i])
-# end
-
-# this works, but doesn't specify types
-#NamedTuple{(:lon,:lat,:depth)}(loc1)
-#T = Float64
-# loc = Vector{@NamedTuple{lon::T,lat::T,depth::T}}(undef,2)
-# loc[1] = @NamedTuple{lon::T,lat::T,depth::T}((loc1))
-# loc[2] = @NamedTuple{lon::T,lat::T,depth::T}((loc2))
-=#
