@@ -82,7 +82,7 @@ for (i, d) in enumerate(dicts)
     plot(output["T̄"],zgrid[1],xerr=output["σT̄"],
          xlabel=xax,ylabel=yax,title=titlelabel,yflip=true,legend=false)
 
-    !isdir(plotsdir("best")) && mkpath(plotsdir("best"))
+    !isdir(plotsdir("all")) && mkpath(plotsdir("all"))
     figname = plotsdir("all",savename("DTbar",d,"pdf",accesses=accessvars))
     savefig(figname)
 
