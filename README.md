@@ -53,7 +53,6 @@ solves for the Indian Ocean average temperature change using the best algorithmi
 
 Basinwide-temperature change is solved using code in `src/HistoricalIndianOcean.jl` that represents an inverse method that accounts for three distinct sources of contamination in temperature observations. The list of available functions is stated in the `export` statement at the top of this source code.
 
-
 All error bars are 1 sigma. Unicode symbols are used in some places; please submit a GitHub Issue if they cause problems.
 
 # Code output
@@ -62,7 +61,7 @@ Output of the code is not included with this GitHub repository. Figures are crea
 
 # How to run the code
 
-Install the latest stable version of Julia (currently 1.7+). Figures are made with PyPlot which requires Julia to have PyCall installed. Instructions are available at https://github.com/ggebbie/TMI.jl for this step. Once the package has been instantiated following #1 above, the code can be run at the command line by changing to the repository base directory and running:
+Install the latest stable version of Julia (currently 1.7+). Figures are made with PlotlyJS.jl. Once the package has been instantiated following #1 above, the code can be run at the command line by changing to the repository base directory and running:
 
 `julia scripts/TemperatureDifferenceBestparams.jl` .
 
